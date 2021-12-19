@@ -19,5 +19,5 @@ jobs:
         run: luarocks install luacheck
       - name: Run Code Linter
         run: |
-          luacheck .
+          luacheck src spec
           luarocks lint *.rockspec
