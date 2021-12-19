@@ -37,4 +37,4 @@ There are a few things that I would like to add with lua fort. This list is in c
   - References to the libfort wiki
 - [ ] First release on luarocks
 - [ ] UTF-8 support
-- [ ] Complimentary `ftable` class module. The API will differ from the `fort` module to make it nicer to use from lua.
+- [ ] Complimentary high-level `tabulate` module. This will be similar to the [python-tabulate](https://github.com/astanin/python-tabulate) library.
