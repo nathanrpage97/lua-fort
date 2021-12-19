@@ -30,11 +30,11 @@ There are a few things that I would like to add with lua fort. This list is in c
 
 - [x] lua ≥ 5.1 support
 - [x] CI testing across versions
+- [X] Documentation site
 - [ ] Unit testing
 - [ ] More detailed usage documentation
   - Detailed Examples
   - References to the libfort wiki
-- [ ] Documentation site
 - [ ] First release on luarocks
 - [ ] UTF-8 support
 - [ ] Complimentary `ftable` class module. The API will differ from the `fort` module to make it nicer to use from lua.
