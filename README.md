@@ -28,7 +28,7 @@ The `fort` module directly maps the API from c to lua with the `FT_*`/`ft_*` pre
 
 There are a few things that I would like to add with lua fort. This list is in chronological order.
 
-- [ ] lua ≥ 5.1 support
+- [x] lua ≥ 5.1 support
 - [ ] More detailed usage documentation
 - [ ] First release on luarocks
 - [ ] Documentation site

@@ -3,6 +3,14 @@
 #include <lua.h>
 #include <lauxlib.h>
 
+#if LUA_VERSION_NUM >= 502
+#define new_lib(L, l) (luaL_newlib(L, l))
+#define lua_tbl_len(L, arg) (lua_rawlen(L, arg))
+#else
+#define new_lib(L, l) (lua_newtable(L), luaL_register(L, NULL, l))
+#define lua_tbl_len(L, arg) (lua_objlen(L, arg))
+#endif
+
 #define CHECK_ARG_COUNT(L, arg_count)                                   \
     do                                                                  \
     {                                                                   \
@@ -196,7 +204,7 @@ static int lft_erase_range(lua_State *L)
 static const char **generate_row_cells(lua_State *L, int arg_num)
 {
 
-    size_t cols = lua_rawlen(L, 2);
+    size_t cols = lua_tbl_len(L, 2);
     const char **row_cells = malloc(cols * sizeof(char *));
     if (row_cells == NULL)
     {
@@ -232,7 +240,7 @@ static int lft_row_write(lua_State *L)
 
     ft_table_t **table = lua_touserdata(L, 1);
 
-    size_t cols = lua_rawlen(L, 2);
+    size_t cols = lua_tbl_len(L, 2);
     const char **row_cells = generate_row_cells(L, 2);
     if (row_cells == NULL)
     {
@@ -257,7 +265,7 @@ static int lft_row_write_ln(lua_State *L)
 
     ft_table_t **table = lua_touserdata(L, 1);
 
-    size_t cols = lua_rawlen(L, 2);
+    size_t cols = lua_tbl_len(L, 2);
     const char **row_cells = generate_row_cells(L, 2);
     if (row_cells == NULL)
     {
@@ -416,7 +424,7 @@ static const struct luaL_Reg fort_functions[] = {
 
 int luaopen_cfort(lua_State *L)
 {
-    luaL_newlib(L, fort_functions);
+    new_lib(L, fort_functions);
 
     // styles
     lua_pushlightuserdata(L, (void *)FT_BASIC_STYLE);
