@@ -6,7 +6,7 @@ backtick_references=false
 file='src/fort.lua'
 dir='build'
 readme='docs/doc.md'
-style='!'
+style='!fixed'
 kind_names={topic='Manual',script='Programs'}
 wrap=true
 sort=false
