@@ -5,8 +5,12 @@ on: [push]
 jobs:
   test:
     strategy:
+      fail-fast: false
       matrix:
-        luaVersion: ["5.1.5", "5.2.4", "5.3.6", "5.4.3"]
+        luaVersion: ["5.1.5", "5.2.4", "5.3.5", "5.4.1", "5.1", "5.4"]
+        machineTag: ["ubuntu-latest", "macos-latest", "windows-latest"]
+
+    runs-on: ${{ matrix.machineTag }}
 
     steps:
       - uses: actions/checkout@master
@@ -18,3 +22,6 @@ jobs:
         run: |
           luarocks install busted
           luarocks make
+      - name: test
+        run: |
+          busted -o utfTerminal
