@@ -36,5 +36,4 @@ jobs:
           # deploy the current public folder
           # to <base url>/x.y.z version subfolder
           publish_dir: .github/redirect/
-          destination_dir: latest
           keep_files: true
