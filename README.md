@@ -29,9 +29,12 @@ The `fort` module directly maps the API from c to lua with the `FT_*`/`ft_*` pre
 There are a few things that I would like to add with lua fort. This list is in chronological order.
 
 - [x] lua ≥ 5.1 support
-- [ ] More detailed usage documentation
-- [ ] First release on luarocks
-- [ ] Documentation site
+- [x] CI testing across versions
 - [ ] Unit testing
-- [ ] CI testing across versions
+- [ ] More detailed usage documentation
+  - Detailed Examples
+  - References to the libfort wiki
+- [ ] Documentation site
+- [ ] First release on luarocks
 - [ ] UTF-8 support
+- [ ] Complimentary `ftable` class module. The API will differ from the `fort` module to make it nicer to use from lua.
