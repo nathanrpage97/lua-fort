@@ -8,7 +8,7 @@ jobs:
       fail-fast: false
       matrix:
         luaVersion: ["5.1.5", "5.2.4", "5.3.5", "5.4.1", "5.1", "5.4"]
-        machineTag: ["ubuntu-latest", "macos-latest", "windows-latest"]
+        machineTag: ["ubuntu-latest", "macos-latest"]
 
     runs-on: ${{ matrix.machineTag }}
 
@@ -18,6 +18,8 @@ jobs:
         with:
           luaVersion: ${{ matrix.luaVersion }}
       - uses: leafo/gh-actions-luarocks@v4.0.0
+        with:
+        luarocksVersion: "3.8.0"
       - name: build
         run: |
           luarocks install busted
