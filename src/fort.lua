@@ -64,7 +64,7 @@ end
 function fort.print_ln(ftable, row_text, sep)
     sep = sep or fort.default_separator
     local row = split(row_text, sep)
-    cfort.row_write(ftable, row)
+    cfort.row_write_ln(ftable, row)
 end
 
 ---Write a 2d array of strings to the ftable.
@@ -204,143 +204,190 @@ fort.set_tbl_prop = cfort.set_tbl_prop
 ---@treturn string formatted table string
 fort.to_string = cfort.to_string
 
----@within Text Align
+---Cell Text Align.
+-- Indicate the text alignment inside a cell.
+--
+-- Can be used with @{set_cell_prop}/@{set_default_cell_prop}
+-- @section cell-text-align
+
+--- align text center
 fort.ALIGNED_CENTER = cfort.ALIGNED_CENTER
----@within Text Align
+--- align text left
 fort.ALIGNED_LEFT = cfort.ALIGNED_LEFT
----@within Text Align
+--- align text right
 fort.ALIGNED_RIGHT = cfort.ALIGNED_RIGHT
----@within Cell Position
+
+---Cell Selectors.
+-- Special flags that select a cell
+--
+-- Can be used with @{set_cell_prop}
+-- @section cell-selector
+
+--- Select all columns
 fort.ANY_COLUMN = cfort.ANY_COLUMN
----@within Cell Position
+--- Select all rows
 fort.ANY_ROW = cfort.ANY_ROW
----@within Table Style
-fort.BASIC2_STYLE = cfort.BASIC2_STYLE
----@within Table Style
-fort.BASIC_STYLE = cfort.BASIC_STYLE
----@within Table Style
-fort.BOLD2_STYLE = cfort.BOLD2_STYLE
----@within Table Style
-fort.BOLD_STYLE = cfort.BOLD_STYLE
----@within Text Color
-fort.COLOR_BLACK = cfort.COLOR_BLACK
----@within Text Color
-fort.COLOR_BLUE = cfort.COLOR_BLUE
----@within Text Color
-fort.COLOR_CYAN = cfort.COLOR_CYAN
----@within Text Color
-fort.COLOR_DARK_GRAY = cfort.COLOR_DARK_GRAY
----@within Text Color
-fort.COLOR_DEFAULT = cfort.COLOR_DEFAULT
----@within Text Color
-fort.COLOR_GREEN = cfort.COLOR_GREEN
----@within Text Color
-fort.COLOR_LIGHT_BLUE = cfort.COLOR_LIGHT_BLUE
----@within Text Color
-fort.COLOR_LIGHT_CYAN = cfort.COLOR_LIGHT_CYAN
----@within Text Color
-fort.COLOR_LIGHT_GRAY = cfort.COLOR_LIGHT_GRAY
----@within Text Color
-fort.COLOR_LIGHT_GREEN = cfort.COLOR_LIGHT_GREEN
----@within Text Color
-fort.COLOR_LIGHT_MAGENTA = cfort.COLOR_LIGHT_MAGENTA
----@within Text Color
-fort.COLOR_LIGHT_RED = cfort.COLOR_LIGHT_RED
----@within Text Color
-fort.COLOR_LIGHT_WHITE = cfort.COLOR_LIGHT_WHYTE
----@within Text Color
-fort.COLOR_LIGHT_YELLOW = cfort.COLOR_LIGHT_YELLOW
----@within Text Color
-fort.COLOR_MAGENTA = cfort.COLOR_MAGENTA
----@within Text Color
-fort.COLOR_RED = cfort.COLOR_RED
----@within Text Color
-fort.COLOR_YELLOW = cfort.COLOR_YELLOW
----@within Cell Property
-fort.CPROP_BOTTOM_PADDING = cfort.CPROP_BOTTOM_PADDING
----@within Cell Property
-fort.CPROP_CELL_BG_COLOR = cfort.CPROP_CELL_BG_COLOR
----@within Cell Property
-fort.CPROP_CELL_TEXT_STYLE = cfort.CPROP_CELL_TEXT_STYLE
----@within Cell Property
-fort.CPROP_CONT_BG_COLOR = cfort.CPROP_CONT_BG_COLOR
----@within Cell Property
-fort.CPROP_CONT_FG_COLOR = cfort.CPROP_CONT_FG_COLOR
----@within Cell Property
-fort.CPROP_CONT_TEXT_STYLE = cfort.CPROP_CONT_TEXT_STYLE
----@within Cell Property
-fort.CPROP_EMPTY_STR_HEIGHT = cfort.CPROP_EMPTY_STR_HEIGHT
----@within Cell Property
-fort.CPROP_LEFT_PADDING = cfort.CPROP_LEFT_PADDING
----@within Cell Property
-fort.CPROP_MIN_WIDTH = cfort.CPROP_MIN_WIDTH
----@within Cell Property
-fort.CPROP_RIGHT_PADDING = cfort.CPROP_RIGHT_PADDING
----@within Cell Property
-fort.CPROP_ROW_TYPE = cfort.CPROP_ROW_TYPE
----@within Cell Property
-fort.CPROP_TEXT_ALIGN = cfort.CPROP_TEXT_ALIGN
----@within Cell Property
-fort.CPROP_TOP_PADDING = cfort.CPROP_TOP_PADDING
----@within Cell Position
+--- Select the current column
 fort.CUR_COLUMN = cfort.CUR_COLUMN
----@within Cell Position
+--- Select the current row
 fort.CUR_ROW = cfort.CUR_ROW
----@within Table Style
+
+---Table Border Style.
+-- Border styling of the table.
+--
+-- Refer to refer to
+-- [this page](https://github.com/seleznevae/libfort/wiki/Border-styles-%28C-API%29#built-in-border-styles)
+-- to see how each border style looks.
+-- @section table-border-style
+
+---Border style
+fort.BASIC_STYLE = cfort.BASIC_STYLE
+---Border style
+fort.BASIC2_STYLE = cfort.BASIC2_STYLE
+---Border style
+fort.BOLD_STYLE = cfort.BOLD_STYLE
+---Border style
+fort.BOLD2_STYLE = cfort.BOLD2_STYLE
+---Border style
 fort.DOT_STYLE = cfort.DOT_STYLE
----@within Table Style
-fort.DOUBLE2_STYLE = cfort.DOUBLE2_STYLE
----@within Table Style
+---Border style
 fort.DOUBLE_STYLE = cfort.DOUBLE_STYLE
----@within Table Style
-fort.EMPTY2_STYLE = cfort.EMPTY2_STYLE
----@within Table Style
+---Border style
+fort.DOUBLE2_STYLE = cfort.DOUBLE2_STYLE
+---Border style
 fort.EMPTY_STYLE = cfort.EMPTY_STYLE
----@within Table Style
+---Border style
+fort.EMPTY2_STYLE = cfort.EMPTY2_STYLE
+---Border style
 fort.FRAME_STYLE = cfort.FRAME_STYLE
----@within Table Style
+---Border style
 fort.NICE_STYLE = cfort.NICE_STYLE
----@within Table Style
+---Border style
 fort.PLAIN_STYLE = cfort.PLAIN_STYLE
----@within Row Type
-fort.ROW_COMMON = cfort.ROW_COMMON
----@within Row Type
-fort.ROW_HEADER = cfort.ROW_HEADER
----@within Table Style
+---Border style
 fort.SIMPLE_STYLE = cfort.SIMPLE_STYLE
----@within Table Style
+---Border style
 fort.SOLID_ROUND_STYLE = cfort.SOLID_ROUND_STYLE
----@within Table Style
+---Border style
 fort.SOLID_STYLE = cfort.SOLID_STYLE
----@within Table Adding Strategy
+
+---Cell Color.
+-- Color used for cell/content properties.
+-- @section cell-color
+
+---Color
+fort.COLOR_BLACK = cfort.COLOR_BLACK
+---Color
+fort.COLOR_BLUE = cfort.COLOR_BLUE
+---Color
+fort.COLOR_CYAN = cfort.COLOR_CYAN
+---Color
+fort.COLOR_DARK_GRAY = cfort.COLOR_DARK_GRAY
+---Color
+fort.COLOR_DEFAULT = cfort.COLOR_DEFAULT
+---Color
+fort.COLOR_GREEN = cfort.COLOR_GREEN
+---Color
+fort.COLOR_LIGHT_BLUE = cfort.COLOR_LIGHT_BLUE
+---Color
+fort.COLOR_LIGHT_CYAN = cfort.COLOR_LIGHT_CYAN
+---Color
+fort.COLOR_LIGHT_GRAY = cfort.COLOR_LIGHT_GRAY
+---Color
+fort.COLOR_LIGHT_GREEN = cfort.COLOR_LIGHT_GREEN
+---Color
+fort.COLOR_LIGHT_MAGENTA = cfort.COLOR_LIGHT_MAGENTA
+---Color
+fort.COLOR_LIGHT_RED = cfort.COLOR_LIGHT_RED
+---Color
+fort.COLOR_LIGHT_WHITE = cfort.COLOR_LIGHT_WHYTE
+---Color
+fort.COLOR_LIGHT_YELLOW = cfort.COLOR_LIGHT_YELLOW
+---Color
+fort.COLOR_MAGENTA = cfort.COLOR_MAGENTA
+---Color
+fort.COLOR_RED = cfort.COLOR_RED
+---Color
+fort.COLOR_YELLOW = cfort.COLOR_YELLOW
+
+---Cell Property.
+-- @section cell-property
+
+---Cell Property
+fort.CPROP_CELL_BG_COLOR = cfort.CPROP_CELL_BG_COLOR
+---Cell Property
+fort.CPROP_CELL_TEXT_STYLE = cfort.CPROP_CELL_TEXT_STYLE
+---Cell Property
+fort.CPROP_CONT_BG_COLOR = cfort.CPROP_CONT_BG_COLOR
+---Cell Property
+fort.CPROP_CONT_FG_COLOR = cfort.CPROP_CONT_FG_COLOR
+---Cell Property
+fort.CPROP_CONT_TEXT_STYLE = cfort.CPROP_CONT_TEXT_STYLE
+---Cell Property
+fort.CPROP_EMPTY_STR_HEIGHT = cfort.CPROP_EMPTY_STR_HEIGHT
+---Cell Property
+fort.CPROP_MIN_WIDTH = cfort.CPROP_MIN_WIDTH
+---Cell Property
+fort.CPROP_ROW_TYPE = cfort.CPROP_ROW_TYPE
+---Cell Property
+fort.CPROP_TEXT_ALIGN = cfort.CPROP_TEXT_ALIGN
+---Cell Property
+fort.CPROP_TOP_PADDING = cfort.CPROP_TOP_PADDING
+---Cell Property
+fort.CPROP_LEFT_PADDING = cfort.CPROP_LEFT_PADDING
+---Cell Property
+fort.CPROP_BOTTOM_PADDING = cfort.CPROP_BOTTOM_PADDING
+---Cell Property
+fort.CPROP_RIGHT_PADDING = cfort.CPROP_RIGHT_PADDING
+
+---Row Type.
+-- @section row-type
+
+---Row Type
+fort.ROW_COMMON = cfort.ROW_COMMON
+---Row Type
+fort.ROW_HEADER = cfort.ROW_HEADER
+
+---Table Adding Strategy.
+-- @section table-adding-strategy
+
+---Insert new cells
 fort.STRATEGY_INSERT = cfort.STRATEGY_INSERT
----@within Table Adding Strategy
+---Replace current cells
 fort.STRATEGY_REPLACE = cfort.STRATEGY_REPLACE
----@within Table Property
+
+---Table Property.
+-- @section table-property
+
+---Table Property
 fort.TPROP_ADDING_STRATEGY = cfort.TPROP_ADDING_STRATEGY
----@within Table Property
+---Table Property
 fort.TPROP_BOTTOM_MARGIN = cfort.TPROP_BOTTOM_MARGIN
----@within Table Property
+---Table Property
 fort.TPROP_LEFT_MARGIN = cfort.TPROP_LEFT_MARGIN
----@within Table Property
+---Table Property
 fort.TPROP_RIGHT_MARGIN = cfort.TPROP_RIGHT_MARGIN
----@within Table Property
+---Table Property
 fort.TPROP_TOP_MARGIN = cfort.TPROP_TOP_MARGIN
----@within Text Style
+
+---Cell Text Style.
+-- @section cell-text-style
+
+---Text Style
 fort.TSTYLE_BLINK = cfort.TSTYLE_BLINK
----@within Text Style
+---Text Style
 fort.TSTYLE_BOLD = cfort.TSTYLE_BOLD
----@within Text Style
+---Text Style
 fort.TSTYLE_DEFAULT = cfort.TSTYLE_DEFAULT
----@within Text Style
+---Text Style
 fort.TSTYLE_DIM = cfort.TSTYLE_DIM
----@within Text Style
+---Text Style
 fort.TSTYLE_HIDDEN = cfort.TSTYLE_HIDDEN
----@within Text Style
+---Text Style
 fort.TSTYLE_INVERTED = cfort.TSTYLE_INVERTED
----@within Text Style
+---Text Style
 fort.TSTYLE_ITALIC = cfort.TSTYLE_ITALIC
----@within Text Style
+---Text Style
 fort.TSTYLE_UNDERLINED = cfort.TSTYLE_UNDERLINED
 
 return fort
