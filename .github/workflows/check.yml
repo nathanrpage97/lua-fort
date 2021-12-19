@@ -16,7 +16,9 @@ jobs:
       - name: Setup Lua Rocks
         uses: leafo/gh-actions-luarocks@v4
       - name: Setup dependencies
-        run: luarocks install luacheck ldoc
+        run: |
+          luarocks install luacheck
+          luarocks install ldoc
       - name: Run Code Linter
         run: |
           luacheck src spec
