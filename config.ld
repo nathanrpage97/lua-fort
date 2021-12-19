@@ -1,6 +1,6 @@
-project='LDoc'
-title='LDoc documentation'
-description='A Lua documentation tool'
+project='lua-fort'
+title='lua-fort documentation'
+description='An ASCII formatted table generating library'
 format='discount'
 backtick_references=false
 file='src/fort.lua'
