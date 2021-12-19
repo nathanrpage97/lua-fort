@@ -1,0 +1,40 @@
+name: docs
+# only deploy site from master branch
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: leafo/gh-actions-lua@v8.0.0
+        with:
+          luaVersion: "5.4"
+      - uses: leafo/gh-actions-luarocks@v4.0.0
+        with:
+          luarocksVersion: "3.8.0"
+
+      # you probably would do build and test steps here
+      - name: Install ldoc
+        run: luarocks install ldoc
+      - name: Buid Docs
+        run: ldoc --fatalwarnings .
+      - name: Deploy Latest 🚀
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # deploy the current public folder
+          # to <base url>/x.y.z version subfolder
+          publish_dir: ./build
+          destination_dir: latest
+      - name: Deploy Redirect 🚀
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # deploy the current public folder
+          # to <base url>/x.y.z version subfolder
+          publish_dir: .github/redirect/
+          destination_dir: latest
+          keep_files: true
