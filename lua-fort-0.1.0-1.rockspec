@@ -1,7 +1,7 @@
 package = "lua-fort"
 version = "0.1.0-1"
 
-source = {url = "todo"}
+source = {url = "https://github.com/nathanrpage97/lua-fort"}
 
 description = {
     summary = "A wrapper around the fort ascii table library",
@@ -16,6 +16,7 @@ description = {
         - Numerous table filling methods
         - No dependencies on other libraries
     ]],
+    homepage="https://nathanrpage97.github.io/lua-fort/",
     license = "MIT"
 }
 
