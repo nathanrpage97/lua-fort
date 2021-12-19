@@ -85,6 +85,8 @@ static void register_lua_table(lua_State *L, ft_table_t *table)
     lua_newtable(L);
     lua_pushcfunction(L, lft_destroy_table);
     lua_setfield(L, -2, "__gc");
+    lua_pushliteral(L, "ft_table_t");
+    lua_setfield(L, -2, "_type");
     lua_setmetatable(L, -2);
 }
 
