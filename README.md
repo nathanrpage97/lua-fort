@@ -16,13 +16,9 @@ A lua wrapper around the [libfort](https://github.com/seleznevae/libfort) librar
 
 The `fort` module directly maps the API from c to lua with the `FT_*`/`ft_*` prefixes.
 
-## Wrapper Mapping
-
-The wrapper is designed to
-
 ## Differences from libfort
 
-- No UTF-8 support (on the list)
+- No UTF-8 support (on the roadmap)
 - No wchar support (Not needed for lua)
 - `ft_printf`/`ft_printf_ln` aren't used directly.
   - lua's string.format method is used to do formatting
