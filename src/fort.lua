@@ -189,20 +189,18 @@ fort.row_count = wrap_check_ftable(cfort.row_count)
 ---@ftable ftable
 ---@tparam {string} row row of strings to write
 function fort.row_write(ftable, row)
-    for i, v in ipairs(row) do
-        assert(type(v) == "string", string.format("Index %d is not a string", i))
-    end
-    cfort.row_write(ftable, row)
+    local stringified_row = {}
+    for i, v in ipairs(row) do stringified_row[i] = tostring(v) end
+    cfort.row_write(ftable, stringified_row)
 end
 
 ---Write a row of data and go to the next line.
 ---@ftable ftable
 ---@tparam {string} row row of strings to write
 function fort.row_write_ln(ftable, row)
-    for i, v in ipairs(row) do
-        assert(type(v) == "string", string.format("Index %d is not a string", i))
-    end
-    cfort.row_write_ln(ftable, row)
+    local stringified_row = {}
+    for i, v in ipairs(row) do stringified_row[i] = tostring(v) end
+    cfort.row_write_ln(ftable, stringified_row)
 end
 
 ---Set the border style of the ftable.
