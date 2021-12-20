@@ -108,20 +108,35 @@ end
 ---Write a 2d array of strings to the ftable.
 ---@ftable ftable
 ---@tparam {{string}} data_table 2d array of strings to write, can be jagged.
-function fort.table_write(ftable, data_table)
+---@boolean[opt=false] colalign align to the @{cur_col} at the start
+function fort.table_write(ftable, data_table, colalign)
+    colalign = colalign or false
     local rows = #data_table
+    local cur_col = fort.cur_col(ftable)
     for row_index, data_row in ipairs(data_table) do
         fort.row_write(ftable, data_row)
-        if row_index ~= rows then fort.ln(ftable) end
+        if row_index ~= rows then
+            fort.ln(ftable)
+            if colalign then
+                local cur_row = fort.cur_row(ftable)
+                fort.set_cur_cell(ftable, cur_row, cur_col)
+            end
+        end
     end
 end
 
 ---Write a 2d array of strings to the ftable and go to next line.
 ---@ftable ftable
 ---@tparam {{string}} data_table 2d array of strings to write, can be jagged.
-function fort.table_write_ln(ftable, data_table)
-    fort.table_write(ftable, data_table)
+function fort.table_write_ln(ftable, data_table, colalign)
+    local cur_col = fort.cur_col(ftable)
+    colalign = colalign or false
+    fort.table_write(ftable, data_table, colalign)
     fort.ln(ftable)
+    if colalign then
+        local cur_row = fort.cur_row(ftable)
+        fort.set_cur_cell(ftable, cur_row, cur_col)
+    end
 end
 
 ---Add a dividing separtor line at the current row.
