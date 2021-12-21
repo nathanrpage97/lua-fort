@@ -249,7 +249,7 @@ static int lft_row_write(lua_State *L)
         return luaL_error(L, "Unable to create row cells");
     }
 
-    int error_code = ft_row_write(*table, cols, row_cells);
+    int error_code = ft_u8nrow_write(*table, cols, row_cells);
     free(row_cells);
     ERR_CHECK(error_code);
     return 0;
@@ -274,7 +274,7 @@ static int lft_row_write_ln(lua_State *L)
         return luaL_error(L, "Unable to create row cells");
     }
 
-    int error_code = ft_row_write_ln(*table, cols, row_cells);
+    int error_code = ft_u8nrow_write_ln(*table, cols, row_cells);
     free(row_cells);
     ERR_CHECK(error_code);
     return 0;
@@ -297,8 +297,7 @@ static int lft_to_string(lua_State *L)
     CHECK_ARG_IS_FTABLE(L, 1);
 
     ft_table_t **table = lua_touserdata(L, 1);
-
-    const char *table_string = ft_to_string(*table);
+    const char *table_string = (const char *)ft_to_u8string(*table);
     lua_pushstring(L, table_string);
     return 1;
 }

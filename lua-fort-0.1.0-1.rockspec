@@ -16,7 +16,7 @@ description = {
         - Numerous table filling methods
         - No dependencies on other libraries
     ]],
-    homepage="https://nathanrpage97.github.io/lua-fort/",
+    homepage = "https://nathanrpage97.github.io/lua-fort/",
     license = "MIT"
 }
 
@@ -29,7 +29,7 @@ build = {
         cfort = {
             sources = {"src/lfort.c", "src/fort.c"},
             -- disable wchar and utf8 for now
-            defines = {"FT_CONGIG_DISABLE_WCHAR", "FT_CONGIG_DISABLE_UTF8"}
+            defines = {"FT_CONGIG_DISABLE_WCHAR"}
         }
     },
     install = {lua = {fort = "src/fort.lua"}},

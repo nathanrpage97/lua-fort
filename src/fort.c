@@ -3653,6 +3653,27 @@ int ft_set_cell_span(ft_table_t *table, size_t row, size_t col, size_t hor_span)
 
 #ifdef FT_HAVE_UTF8
 
+
+int ft_u8nrow_write(ft_table_t *table, size_t n, const char* cell[]) {
+    size_t i = 0;
+    assert(table);
+    for (i = 0; i < n; ++i) {
+        int status = ft_u8write_impl(table, cell[i]);
+        if (FT_IS_ERROR(status)) {
+            return status;
+        }
+    }
+    return 0;
+}
+
+int ft_u8nrow_write_ln(ft_table_t *table, size_t n, const char* cell[])
+{
+    int err = ft_u8nrow_write(table, n, cell);
+    if (err != FT_SUCCESS) return err;
+    err = ft_ln(table);
+    return err;
+}
+
 int ft_u8nwrite(ft_table_t *table, size_t n, const void *cell_content, ...)
 {
     size_t i = 0;

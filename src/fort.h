@@ -1011,6 +1011,9 @@ const wchar_t *ft_to_wstring(const ft_table_t *table);
     (ft_u8nwrite_ln(table, FT_PP_NARG_(__VA_ARGS__), __VA_ARGS__))
 int ft_u8nwrite(ft_table_t *table, size_t n, const void *cell_content, ...);
 int ft_u8nwrite_ln(ft_table_t *table, size_t n, const void *cell_content, ...);
+int ft_u8nrow_write(ft_table_t *table, size_t n, const char* cell[]);
+int ft_u8nrow_write_ln(ft_table_t *table, size_t n, const char* cell[]);
+
 
 int ft_u8printf(ft_table_t *table, const char *fmt, ...) FT_PRINTF_ATTRIBUTE_FORMAT(2, 3);
 int ft_u8printf_ln(ft_table_t *table, const char *fmt, ...) FT_PRINTF_ATTRIBUTE_FORMAT(2, 3);
