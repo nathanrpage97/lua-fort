@@ -22,11 +22,11 @@ prefixes.
 
 ## Differences from libfort
 
-- No UTF-8 support (on the roadmap)
 - No wchar support (Not needed for lua)
 - `ft_printf`/`ft_printf_ln` aren't used directly.
   - lua's string.format method is used to do formatting
   - String splitting on column separator is done in lua
+- all functions are utf8 compatible
 
 ## Roadmap
 
