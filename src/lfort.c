@@ -11,41 +11,8 @@
 #define lua_tbl_len(L, arg) (lua_objlen(L, arg))
 #endif
 
-#define CHECK_ARG_COUNT(L, arg_count)                                   \
-    do                                                                  \
-    {                                                                   \
-        if (lua_gettop(L) != arg_count)                                 \
-        {                                                               \
-            return luaL_error(L, "Expected %d argument(s)", arg_count); \
-        }                                                               \
-    } while (0);
-
-#define CHECK_ARG_IS(L, checker, arg_num, checker_str)                                 \
-    do                                                                                 \
-    {                                                                                  \
-        if (!checker(L, arg_num))                                                      \
-        {                                                                              \
-            return luaL_error(L, "Expected %s for argument %d", checker_str, arg_num); \
-        }                                                                              \
-    } while (0);
-
-#define CHECK_ARG_IS_NUMBER(L, arg_num)                                       \
-    do                                                                        \
-    {                                                                         \
-        if (!lua_isnumber(L, arg_num))                                        \
-        {                                                                     \
-            return luaL_error(L, "Expected number for argument %d", arg_num); \
-        }                                                                     \
-    } while (0);
-
-#define CHECK_ARG_IS_FTABLE(L, arg_num)                                       \
-    do                                                                        \
-    {                                                                         \
-        if (!lua_isuserdata(L, arg_num))                                      \
-        {                                                                     \
-            return luaL_error(L, "Expected ftable for argument %d", arg_num); \
-        }                                                                     \
-    } while (0);
+#define FTABLEMETA "fort.ftable"
+#define FBORDERSTYLE "fort.border_style"
 
 #define ERR_CHECK(func)                                    \
     do                                                     \
@@ -66,13 +33,16 @@ static ft_table_t **get_fort_table(lua_State *L, int arg_num)
     return (ft_table_t **)lua_touserdata(L, arg_num);
 }
 
-static int lft_destroy_table(lua_State *L)
+static int ftable_destroy(lua_State *L)
 {
-    ft_table_t **table = lua_touserdata(L, 1);
+    ft_table_t **table = luaL_checkudata(L, 1, FTABLEMETA);
     if (table != NULL)
     {
         ft_destroy_table(*table);
     }
+    // The critical step that will prevent us from allowing
+    // a call into a dead object.
+    *table = NULL;
     return 0;
 }
 
@@ -80,13 +50,8 @@ static void register_lua_table(lua_State *L, ft_table_t *table)
 {
     ft_table_t **data = lua_newuserdata(L, sizeof(ft_table_t *));
     *data = table;
-
-    // create gc method to cleanup table struct
-    lua_newtable(L);
-    lua_pushcfunction(L, lft_destroy_table);
-    lua_setfield(L, -2, "__gc");
-    lua_pushliteral(L, "ft_table_t");
-    lua_setfield(L, -2, "_type");
+    // add ftable
+    luaL_getmetatable(L, FTABLEMETA);
     lua_setmetatable(L, -2);
 }
 
@@ -103,10 +68,8 @@ static int lft_create_table(lua_State *L)
 
 static int lft_copy_table(lua_State *L)
 {
-    CHECK_ARG_COUNT(L, 1);
-    CHECK_ARG_IS_FTABLE(L, 1);
 
-    ft_table_t **table = lua_touserdata(L, 1);
+    ft_table_t **table = luaL_checkudata(L, 1, FTABLEMETA);
     ft_table_t *new_table = ft_copy_table(*table);
 
     register_lua_table(L, new_table);
@@ -115,18 +78,14 @@ static int lft_copy_table(lua_State *L)
 
 static int lft_ln(lua_State *L)
 {
-    CHECK_ARG_COUNT(L, 1);
-    CHECK_ARG_IS_FTABLE(L, 1);
-    ft_table_t **table = lua_touserdata(L, 1);
+    ft_table_t **table = luaL_checkudata(L, 1, FTABLEMETA);
     ERR_CHECK(ft_ln(*table));
     return 0;
 }
 
 static int lft_cur_row(lua_State *L)
 {
-    CHECK_ARG_COUNT(L, 1);
-    CHECK_ARG_IS_FTABLE(L, 1);
-    ft_table_t **table = lua_touserdata(L, 1);
+    ft_table_t **table = luaL_checkudata(L, 1, FTABLEMETA);
 
     int cur_row = ft_cur_row(*table);
     lua_pushnumber(L, cur_row);
@@ -135,9 +94,7 @@ static int lft_cur_row(lua_State *L)
 
 static int lft_cur_col(lua_State *L)
 {
-    CHECK_ARG_COUNT(L, 1);
-    CHECK_ARG_IS_FTABLE(L, 1);
-    ft_table_t **table = lua_touserdata(L, 1);
+    ft_table_t **table = luaL_checkudata(L, 1, FTABLEMETA);
     int cur_col = ft_cur_col(*table);
     lua_pushnumber(L, cur_col);
     return 1;
@@ -145,12 +102,8 @@ static int lft_cur_col(lua_State *L)
 
 static int lft_set_cur_cell(lua_State *L)
 {
-    CHECK_ARG_COUNT(L, 3);
-    CHECK_ARG_IS_FTABLE(L, 1);
-    CHECK_ARG_IS_NUMBER(L, 2);
-    CHECK_ARG_IS_NUMBER(L, 3);
 
-    ft_table_t **table = lua_touserdata(L, 1);
+    ft_table_t **table = luaL_checkudata(L, 1, FTABLEMETA);
     size_t row = luaL_checknumber(L, 2);
     size_t col = luaL_checknumber(L, 3);
 
@@ -161,10 +114,8 @@ static int lft_set_cur_cell(lua_State *L)
 
 static int lft_is_empty(lua_State *L)
 {
-    CHECK_ARG_COUNT(L, 1);
-    CHECK_ARG_IS_FTABLE(L, 1);
 
-    ft_table_t **table = lua_touserdata(L, 1);
+    ft_table_t **table = luaL_checkudata(L, 1, FTABLEMETA);
 
     int is_empty = ft_is_empty(*table);
     lua_pushboolean(L, is_empty);
@@ -173,10 +124,8 @@ static int lft_is_empty(lua_State *L)
 
 static int lft_row_count(lua_State *L)
 {
-    CHECK_ARG_COUNT(L, 1);
-    CHECK_ARG_IS_FTABLE(L, 1);
 
-    ft_table_t **table = lua_touserdata(L, 1);
+    ft_table_t **table = luaL_checkudata(L, 1, FTABLEMETA);
     size_t row_count = ft_row_count(*table);
 
     lua_pushnumber(L, row_count);
@@ -185,14 +134,8 @@ static int lft_row_count(lua_State *L)
 
 static int lft_erase_range(lua_State *L)
 {
-    CHECK_ARG_COUNT(L, 5);
-    CHECK_ARG_IS_FTABLE(L, 1);
-    CHECK_ARG_IS_NUMBER(L, 2);
-    CHECK_ARG_IS_NUMBER(L, 3);
-    CHECK_ARG_IS_NUMBER(L, 4);
-    CHECK_ARG_IS_NUMBER(L, 5);
 
-    ft_table_t **table = lua_touserdata(L, 1);
+    ft_table_t **table = luaL_checkudata(L, 1, FTABLEMETA);
     size_t top_left_row = luaL_checknumber(L, 2);
     size_t top_left_col = luaL_checknumber(L, 3);
     size_t bottom_right_row = luaL_checknumber(L, 4);
@@ -232,15 +175,13 @@ static const char **generate_row_cells(lua_State *L, int arg_num)
 
 static int lft_row_write(lua_State *L)
 {
-    CHECK_ARG_COUNT(L, 2);
-    CHECK_ARG_IS_FTABLE(L, 1);
 
     if (!lua_istable(L, 2))
     {
         return luaL_error(L, "Expected string[] for argument 2");
     }
 
-    ft_table_t **table = lua_touserdata(L, 1);
+    ft_table_t **table = luaL_checkudata(L, 1, FTABLEMETA);
 
     size_t cols = lua_tbl_len(L, 2);
     const char **row_cells = generate_row_cells(L, 2);
@@ -257,15 +198,13 @@ static int lft_row_write(lua_State *L)
 
 static int lft_row_write_ln(lua_State *L)
 {
-    CHECK_ARG_COUNT(L, 2);
-    CHECK_ARG_IS_FTABLE(L, 1);
 
     if (!lua_istable(L, 2))
     {
         return luaL_error(L, "Expected string[] for argument 2");
     }
 
-    ft_table_t **table = lua_touserdata(L, 1);
+    ft_table_t **table = luaL_checkudata(L, 1, FTABLEMETA);
 
     size_t cols = lua_tbl_len(L, 2);
     const char **row_cells = generate_row_cells(L, 2);
@@ -282,10 +221,8 @@ static int lft_row_write_ln(lua_State *L)
 
 static int lft_add_separator(lua_State *L)
 {
-    CHECK_ARG_COUNT(L, 1);
-    CHECK_ARG_IS_FTABLE(L, 1);
 
-    ft_table_t **table = lua_touserdata(L, 1);
+    ft_table_t **table = luaL_checkudata(L, 1, FTABLEMETA);
 
     ERR_CHECK(ft_add_separator(*table));
     return 0;
@@ -293,10 +230,8 @@ static int lft_add_separator(lua_State *L)
 
 static int lft_to_string(lua_State *L)
 {
-    CHECK_ARG_COUNT(L, 1);
-    CHECK_ARG_IS_FTABLE(L, 1);
 
-    ft_table_t **table = lua_touserdata(L, 1);
+    ft_table_t **table = luaL_checkudata(L, 1, FTABLEMETA);
     const char *table_string = (const char *)ft_to_u8string(*table);
     lua_pushstring(L, table_string);
     return 1;
@@ -304,22 +239,16 @@ static int lft_to_string(lua_State *L)
 
 static int lft_set_default_border_style(lua_State *L)
 {
-    CHECK_ARG_COUNT(L, 1);
-    CHECK_ARG_IS(L, lua_islightuserdata, 1, "border-style");
-
-    const struct ft_border_style *style = lua_touserdata(L, 1);
+    const struct ft_border_style *style = luaL_checkudata(L, 1, FBORDERSTYLE);
 
     ERR_CHECK(ft_set_default_border_style(style));
     return 0;
 }
 static int lft_set_border_style(lua_State *L)
 {
-    CHECK_ARG_COUNT(L, 2);
-    CHECK_ARG_IS_FTABLE(L, 1);
-    CHECK_ARG_IS(L, lua_islightuserdata, 2, "border-style");
 
-    ft_table_t **table = lua_touserdata(L, 1);
-    const struct ft_border_style *style = lua_touserdata(L, 2);
+    ft_table_t **table = luaL_checkudata(L, 1, FTABLEMETA);
+    const struct ft_border_style *style = luaL_checkudata(L, 2, FBORDERSTYLE);
 
     ERR_CHECK(ft_set_border_style(*table, style));
     return 0;
@@ -327,30 +256,21 @@ static int lft_set_border_style(lua_State *L)
 
 static int lft_set_default_cell_prop(lua_State *L)
 {
-    CHECK_ARG_COUNT(L, 2);
-    CHECK_ARG_IS_NUMBER(L, 1);
-    CHECK_ARG_IS_NUMBER(L, 2);
 
-    uint32_t property = lua_tonumber(L, 1);
-    int value = lua_tonumber(L, 2);
+    uint32_t property = luaL_checknumber(L, 1);
+    int value = luaL_checknumber(L, 2);
 
     ERR_CHECK(ft_set_default_cell_prop(property, value));
     return 0;
 }
 static int lft_set_cell_prop(lua_State *L)
 {
-    CHECK_ARG_COUNT(L, 5);
-    CHECK_ARG_IS_FTABLE(L, 1);
-    CHECK_ARG_IS_NUMBER(L, 2);
-    CHECK_ARG_IS_NUMBER(L, 3);
-    CHECK_ARG_IS_NUMBER(L, 4);
-    CHECK_ARG_IS_NUMBER(L, 5);
 
-    ft_table_t **table = lua_touserdata(L, 1);
-    size_t row = lua_tonumber(L, 2);
-    size_t col = lua_tonumber(L, 3);
-    uint32_t property = lua_tonumber(L, 4);
-    int value = lua_tonumber(L, 5);
+    ft_table_t **table = luaL_checkudata(L, 1, FTABLEMETA);
+    size_t row = luaL_checknumber(L, 2);
+    size_t col = luaL_checknumber(L, 3);
+    uint32_t property = luaL_checknumber(L, 4);
+    int value = luaL_checknumber(L, 5);
 
     ERR_CHECK(ft_set_cell_prop(*table, row, col, property, value));
     return 0;
@@ -358,42 +278,30 @@ static int lft_set_cell_prop(lua_State *L)
 
 static int lft_set_default_tbl_prop(lua_State *L)
 {
-    CHECK_ARG_COUNT(L, 2);
-    CHECK_ARG_IS_NUMBER(L, 1);
-    CHECK_ARG_IS_NUMBER(L, 2);
 
-    uint32_t property = lua_tonumber(L, 1);
-    int value = lua_tonumber(L, 2);
+    uint32_t property = luaL_checknumber(L, 1);
+    int value = luaL_checknumber(L, 2);
 
     ERR_CHECK(ft_set_default_tbl_prop(property, value));
     return 0;
 }
 static int lft_set_tbl_prop(lua_State *L)
 {
-    CHECK_ARG_COUNT(L, 3);
-    CHECK_ARG_IS_FTABLE(L, 1);
-    CHECK_ARG_IS_NUMBER(L, 2);
-    CHECK_ARG_IS_NUMBER(L, 3);
 
-    ft_table_t **table = lua_touserdata(L, 1);
-    uint32_t property = lua_tonumber(L, 2);
-    int value = lua_tonumber(L, 3);
+    ft_table_t **table = luaL_checkudata(L, 1, FTABLEMETA);
+    uint32_t property = luaL_checknumber(L, 2);
+    int value = luaL_checknumber(L, 3);
 
     ERR_CHECK(ft_set_tbl_prop(*table, property, value));
     return 0;
 }
 static int lft_set_cell_span(lua_State *L)
 {
-    CHECK_ARG_COUNT(L, 4);
-    CHECK_ARG_IS_FTABLE(L, 1);
-    CHECK_ARG_IS_NUMBER(L, 2);
-    CHECK_ARG_IS_NUMBER(L, 3);
-    CHECK_ARG_IS_NUMBER(L, 4);
 
-    ft_table_t **table = lua_touserdata(L, 1);
-    size_t row = lua_tonumber(L, 2);
-    size_t col = lua_tonumber(L, 3);
-    size_t hor_span = lua_tonumber(L, 4);
+    ft_table_t **table = luaL_checkudata(L, 1, FTABLEMETA);
+    size_t row = luaL_checknumber(L, 2);
+    size_t col = luaL_checknumber(L, 3);
+    size_t hor_span = luaL_checknumber(L, 4);
 
     ERR_CHECK(ft_set_cell_span(*table, row, col, hor_span));
     return 0;
@@ -423,9 +331,24 @@ static const struct luaL_Reg fort_functions[] = {
     {NULL, NULL},
 };
 
+static const struct luaL_Reg ftable_mt[] = {
+    {"__gc", ftable_destroy},
+};
+
 int luaopen_cfort(lua_State *L)
 {
     new_lib(L, fort_functions);
+
+    luaL_newmetatable(L, FTABLEMETA);
+#if LUA_VERSION_NUM >= 502
+    luaL_setfuncs(L, ftable_mt, 0);
+#else
+    luaL_openlib(L, 0, ftable_mt, 0); /* fill metatable */
+#endif
+    lua_pop(L, 1);
+
+    luaL_newmetatable(L, FBORDERSTYLE);
+    lua_pop(L, 1);
 
     // styles
     lua_pushlightuserdata(L, (void *)FT_BASIC_STYLE);
