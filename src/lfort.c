@@ -430,8 +430,13 @@ static const struct luaL_Reg ftable_mt[] = {
 int luaopen_cfort(lua_State *L)
 {
     new_lib(L, fort_functions);
+
     luaL_newmetatable(L, FTABLEMETA);
+#if LUA_VERSION_NUM >= 502
     luaL_setfuncs(L, ftable_mt, 0);
+#else
+    luaL_openlib(L, 0, ftable_mt, 0); /* fill metatable */
+#endif
     lua_pop(L, 1);
 
     // styles
