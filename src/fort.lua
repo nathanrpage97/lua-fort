@@ -14,6 +14,15 @@ local function split(inputstr, sep)
     return t
 end
 
+---Alias of @{fort.create_table}
+---@function fort.new
+fort.new = fort.create_table
+
+---Alias of @{fort.create_table}
+---@within Metamethods
+fort.__call = fort.new
+setmetatable(fort, fort)
+
 ---Control the default separator for @{printf} and @{printf_ln} functions.
 ---(Defaults to '|')
 fort.default_separator = "|"
@@ -111,6 +120,12 @@ end
 ---@function fort:copy_table
 ---@within Methods
 ---@treturn ftable copied table
+
+---Alias of @{fort.copy_table}
+---@function fort:copy
+---@within Methods
+---@treturn ftable copied table
+fort.copy = fort.copy_table
 
 ---Create a new formatted table
 ---@function fort.create_table
