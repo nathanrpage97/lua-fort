@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>lua-fort documentation v0.1.0</title>
+    <link rel="stylesheet" href="../ldoc_fixed.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>lua-fort</h1>
+
+
+
+
+<h2>Examples</h2>
+<ul class="nowrap">
+  <li><a href="../examples/1-simple-table.lua.html">1-simple-table.lua</a></li>
+  <li><a href="../examples/2-custom-table.lua.html">2-custom-table.lua</a></li>
+  <li><a href="../examples/3-complex-layout.lua.html">3-complex-layout.lua</a></li>
+  <li><a href="../examples/4-fill-table.lua.html">4-fill-table.lua</a></li>
+  <li><strong>5-beautiful-table.lua</strong></li>
+  <li><a href="../examples/6-print-styles.lua.html">6-print-styles.lua</a></li>
+  <li><a href="../examples/8-math-table.lua.html">8-math-table.lua</a></li>
+</ul>
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../index.html">fort</a></li>
+</ul>
+<h2>Manual</h2>
+<ul class="nowrap">
+  <li><a href="../manual/README.md.html">README</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+    <h2>5-beautiful-table.lua</h2>
+<pre>
+<span class="keyword">local</span> ft = <span class="global">require</span> <span class="string">"fort"</span>
+
+<span class="keyword">local</span> <span class="global">table</span> = ft.create_table()
+ft.set_border_style(<span class="global">table</span>, ft.NICE_STYLE)
+ft.set_cell_prop(<span class="global">table</span>, <span class="number">0</span>, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
+
+<span class="comment">-- Filling table with data
+</span>ft.write_ln(<span class="global">table</span>, <span class="string">"Тест"</span>, <span class="string">"Итерации"</span>, <span class="string">"ms/op"</span>, <span class="string">"Тики"</span>,
+            <span class="string">"Результат"</span>)
+ft.write_ln(<span class="global">table</span>, <span class="string">"n-body"</span>, <span class="string">"1000"</span>, <span class="string">"1.6"</span>, <span class="string">"1,500,000"</span>, <span class="string">"✔"</span>)
+ft.add_separator(<span class="global">table</span>)
+ft.write_ln(<span class="global">table</span>, <span class="string">"regex-redux"</span>, <span class="string">"1000"</span>, <span class="string">"0.8"</span>, <span class="string">"8,000,000"</span>)
+ft.write_ln(<span class="global">table</span>, <span class="string">""</span>, <span class="string">"2500"</span>, <span class="string">"3.9"</span>, <span class="string">"27,000,000"</span>, <span class="string">"✖"</span>)
+ft.write_ln(<span class="global">table</span>, <span class="string">""</span>, <span class="string">"10000"</span>, <span class="string">"12.5"</span>, <span class="string">"96,800,000"</span>)
+ft.add_separator(<span class="global">table</span>)
+ft.write_ln(<span class="global">table</span>, <span class="string">"mandelbrot"</span>, <span class="string">"1000"</span>, <span class="string">"8.1"</span>, <span class="string">"89,000,000"</span>)
+ft.write_ln(<span class="global">table</span>, <span class="string">""</span>, <span class="string">"2500"</span>, <span class="string">"19.8"</span>, <span class="string">"320,000,000"</span>, <span class="string">"✔"</span>)
+ft.write_ln(<span class="global">table</span>, <span class="string">""</span>, <span class="string">"10000"</span>, <span class="string">"60.7"</span>, <span class="string">"987,000,000"</span>)
+ft.add_separator(<span class="global">table</span>)
+ft.set_cell_span(<span class="global">table</span>, <span class="number">8</span>, <span class="number">0</span>, <span class="number">4</span>)
+ft.write_ln(<span class="global">table</span>, <span class="string">"Итог"</span>, <span class="string">""</span>, <span class="string">""</span>, <span class="string">""</span>, <span class="string">"✖"</span>)
+
+<span class="comment">-- Setting text styles
+</span>ft.set_cell_prop(<span class="global">table</span>, <span class="number">0</span>, ft.ANY_COLUMN, ft.CPROP_CONT_TEXT_STYLE,
+                 ft.TSTYLE_BOLD)
+ft.set_cell_prop(<span class="global">table</span>, <span class="number">8</span>, ft.ANY_COLUMN, ft.CPROP_CONT_TEXT_STYLE,
+                 ft.TSTYLE_BOLD)
+ft.set_cell_prop(<span class="global">table</span>, ft.ANY_ROW, <span class="number">0</span>, ft.CPROP_CONT_TEXT_STYLE, ft.TSTYLE_BOLD)
+ft.set_cell_prop(<span class="global">table</span>, ft.ANY_ROW, <span class="number">4</span>, ft.CPROP_CONT_TEXT_STYLE, ft.TSTYLE_BOLD)
+ft.set_cell_prop(<span class="global">table</span>, ft.ANY_ROW, ft.ANY_COLUMN, ft.CPROP_CONT_TEXT_STYLE,
+                 ft.TSTYLE_ITALIC)
+
+<span class="comment">-- Set alignment
+</span>ft.set_cell_prop(<span class="global">table</span>, ft.ANY_ROW, <span class="number">1</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_RIGHT)
+ft.set_cell_prop(<span class="global">table</span>, ft.ANY_ROW, <span class="number">2</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_RIGHT)
+ft.set_cell_prop(<span class="global">table</span>, ft.ANY_ROW, <span class="number">3</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_RIGHT)
+ft.set_cell_prop(<span class="global">table</span>, ft.ANY_ROW, <span class="number">4</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_CENTER)
+ft.set_cell_prop(<span class="global">table</span>, <span class="number">8</span>, <span class="number">0</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_CENTER)
+
+<span class="comment">-- Set colors
+</span>ft.set_cell_prop(<span class="global">table</span>, <span class="number">1</span>, <span class="number">4</span>, ft.CPROP_CONT_FG_COLOR, ft.COLOR_GREEN)
+ft.set_cell_prop(<span class="global">table</span>, <span class="number">3</span>, <span class="number">4</span>, ft.CPROP_CONT_FG_COLOR, ft.COLOR_RED)
+ft.set_cell_prop(<span class="global">table</span>, <span class="number">6</span>, <span class="number">4</span>, ft.CPROP_CONT_FG_COLOR, ft.COLOR_GREEN)
+ft.set_cell_prop(<span class="global">table</span>, <span class="number">8</span>, <span class="number">4</span>, ft.CPROP_CONT_FG_COLOR, ft.COLOR_RED)
+ft.set_cell_prop(<span class="global">table</span>, <span class="number">3</span>, <span class="number">2</span>, ft.CPROP_CONT_FG_COLOR, ft.COLOR_RED)
+ft.set_cell_prop(<span class="global">table</span>, <span class="number">4</span>, <span class="number">3</span>, ft.CPROP_CONT_BG_COLOR, ft.COLOR_LIGHT_RED)
+ft.set_cell_prop(<span class="global">table</span>, <span class="number">0</span>, ft.ANY_COLUMN, ft.CPROP_CONT_FG_COLOR,
+                 ft.COLOR_LIGHT_BLUE)
+
+<span class="comment">-- Move table to the center of the screen
+</span>ft.set_tbl_prop(<span class="global">table</span>, ft.TPROP_TOP_MARGIN, <span class="number">1</span>)
+ft.set_tbl_prop(<span class="global">table</span>, ft.TPROP_LEFT_MARGIN, <span class="number">10</span>)
+
+<span class="global">print</span>(<span class="string">"Table:\n"</span>, ft.to_string(<span class="global">table</span>))</pre>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2021-12-20 23:39:07 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

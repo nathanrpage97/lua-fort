@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>lua-fort documentation v0.1.0</title>
+    <link rel="stylesheet" href="../ldoc_fixed.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>lua-fort</h1>
+
+
+
+
+<h2>Examples</h2>
+<ul class="nowrap">
+  <li><a href="../examples/1-simple-table.lua.html">1-simple-table.lua</a></li>
+  <li><a href="../examples/2-custom-table.lua.html">2-custom-table.lua</a></li>
+  <li><a href="../examples/3-complex-layout.lua.html">3-complex-layout.lua</a></li>
+  <li><strong>4-fill-table.lua</strong></li>
+  <li><a href="../examples/5-beautiful-table.lua.html">5-beautiful-table.lua</a></li>
+  <li><a href="../examples/6-print-styles.lua.html">6-print-styles.lua</a></li>
+  <li><a href="../examples/8-math-table.lua.html">8-math-table.lua</a></li>
+</ul>
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../index.html">fort</a></li>
+</ul>
+<h2>Manual</h2>
+<ul class="nowrap">
+  <li><a href="../manual/README.md.html">README</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+    <h2>4-fill-table.lua</h2>
+<pre>
+<span class="keyword">local</span> ft = <span class="global">require</span> <span class="string">"fort"</span>
+
+<span class="keyword">local</span> <span class="keyword">function</span> use_printf()
+    <span class="keyword">local</span> <span class="global">table</span> = ft.create_table()
+
+    ft.set_cell_prop(<span class="global">table</span>, <span class="number">0</span>, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
+    ft.printf_ln(<span class="global">table</span>, <span class="string">"N|Planet|Speed, km/s"</span>)
+
+    ft.printf_ln(<span class="global">table</span>, <span class="string">"%d|%s|%5.2f"</span>, <span class="number">1</span>, <span class="string">"Mercury"</span>, <span class="number">47.362</span>)
+    ft.printf_ln(<span class="global">table</span>, <span class="string">"%d|%s|%5.2f"</span>, <span class="number">2</span>, <span class="string">"Venus"</span>, <span class="number">35.02</span>)
+    ft.printf_ln(<span class="global">table</span>, <span class="string">"%d|%s|%5.2f"</span>, <span class="number">3</span>, <span class="string">"Earth"</span>, <span class="number">29.78</span>)
+
+    <span class="global">print</span>(ft.to_string(<span class="global">table</span>))
+<span class="keyword">end</span>
+
+<span class="keyword">local</span> <span class="keyword">function</span> use_print()
+    <span class="keyword">local</span> <span class="global">table</span> = ft.create_table()
+
+    ft.set_cell_prop(<span class="global">table</span>, <span class="number">0</span>, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
+    ft.print_ln(<span class="global">table</span>, <span class="string">"N|Planet|Speed, km/s"</span>)
+
+    ft.print_ln(<span class="global">table</span>, <span class="string">"1|Mercury|47.362"</span>)
+    ft.print_ln(<span class="global">table</span>, <span class="string">"2|Venus|35.02"</span>)
+    ft.print_ln(<span class="global">table</span>, <span class="string">"3|Earth|29.78"</span>)
+
+    <span class="global">print</span>(ft.to_string(<span class="global">table</span>))
+<span class="keyword">end</span>
+
+<span class="keyword">local</span> <span class="keyword">function</span> use_write()
+    <span class="keyword">local</span> <span class="global">table</span> = ft.create_table()
+
+    ft.set_cell_prop(<span class="global">table</span>, <span class="number">0</span>, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
+    ft.write_ln(<span class="global">table</span>, <span class="string">"N"</span>, <span class="string">"Planet"</span>, <span class="string">"Speed, km/s"</span>)
+
+    ft.write_ln(<span class="global">table</span>, <span class="string">"1"</span>, <span class="string">"Mercury"</span>, <span class="string">"47.362"</span>)
+    ft.write_ln(<span class="global">table</span>, <span class="string">"2"</span>, <span class="string">"Venus"</span>, <span class="string">"35.02"</span>)
+    ft.write_ln(<span class="global">table</span>, <span class="string">"3"</span>, <span class="string">"Earth"</span>, <span class="string">"29.78"</span>)
+
+    <span class="global">print</span>(ft.to_string(<span class="global">table</span>))
+<span class="keyword">end</span>
+
+<span class="keyword">local</span> <span class="keyword">function</span> use_row_write()
+    <span class="keyword">local</span> <span class="global">table</span> = ft.create_table()
+
+    ft.set_cell_prop(<span class="global">table</span>, <span class="number">0</span>, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
+    ft.row_write_ln(<span class="global">table</span>, {<span class="string">"N"</span>, <span class="string">"Planet"</span>, <span class="string">"Speed, km/s"</span>})
+
+    ft.row_write_ln(<span class="global">table</span>, {<span class="string">"1"</span>, <span class="string">"Mercury"</span>, <span class="string">"47.362"</span>})
+    ft.row_write_ln(<span class="global">table</span>, {<span class="string">"2"</span>, <span class="string">"Venus"</span>, <span class="string">"35.02"</span>})
+    ft.row_write_ln(<span class="global">table</span>, {<span class="string">"3"</span>, <span class="string">"Earth"</span>, <span class="string">"29.78"</span>})
+
+    <span class="global">print</span>(ft.to_string(<span class="global">table</span>))
+<span class="keyword">end</span>
+
+<span class="keyword">local</span> <span class="keyword">function</span> use_table_write()
+    <span class="keyword">local</span> <span class="global">table</span> = ft.create_table()
+
+    ft.set_cell_prop(<span class="global">table</span>, <span class="number">0</span>, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
+    ft.table_write_ln(<span class="global">table</span>, {
+        {<span class="string">"N"</span>, <span class="string">"Planet"</span>, <span class="string">"Speed, km/s"</span>}, {<span class="string">"1"</span>, <span class="string">"Mercury"</span>, <span class="string">"47.362"</span>},
+        {<span class="string">"2"</span>, <span class="string">"Venus"</span>, <span class="string">"35.02"</span>}, {<span class="string">"3"</span>, <span class="string">"Earth"</span>, <span class="string">"29.78"</span>}
+    })
+
+    <span class="global">print</span>(ft.to_string(<span class="global">table</span>))
+
+<span class="keyword">end</span>
+
+use_printf()
+use_print()
+use_row_write()
+use_write()
+use_table_write()</pre>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2021-12-20 23:39:07 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>
