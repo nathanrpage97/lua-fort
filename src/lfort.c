@@ -331,8 +331,9 @@ static const struct luaL_Reg fort_functions[] = {
     {NULL, NULL},
 };
 
-static const struct luaL_Reg ftable_mt[] = {
+static const struct luaL_Reg ftable_meta[] = {
     {"__gc", ftable_destroy},
+    {NULL, NULL},
 };
 
 int luaopen_cfort(lua_State *L)
@@ -341,10 +342,17 @@ int luaopen_cfort(lua_State *L)
 
     luaL_newmetatable(L, FTABLEMETA);
 #if LUA_VERSION_NUM >= 502
-    luaL_setfuncs(L, ftable_mt, 0);
+    luaL_setfuncs(L, ftable_meta, 0);
 #else
-    luaL_openlib(L, 0, ftable_mt, 0); /* fill metatable */
+    luaL_openlib(L, 0, ftable_meta, 0);
 #endif
+    // add fort functions to ftable object
+    lua_pushliteral(L, "__index");
+    lua_pushvalue(L, -3); // dup methods table
+    lua_rawset(L, -3);    // metatable.__index = methods
+    lua_pushliteral(L, "__metatable");
+    lua_pushvalue(L, -3); // dup methods table
+    lua_rawset(L, -3);    // hide metatable:  metatable.__metatable = methods
     lua_pop(L, 1);
 
     luaL_newmetatable(L, FBORDERSTYLE);
