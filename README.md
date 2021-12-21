@@ -1,6 +1,7 @@
 # lua-fort
 
-A lua wrapper around the [libfort](https://github.com/seleznevae/libfort) library.
+A lua wrapper around the [libfort](https://github.com/seleznevae/libfort)
+library.
 
 ## Features
 
@@ -13,10 +14,11 @@ A lua wrapper around the [libfort](https://github.com/seleznevae/libfort) librar
   - Border style
   - Background style
 - Different Methods of filling in the formatted table
-- UTF-8 support*
+- UTF-8 support\*
   - Handles all utf8 characters as 1-width for simplicity
 
-The `fort` module directly maps the API from c to lua with the `FT_*`/`ft_*` prefixes.
+The `fort` module directly maps the API from c to lua with the `FT_*`/`ft_*`
+prefixes.
 
 ## Differences from libfort
 
@@ -28,14 +30,15 @@ The `fort` module directly maps the API from c to lua with the `FT_*`/`ft_*` pre
 
 ## Roadmap
 
-There are a few things that I would like to add with lua fort. This list is in chronological order.
+There are a few things that I would like to add with lua fort. This list is in
+chronological order.
 
 - [x] lua ≥ 5.1 support
 - [x] CI testing across versions
-- [X] Documentation site
+- [x] Documentation site
 - [x] UTF-8 support
 - [x] Unit testing
-- [ ] More detailed usage documentation
-  - Detailed Examples
+- [x] Detailed Examples (from libfort)
 - [ ] First release on luarocks
-
+- [ ] More detailed usage documentation
+- [ ] Add custom border style
