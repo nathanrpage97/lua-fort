@@ -37,5 +37,4 @@ build = {
     -- Override default build options (per platform)
     platforms = {}
 }
-test = {type = "busted"}
-test_dependencies = {"busted"}
+
