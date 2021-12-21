@@ -13,6 +13,7 @@ A lua wrapper around the [libfort](https://github.com/seleznevae/libfort) librar
   - Border style
   - Background style
 - Different Methods of filling in the formatted table
+- UTF-8 support
 
 The `fort` module directly maps the API from c to lua with the `FT_*`/`ft_*` prefixes.
 
@@ -31,9 +32,9 @@ There are a few things that I would like to add with lua fort. This list is in c
 - [x] lua ≥ 5.1 support
 - [x] CI testing across versions
 - [X] Documentation site
-- [ ] Unit testing
+- [x] UTF-8 support
+- [x] Unit testing
 - [ ] More detailed usage documentation
   - Detailed Examples
-  - References to the libfort wiki
 - [ ] First release on luarocks
-- [ ] UTF-8 support
+

@@ -15,6 +15,7 @@ description = {
             - row/column/cell alignment, indentation, and padding
         - Numerous table filling methods
         - No dependencies on other libraries
+        - UTF-8 support
     ]],
     homepage = "https://nathanrpage97.github.io/lua-fort/",
     license = "MIT"
