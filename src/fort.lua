@@ -204,6 +204,9 @@ function fort.row_write_ln(ftable, row)
     cfort.row_write_ln(ftable, stringified_row)
 end
 
+function fort.write(ftable, ...) fort.row_write(ftable, {...}) end
+function fort.write_ln(ftable, ...) fort.row_write_ln(ftable, {...}) end
+
 ---Set the border style of the ftable.
 ---@function set_border_style
 ---@ftable ftable
