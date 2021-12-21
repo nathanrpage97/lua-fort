@@ -40,13 +40,13 @@
         }                                                                     \
     } while (0);
 
-#define CHECK_ARG_IS_FTABLE(L, arg_num)                                       \
-    do                                                                        \
-    {                                                                         \
-        if (!luaL_testudata(L, arg_num, FTABLEMETA))                          \
-        {                                                                     \
-            return luaL_error(L, "Expected ftable for argument %d", arg_num); \
-        }                                                                     \
+#define CHECK_ARG_IS_FTABLE(L, arg_num)               \
+    do                                                \
+    {                                                 \
+        if (!luaL_checkudata(L, arg_num, FTABLEMETA)) \
+        {                                             \
+            return 0;                                 \
+        }                                             \
     } while (0);
 
 #define ERR_CHECK(func)                                    \
