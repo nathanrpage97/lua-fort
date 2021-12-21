@@ -29,7 +29,7 @@ build = {
     modules = {
         cfort = {
             sources = {"src/lfort.c", "src/fort.c"},
-            -- disable wchar and utf8 for now
+            -- disable wchar as it isnt needed for lua
             defines = {"FT_CONGIG_DISABLE_WCHAR"}
         }
     },

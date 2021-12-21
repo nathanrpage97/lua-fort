@@ -13,7 +13,8 @@ A lua wrapper around the [libfort](https://github.com/seleznevae/libfort) librar
   - Border style
   - Background style
 - Different Methods of filling in the formatted table
-- UTF-8 support
+- UTF-8 support*
+  - Handles all utf8 characters as 1-width for simplicity
 
 The `fort` module directly maps the API from c to lua with the `FT_*`/`ft_*` prefixes.
 
