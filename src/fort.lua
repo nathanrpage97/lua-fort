@@ -108,7 +108,7 @@ end
 ---Write a 2d array of strings to the ftable.
 ---@ftable ftable
 ---@tparam {{string}} data_table 2d array of strings to write, can be jagged.
----@boolean[opt=false] colalign align to the @{cur_col} at the start
+---@bool[opt=false] colalign align to the @{cur_col} at the start
 function fort.table_write(ftable, data_table, colalign)
     colalign = colalign or false
     local rows = #data_table
@@ -128,6 +128,7 @@ end
 ---Write a 2d array of strings to the ftable and go to next line.
 ---@ftable ftable
 ---@tparam {{string}} data_table 2d array of strings to write, can be jagged.
+---@bool[opt=false] colalign align to the @{cur_col} at the start
 function fort.table_write_ln(ftable, data_table, colalign)
     local cur_col = fort.cur_col(ftable)
     colalign = colalign or false
