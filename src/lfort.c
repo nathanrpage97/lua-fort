@@ -46,7 +46,7 @@ static int ftable_destroy(lua_State *L)
     return 0;
 }
 
-static void register_lua_table(lua_State *L, ft_table_t *table)
+static void register_ftable(lua_State *L, ft_table_t *table)
 {
     ft_table_t **data = lua_newuserdata(L, sizeof(ft_table_t *));
     *data = table;
@@ -62,7 +62,7 @@ static int lft_create_table(lua_State *L)
     {
         return luaL_error(L, "Unable to create table");
     }
-    register_lua_table(L, table);
+    register_ftable(L, table);
     return 1;
 }
 
@@ -72,7 +72,7 @@ static int lft_copy_table(lua_State *L)
     ft_table_t **table = luaL_checkudata(L, 1, FTABLEMETA);
     ft_table_t *new_table = ft_copy_table(*table);
 
-    register_lua_table(L, new_table);
+    register_ftable(L, new_table);
     return 1;
 }
 
@@ -237,20 +237,25 @@ static int lft_to_string(lua_State *L)
     return 1;
 }
 
+static int lft_create_border_style(lua_State *L)
+{
+    return 0;
+}
+
 static int lft_set_default_border_style(lua_State *L)
 {
-    const struct ft_border_style *style = luaL_checkudata(L, 1, FBORDERSTYLE);
+    const struct ft_border_style **style = luaL_checkudata(L, 1, FBORDERSTYLE);
 
-    ERR_CHECK(ft_set_default_border_style(style));
+    ERR_CHECK(ft_set_default_border_style(*style));
     return 0;
 }
 static int lft_set_border_style(lua_State *L)
 {
 
     ft_table_t **table = luaL_checkudata(L, 1, FTABLEMETA);
-    const struct ft_border_style *style = luaL_checkudata(L, 2, FBORDERSTYLE);
+    const struct ft_border_style **style = luaL_checkudata(L, 2, FBORDERSTYLE);
 
-    ERR_CHECK(ft_set_border_style(*table, style));
+    ERR_CHECK(ft_set_border_style(*table, *style));
     return 0;
 }
 
@@ -336,6 +341,21 @@ static const struct luaL_Reg ftable_meta[] = {
     {NULL, NULL},
 };
 
+static void register_fort_style(lua_State *L, const struct ft_border_style *style)
+{
+    const struct ft_border_style **border_style = lua_newuserdata(L, sizeof(struct ft_border_style **));
+    *border_style = style;
+    luaL_getmetatable(L, FBORDERSTYLE);
+    lua_setmetatable(L, -2);
+}
+
+#define REGISTER_FORT_STYLE(name, style) \
+    do                                   \
+    {                                    \
+        register_fort_style(L, style);   \
+        lua_setfield(L, -2, name);       \
+    } while (0)
+
 int luaopen_cfort(lua_State *L)
 {
     new_lib(L, fort_functions);
@@ -359,36 +379,21 @@ int luaopen_cfort(lua_State *L)
     lua_pop(L, 1);
 
     // styles
-    lua_pushlightuserdata(L, (void *)FT_BASIC_STYLE);
-    lua_setfield(L, -2, "BASIC_STYLE");
-    lua_pushlightuserdata(L, (void *)FT_BASIC2_STYLE);
-    lua_setfield(L, -2, "BASIC2_STYLE");
-    lua_pushlightuserdata(L, (void *)FT_SIMPLE_STYLE);
-    lua_setfield(L, -2, "SIMPLE_STYLE");
-    lua_pushlightuserdata(L, (void *)FT_PLAIN_STYLE);
-    lua_setfield(L, -2, "PLAIN_STYLE");
-    lua_pushlightuserdata(L, (void *)FT_DOT_STYLE);
-    lua_setfield(L, -2, "DOT_STYLE");
-    lua_pushlightuserdata(L, (void *)FT_EMPTY_STYLE);
-    lua_setfield(L, -2, "EMPTY_STYLE");
-    lua_pushlightuserdata(L, (void *)FT_EMPTY2_STYLE);
-    lua_setfield(L, -2, "EMPTY2_STYLE");
-    lua_pushlightuserdata(L, (void *)FT_SOLID_STYLE);
-    lua_setfield(L, -2, "SOLID_STYLE");
-    lua_pushlightuserdata(L, (void *)FT_SOLID_ROUND_STYLE);
-    lua_setfield(L, -2, "SOLID_ROUND_STYLE");
-    lua_pushlightuserdata(L, (void *)FT_NICE_STYLE);
-    lua_setfield(L, -2, "NICE_STYLE");
-    lua_pushlightuserdata(L, (void *)FT_DOUBLE_STYLE);
-    lua_setfield(L, -2, "DOUBLE_STYLE");
-    lua_pushlightuserdata(L, (void *)FT_DOUBLE2_STYLE);
-    lua_setfield(L, -2, "DOUBLE2_STYLE");
-    lua_pushlightuserdata(L, (void *)FT_BOLD_STYLE);
-    lua_setfield(L, -2, "BOLD_STYLE");
-    lua_pushlightuserdata(L, (void *)FT_BOLD2_STYLE);
-    lua_setfield(L, -2, "BOLD2_STYLE");
-    lua_pushlightuserdata(L, (void *)FT_FRAME_STYLE);
-    lua_setfield(L, -2, "FRAME_STYLE");
+    REGISTER_FORT_STYLE("BASIC_STYLE", FT_BASIC_STYLE);
+    REGISTER_FORT_STYLE("BASIC2_STYLE", FT_BASIC2_STYLE);
+    REGISTER_FORT_STYLE("SIMPLE_STYLE", FT_SIMPLE_STYLE);
+    REGISTER_FORT_STYLE("PLAIN_STYLE", FT_PLAIN_STYLE);
+    REGISTER_FORT_STYLE("DOT_STYLE", FT_DOT_STYLE);
+    REGISTER_FORT_STYLE("EMPTY_STYLE", FT_EMPTY_STYLE);
+    REGISTER_FORT_STYLE("EMPTY2_STYLE", FT_EMPTY2_STYLE);
+    REGISTER_FORT_STYLE("SOLID_STYLE", FT_SOLID_STYLE);
+    REGISTER_FORT_STYLE("SOLID_ROUND_STYLE", FT_SOLID_ROUND_STYLE);
+    REGISTER_FORT_STYLE("NICE_STYLE", FT_NICE_STYLE);
+    REGISTER_FORT_STYLE("DOUBLE_STYLE", FT_DOUBLE_STYLE);
+    REGISTER_FORT_STYLE("DOUBLE2_STYLE", FT_DOUBLE2_STYLE);
+    REGISTER_FORT_STYLE("BOLD_STYLE", FT_BOLD_STYLE);
+    REGISTER_FORT_STYLE("BOLD2_STYLE", FT_BOLD2_STYLE);
+    REGISTER_FORT_STYLE("FRAME_STYLE", FT_FRAME_STYLE);
 
     // special macros
     lua_pushnumber(L, FT_ANY_COLUMN);
