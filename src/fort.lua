@@ -38,19 +38,6 @@ local function split(inputstr, sep)
     return t
 end
 
-local function verify_ftable(ftable)
-    local mt = getmetatable(ftable)
-    return type(ftable) == "userdata" and mt ~= nil and mt._type == "ft_table_t"
-end
-
-local function wrap_check_ftable(func)
-    return function(ftable, ...)
-        assert_arg(1, ftable, "userdata", verify_ftable,
-                   "not a ftable userdata", 30)
-        return func(ftable, ...)
-    end
-end
-
 ---Control the default separator for @{printf} and @{printf_ln} functions.
 ---(Defaults to '|')
 fort.default_separator = "|"
@@ -143,7 +130,7 @@ end
 ---Add a dividing separtor line at the current row.
 ---@function add_separator
 ---@ftable ftable
-fort.add_separator = wrap_check_ftable(cfort.add_separator)
+fort.add_separator = cfort.add_separator
 ---Completely Copy a table
 ---@function copy_table
 ---@ftable ftable source table
@@ -157,12 +144,12 @@ fort.create_table = cfort.create_table
 ---@function cur_col
 ---@ftable ftable
 ---@treturn number
-fort.cur_col = wrap_check_ftable(cfort.cur_col)
+fort.cur_col = cfort.cur_col
 ---Get the current row
 ---@function cur_row
 ---@ftable ftable
 ---@treturn number
-fort.cur_row = wrap_check_ftable(cfort.cur_row)
+fort.cur_row = cfort.cur_row
 ---Erase a rectangular range of data from the ftable
 ---@function erase_range
 ---@ftable ftable
@@ -170,21 +157,21 @@ fort.cur_row = wrap_check_ftable(cfort.cur_row)
 ---@number top_left_col
 ---@number bottom_right_row
 ---@number bottom_right_col
-fort.erase_range = wrap_check_ftable(cfort.erase_range)
+fort.erase_range = cfort.erase_range
 ---Check if ftable is empty
 ---@function is_empty
 ---@ftable ftable
 ---@treturn boolean
-fort.is_empty = wrap_check_ftable(cfort.is_empty)
+fort.is_empty = cfort.is_empty
 ---Go to the next line (row)
 ---@function ln
 ---@ftable ftable
-fort.ln = wrap_check_ftable(cfort.ln)
+fort.ln = cfort.ln
 ---Get the number of rows in the ftable
 ---@function row_count
 ---@ftable ftable
 ---@treturn number
-fort.row_count = wrap_check_ftable(cfort.row_count)
+fort.row_count = cfort.row_count
 
 ---Write a row of data.
 ---@ftable ftable
@@ -211,7 +198,7 @@ function fort.write_ln(ftable, ...) fort.row_write_ln(ftable, {...}) end
 ---@function set_border_style
 ---@ftable ftable
 ---@userdata style from available styles @{BASIC_STYLE}
-fort.set_border_style = wrap_check_ftable(cfort.set_border_style)
+fort.set_border_style = cfort.set_border_style
 ---Set the cell property of the ftable.
 ---@function set_cell_prop
 ---@ftable ftable
@@ -219,20 +206,20 @@ fort.set_border_style = wrap_check_ftable(cfort.set_border_style)
 ---@number col the column to set, can also use @{ANY_COLUMN}/@{CUR_COLUMN}
 ---@number property the property to set
 ---@number value value to set
-fort.set_cell_prop = wrap_check_ftable(cfort.set_cell_prop)
+fort.set_cell_prop = cfort.set_cell_prop
 ---Set a cell's horizontal span in the ftable.
 ---@function set_cell_span
 ---@ftable ftable
 ---@number row the row to set. DO NOT USE @{ANY_ROW}/@{CUR_ROW}
 ---@number col the column to set. DO NOT USE @{ANY_COLUMN}/@{CUR_COLUMN}
 ---@number span how many columns the cell should span
-fort.set_cell_span = wrap_check_ftable(cfort.set_cell_span)
+fort.set_cell_span = cfort.set_cell_span
 ---Set the current cell position.
 ---@function set_cur_cell
 ---@ftable ftable
 ---@number row the row to set. DO NOT USE @{ANY_ROW}/@{CUR_ROW}
 ---@number col the column to set. DO NOT USE @{ANY_COLUMN}/@{CUR_COLUMN}
-fort.set_cur_cell = wrap_check_ftable(cfort.set_cur_cell)
+fort.set_cur_cell = cfort.set_cur_cell
 ---Set the default border style for new tables.
 ---@function set_default_border_style
 ---@userdata style from available styles @{BASIC_STYLE}
@@ -252,12 +239,12 @@ fort.set_default_tbl_prop = cfort.set_default_tbl_prop
 ---@ftable ftable
 ---@number property the property to set
 ---@number value value to set
-fort.set_tbl_prop = wrap_check_ftable(cfort.set_tbl_prop)
+fort.set_tbl_prop = cfort.set_tbl_prop
 ---Generate the string version of the ftable.
 ---@function to_string
 ---@ftable ftable
 ---@treturn string formatted table string
-fort.to_string = wrap_check_ftable(cfort.to_string)
+fort.to_string = cfort.to_string
 
 ---Cell Text Align.
 -- Indicate the text alignment inside a cell.

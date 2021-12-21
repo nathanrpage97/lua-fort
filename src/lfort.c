@@ -11,6 +11,8 @@
 #define lua_tbl_len(L, arg) (lua_objlen(L, arg))
 #endif
 
+#define FTABLEMETA "fort.ftable"
+
 #define CHECK_ARG_COUNT(L, arg_count)                                   \
     do                                                                  \
     {                                                                   \
@@ -41,7 +43,7 @@
 #define CHECK_ARG_IS_FTABLE(L, arg_num)                                       \
     do                                                                        \
     {                                                                         \
-        if (!lua_isuserdata(L, arg_num))                                      \
+        if (!luaL_testudata(L, arg_num, FTABLEMETA))                          \
         {                                                                     \
             return luaL_error(L, "Expected ftable for argument %d", arg_num); \
         }                                                                     \
@@ -66,13 +68,16 @@ static ft_table_t **get_fort_table(lua_State *L, int arg_num)
     return (ft_table_t **)lua_touserdata(L, arg_num);
 }
 
-static int lft_destroy_table(lua_State *L)
+static int ftable_destroy(lua_State *L)
 {
     ft_table_t **table = lua_touserdata(L, 1);
     if (table != NULL)
     {
         ft_destroy_table(*table);
     }
+    // The critical step that will prevent us from allowing
+    // a call into a dead object.
+    *table = NULL;
     return 0;
 }
 
@@ -80,13 +85,8 @@ static void register_lua_table(lua_State *L, ft_table_t *table)
 {
     ft_table_t **data = lua_newuserdata(L, sizeof(ft_table_t *));
     *data = table;
-
-    // create gc method to cleanup table struct
-    lua_newtable(L);
-    lua_pushcfunction(L, lft_destroy_table);
-    lua_setfield(L, -2, "__gc");
-    lua_pushliteral(L, "ft_table_t");
-    lua_setfield(L, -2, "_type");
+    // add ftable
+    luaL_getmetatable(L, FTABLEMETA);
     lua_setmetatable(L, -2);
 }
 
@@ -423,9 +423,16 @@ static const struct luaL_Reg fort_functions[] = {
     {NULL, NULL},
 };
 
+static const struct luaL_Reg ftable_mt[] = {
+    {"__gc", ftable_destroy},
+};
+
 int luaopen_cfort(lua_State *L)
 {
     new_lib(L, fort_functions);
+    luaL_newmetatable(L, FTABLEMETA);
+    luaL_setfuncs(L, ftable_mt, 0);
+    lua_pop(L, 1);
 
     // styles
     lua_pushlightuserdata(L, (void *)FT_BASIC_STYLE);
