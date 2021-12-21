@@ -1,7 +1,7 @@
 package = "lua-fort"
 version = "0.1.0-1"
 
-source = {url = "https://github.com/nathanrpage97/lua-fort"}
+source = {url = "https://github.com/nathanrpage97/lua-fort", tag = "v0.1.0"}
 
 description = {
     summary = "A wrapper around the fort ascii table library",
