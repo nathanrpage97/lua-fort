@@ -1,6 +1,6 @@
 name: Luacheck
 
-on: 
+on:
   push:
     branches:
       - "master"
@@ -22,6 +22,4 @@ jobs:
       - name: Setup dependencies
         run: luarocks install luacheck
       - name: Run Code Linter
-        run: |
-          luacheck src spec
-          luarocks lint *.rockspec
+        run: make check
