@@ -21,7 +21,9 @@ jobs:
 
       # you probably would do build and test steps here
       - name: Install ldoc
-        run: luarocks install ldoc
+        run: |
+          luarocks install ldoc
+          luarocks install lua-discount
       - name: Buid Docs
         run: ldoc --fatalwarnings .
       - name: Deploy Latest 🚀
