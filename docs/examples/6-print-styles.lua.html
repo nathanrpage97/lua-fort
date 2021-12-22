@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>lua-fort documentation v0.1.0</title>
+    <link rel="stylesheet" href="../ldoc_fixed.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>lua-fort</h1>
+
+
+
+
+<h2>Examples</h2>
+<ul class="nowrap">
+  <li><a href="../examples/1-simple-table.lua.html">1-simple-table.lua</a></li>
+  <li><a href="../examples/1a-simple-table.lua.html">1a-simple-table.lua</a></li>
+  <li><a href="../examples/2-custom-table.lua.html">2-custom-table.lua</a></li>
+  <li><a href="../examples/3-complex-layout.lua.html">3-complex-layout.lua</a></li>
+  <li><a href="../examples/4-fill-table.lua.html">4-fill-table.lua</a></li>
+  <li><a href="../examples/5-beautiful-table.lua.html">5-beautiful-table.lua</a></li>
+  <li><strong>6-print-styles.lua</strong></li>
+  <li><a href="../examples/8-math-table.lua.html">8-math-table.lua</a></li>
+</ul>
+<h2>Classes</h2>
+<ul class="nowrap">
+  <li><a href="../index.html">fort</a></li>
+</ul>
+<h2>Manual</h2>
+<ul class="nowrap">
+  <li><a href="../manual/README.md.html">README</a></li>
+  <li><a href="../manual/CHANGELOG.md.html">CHANGELOG</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+    <h2>6-print-styles.lua</h2>
+<pre>
+<span class="keyword">local</span> ft = <span class="global">require</span> <span class="string">"fort"</span>
+<span class="keyword">local</span> <span class="keyword">function</span> print_table_with_styles(style, name)
+    <span class="comment">-- Just create a table with some content
+</span>    <span class="global">table</span> = ft.create_table()
+    ft.set_cell_prop(<span class="global">table</span>, ft.ANY_ROW, <span class="number">0</span>, ft.CPROP_TEXT_ALIGN,
+                     ft.ALIGNED_CENTER)
+    ft.set_cell_prop(<span class="global">table</span>, ft.ANY_ROW, <span class="number">1</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_LEFT)
+
+    ft.set_cell_prop(<span class="global">table</span>, <span class="number">0</span>, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
+    ft.write_ln(<span class="global">table</span>, <span class="string">"Rank"</span>, <span class="string">"Title"</span>, <span class="string">"Year"</span>, <span class="string">"Rating"</span>)
+
+    ft.write_ln(<span class="global">table</span>, <span class="string">"1"</span>, <span class="string">"The Shawshank Redemption"</span>, <span class="string">"1994"</span>, <span class="string">"9.5"</span>)
+    ft.write_ln(<span class="global">table</span>, <span class="string">"2"</span>, <span class="string">"12 Angry Men"</span>, <span class="string">"1957"</span>, <span class="string">"8.8"</span>)
+    ft.write_ln(<span class="global">table</span>, <span class="string">"3"</span>, <span class="string">"It's a Wonderful Life"</span>, <span class="string">"1946"</span>, <span class="string">"8.6"</span>)
+    ft.add_separator(<span class="global">table</span>)
+    ft.write_ln(<span class="global">table</span>, <span class="string">"4"</span>, <span class="string">"2001: A Space Odyssey"</span>, <span class="string">"1968"</span>, <span class="string">"8.5"</span>)
+    ft.write_ln(<span class="global">table</span>, <span class="string">"5"</span>, <span class="string">"Blade Runner"</span>, <span class="string">"1982"</span>, <span class="string">"8.1"</span>)
+
+    <span class="comment">-- Setup border style
+</span>    ft.set_border_style(<span class="global">table</span>, style)
+    <span class="comment">-- Print table
+</span>    <span class="global">print</span>(<span class="global">string</span>.format(<span class="string">"%s style:\n\n%s\n\n"</span>, name, ft.to_string(<span class="global">table</span>)))
+<span class="keyword">end</span>
+
+<span class="keyword">local</span> <span class="keyword">function</span> print_table_with_different_styles()
+    <span class="keyword">local</span> <span class="keyword">function</span> print_style(name) print_table_with_styles(ft[name], name) <span class="keyword">end</span>
+    print_style(<span class="string">"BASIC_STYLE"</span>)
+    print_style(<span class="string">"BASIC2_STYLE"</span>)
+    print_style(<span class="string">"SIMPLE_STYLE"</span>)
+    print_style(<span class="string">"PLAIN_STYLE"</span>)
+    print_style(<span class="string">"DOT_STYLE"</span>)
+    print_style(<span class="string">"EMPTY_STYLE"</span>)
+    print_style(<span class="string">"EMPTY2_STYLE"</span>)
+    print_style(<span class="string">"SOLID_STYLE"</span>)
+    print_style(<span class="string">"SOLID_ROUND_STYLE"</span>)
+    print_style(<span class="string">"NICE_STYLE"</span>)
+    print_style(<span class="string">"DOUBLE_STYLE"</span>)
+    print_style(<span class="string">"DOUBLE2_STYLE"</span>)
+    print_style(<span class="string">"BOLD_STYLE"</span>)
+    print_style(<span class="string">"BOLD2_STYLE"</span>)
+    print_style(<span class="string">"FRAME_STYLE"</span>)
+<span class="keyword">end</span>
+
+print_table_with_different_styles()</pre>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2021-12-22 09:00:48 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

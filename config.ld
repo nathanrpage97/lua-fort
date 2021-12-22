@@ -2,10 +2,10 @@ project = 'lua-fort'
 title = 'lua-fort documentation v0.1.0'
 description = 'An ASCII formatted table generating library'
 format = 'discount'
-backtick_references = false
+backtick_references = true
 file = 'src/fort.lua'
-dir = 'build'
-readme = 'README.md'
+dir = 'docs'
+topics = {'README.md', 'CHANGELOG.md'}
 style = '!fixed'
 kind_names = {topic = 'Manual', script = 'Programs'}
 wrap = true

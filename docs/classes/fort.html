@@ -1,0 +1,2297 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>lua-fort documentation v0.1.0</title>
+    <link rel="stylesheet" href="../ldoc_fixed.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>lua-fort</h1>
+
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+<li><a href="#Fields">Fields</a></li>
+<li><a href="#Metamethods">Metamethods</a></li>
+<li><a href="#Methods">Methods</a></li>
+<li><a href="#Cell_Text_Align">Cell Text Align </a></li>
+<li><a href="#Cell_Selectors">Cell Selectors </a></li>
+<li><a href="#Table_Border_Style">Table Border Style </a></li>
+<li><a href="#Cell_Color">Cell Color </a></li>
+<li><a href="#Cell_Property">Cell Property </a></li>
+<li><a href="#Row_Type">Row Type </a></li>
+<li><a href="#Table_Adding_Strategy">Table Adding Strategy </a></li>
+<li><a href="#Table_Property">Table Property </a></li>
+<li><a href="#Cell_Text_Style">Cell Text Style </a></li>
+</ul>
+
+
+<h2>Classes</h2>
+<ul class="nowrap">
+  <li><strong>fort</strong></li>
+</ul>
+<h2>Manual</h2>
+<ul class="nowrap">
+  <li><a href="../manual/README.md.html">README</a></li>
+  <li><a href="../manual/CHANGELOG.md.html">CHANGELOG</a></li>
+</ul>
+<h2>Examples</h2>
+<ul class="nowrap">
+  <li><a href="../examples/1-simple-table.lua.html">1-simple-table.lua</a></li>
+  <li><a href="../examples/1a-simple-table.lua.html">1a-simple-table.lua</a></li>
+  <li><a href="../examples/2-custom-table.lua.html">2-custom-table.lua</a></li>
+  <li><a href="../examples/3-complex-layout.lua.html">3-complex-layout.lua</a></li>
+  <li><a href="../examples/4-fill-table.lua.html">4-fill-table.lua</a></li>
+  <li><a href="../examples/5-beautiful-table.lua.html">5-beautiful-table.lua</a></li>
+  <li><a href="../examples/6-print-styles.lua.html">6-print-styles.lua</a></li>
+  <li><a href="../examples/8-math-table.lua.html">8-math-table.lua</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Class <code>fort</code></h1>
+<p>Fort Module</p>
+<p>
+</p>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" ><a href="#fort.new">fort.new ()</a></td>
+	<td class="summary">Alias of <a href="../index.html#fort.create_table">fort.create_table</a></td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.create_table">fort.create_table ()</a></td>
+	<td class="summary">Create a new formatted table</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.set_default_border_style">fort.set_default_border_style (style)</a></td>
+	<td class="summary">Set the default border style for new tables.</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.set_default_cell_prop">fort.set_default_cell_prop (property, value)</a></td>
+	<td class="summary">Set a default cell property for new tables.</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.set_default_tbl_prop">fort.set_default_tbl_prop (property, value)</a></td>
+	<td class="summary">Set a default table property for new tables.</td>
+	</tr>
+</table>
+<h2><a href="#Fields">Fields</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" ><a href="#fort.default_separator">fort.default_separator</a></td>
+	<td class="summary">Control the default separator for <a href="../index.html#fort:printf">printf</a> and <a href="../index.html#fort:printf_ln">printf_ln</a> functions.</td>
+	</tr>
+</table>
+<h2><a href="#Metamethods">Metamethods</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" ><a href="#fort.__call">fort.__call</a></td>
+	<td class="summary">Alias of <a href="../index.html#fort.create_table">fort.create_table</a></td>
+	</tr>
+</table>
+<h2><a href="#Methods">Methods</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" ><a href="#fort:printf">fort:printf (row_format, ...)</a></td>
+	<td class="summary">Use a formatted string to write a row.</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort:printf_ln">fort:printf_ln (row_format, ...)</a></td>
+	<td class="summary">Use a formatted string to write a row and go to the next line.</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort:print">fort:print (row_text[, sep=fort.default_separator])</a></td>
+	<td class="summary">Write a row.</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort:print_ln">fort:print_ln (row_text[, sep=fort.default_separator])</a></td>
+	<td class="summary">Write a row and go to the next line.</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort:table_write">fort:table_write (data_table[, colalign=false])</a></td>
+	<td class="summary">Write a 2d array of strings to the ftable.</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort:table_write_ln">fort:table_write_ln (data_table[, colalign=false])</a></td>
+	<td class="summary">Write a 2d array of strings to the ftable and go to next line.</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort:add_separator">fort:add_separator ()</a></td>
+	<td class="summary">Add a dividing separtor line at the current row.</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort:copy_table">fort:copy_table ()</a></td>
+	<td class="summary">Completely Copy a table</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort:copy">fort:copy ()</a></td>
+	<td class="summary">Alias of <a href="../index.html#fort:copy_table">fort.copy_table</a></td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort:cur_col">fort:cur_col ()</a></td>
+	<td class="summary">Get the current column</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort:cur_row">fort:cur_row ()</a></td>
+	<td class="summary">Get the current row</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort:erase_range">fort:erase_range (top_left_row, top_left_col, bottom_right_row, bottom_right_col)</a></td>
+	<td class="summary">Erase a rectangular range of data from the ftable</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort:is_empty">fort:is_empty ()</a></td>
+	<td class="summary">Check if ftable is empty</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort:ln">fort:ln ()</a></td>
+	<td class="summary">Go to the next line (row)</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort:row_count">fort:row_count ()</a></td>
+	<td class="summary">Get the number of rows in the ftable</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort:row_write">fort:row_write (row)</a></td>
+	<td class="summary">Write a row of data.</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort:row_write_ln">fort:row_write_ln (row)</a></td>
+	<td class="summary">Write a row of data and go to the next line.</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort:write">fort:write (...)</a></td>
+	<td class="summary">Write a row</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort:write_ln">fort:write_ln (...)</a></td>
+	<td class="summary">Write a row and go to the next line</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort:set_border_style">fort:set_border_style (style)</a></td>
+	<td class="summary">Set the border style of the ftable.</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort:set_cell_prop">fort:set_cell_prop (row, col, property, value)</a></td>
+	<td class="summary">Set the cell property of the ftable.</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort:set_cell_span">fort:set_cell_span (row, col, span)</a></td>
+	<td class="summary">Set a cell&rsquo;s horizontal span in the ftable.</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort:set_cur_cell">fort:set_cur_cell (row, col)</a></td>
+	<td class="summary">Set the current cell position.</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort:set_tbl_prop">fort:set_tbl_prop (property, value)</a></td>
+	<td class="summary">Set a table property.</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort:to_string">fort:to_string ()</a></td>
+	<td class="summary">Generate the string version of the ftable.</td>
+	</tr>
+</table>
+<h2><a href="#Cell_Text_Align">Cell Text Align </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" ><a href="#fort.ALIGNED_CENTER">fort.ALIGNED_CENTER</a></td>
+	<td class="summary">align text center</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.ALIGNED_LEFT">fort.ALIGNED_LEFT</a></td>
+	<td class="summary">align text left</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.ALIGNED_RIGHT">fort.ALIGNED_RIGHT</a></td>
+	<td class="summary">align text right</td>
+	</tr>
+</table>
+<h2><a href="#Cell_Selectors">Cell Selectors </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" ><a href="#fort.ANY_COLUMN">fort.ANY_COLUMN</a></td>
+	<td class="summary">Select all columns</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.ANY_ROW">fort.ANY_ROW</a></td>
+	<td class="summary">Select all rows</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.CUR_COLUMN">fort.CUR_COLUMN</a></td>
+	<td class="summary">Select the current column</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.CUR_ROW">fort.CUR_ROW</a></td>
+	<td class="summary">Select the current row</td>
+	</tr>
+</table>
+<h2><a href="#Table_Border_Style">Table Border Style </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" ><a href="#fort.BASIC_STYLE">fort.BASIC_STYLE</a></td>
+	<td class="summary">Border style</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.BASIC2_STYLE">fort.BASIC2_STYLE</a></td>
+	<td class="summary">Border style</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.BOLD_STYLE">fort.BOLD_STYLE</a></td>
+	<td class="summary">Border style</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.BOLD2_STYLE">fort.BOLD2_STYLE</a></td>
+	<td class="summary">Border style</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.DOT_STYLE">fort.DOT_STYLE</a></td>
+	<td class="summary">Border style</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.DOUBLE_STYLE">fort.DOUBLE_STYLE</a></td>
+	<td class="summary">Border style</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.DOUBLE2_STYLE">fort.DOUBLE2_STYLE</a></td>
+	<td class="summary">Border style</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.EMPTY_STYLE">fort.EMPTY_STYLE</a></td>
+	<td class="summary">Border style</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.EMPTY2_STYLE">fort.EMPTY2_STYLE</a></td>
+	<td class="summary">Border style</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.FRAME_STYLE">fort.FRAME_STYLE</a></td>
+	<td class="summary">Border style</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.NICE_STYLE">fort.NICE_STYLE</a></td>
+	<td class="summary">Border style</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.PLAIN_STYLE">fort.PLAIN_STYLE</a></td>
+	<td class="summary">Border style</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.SIMPLE_STYLE">fort.SIMPLE_STYLE</a></td>
+	<td class="summary">Border style</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.SOLID_ROUND_STYLE">fort.SOLID_ROUND_STYLE</a></td>
+	<td class="summary">Border style</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.SOLID_STYLE">fort.SOLID_STYLE</a></td>
+	<td class="summary">Border style</td>
+	</tr>
+</table>
+<h2><a href="#Cell_Color">Cell Color </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" ><a href="#fort.COLOR_BLACK">fort.COLOR_BLACK</a></td>
+	<td class="summary">Color</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.COLOR_BLUE">fort.COLOR_BLUE</a></td>
+	<td class="summary">Color</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.COLOR_CYAN">fort.COLOR_CYAN</a></td>
+	<td class="summary">Color</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.COLOR_DARK_GRAY">fort.COLOR_DARK_GRAY</a></td>
+	<td class="summary">Color</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.COLOR_DEFAULT">fort.COLOR_DEFAULT</a></td>
+	<td class="summary">Color</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.COLOR_GREEN">fort.COLOR_GREEN</a></td>
+	<td class="summary">Color</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.COLOR_LIGHT_BLUE">fort.COLOR_LIGHT_BLUE</a></td>
+	<td class="summary">Color</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.COLOR_LIGHT_CYAN">fort.COLOR_LIGHT_CYAN</a></td>
+	<td class="summary">Color</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.COLOR_LIGHT_GRAY">fort.COLOR_LIGHT_GRAY</a></td>
+	<td class="summary">Color</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.COLOR_LIGHT_GREEN">fort.COLOR_LIGHT_GREEN</a></td>
+	<td class="summary">Color</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.COLOR_LIGHT_MAGENTA">fort.COLOR_LIGHT_MAGENTA</a></td>
+	<td class="summary">Color</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.COLOR_LIGHT_RED">fort.COLOR_LIGHT_RED</a></td>
+	<td class="summary">Color</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.COLOR_LIGHT_WHITE">fort.COLOR_LIGHT_WHITE</a></td>
+	<td class="summary">Color</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.COLOR_LIGHT_YELLOW">fort.COLOR_LIGHT_YELLOW</a></td>
+	<td class="summary">Color</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.COLOR_MAGENTA">fort.COLOR_MAGENTA</a></td>
+	<td class="summary">Color</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.COLOR_RED">fort.COLOR_RED</a></td>
+	<td class="summary">Color</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.COLOR_YELLOW">fort.COLOR_YELLOW</a></td>
+	<td class="summary">Color</td>
+	</tr>
+</table>
+<h2><a href="#Cell_Property">Cell Property </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" ><a href="#fort.CPROP_CELL_BG_COLOR">fort.CPROP_CELL_BG_COLOR</a></td>
+	<td class="summary">Cell Property</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.CPROP_CELL_TEXT_STYLE">fort.CPROP_CELL_TEXT_STYLE</a></td>
+	<td class="summary">Cell Property</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.CPROP_CONT_BG_COLOR">fort.CPROP_CONT_BG_COLOR</a></td>
+	<td class="summary">Cell Property</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.CPROP_CONT_FG_COLOR">fort.CPROP_CONT_FG_COLOR</a></td>
+	<td class="summary">Cell Property</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.CPROP_CONT_TEXT_STYLE">fort.CPROP_CONT_TEXT_STYLE</a></td>
+	<td class="summary">Cell Property</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.CPROP_EMPTY_STR_HEIGHT">fort.CPROP_EMPTY_STR_HEIGHT</a></td>
+	<td class="summary">Cell Property</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.CPROP_MIN_WIDTH">fort.CPROP_MIN_WIDTH</a></td>
+	<td class="summary">Cell Property</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.CPROP_ROW_TYPE">fort.CPROP_ROW_TYPE</a></td>
+	<td class="summary">Cell Property</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.CPROP_TEXT_ALIGN">fort.CPROP_TEXT_ALIGN</a></td>
+	<td class="summary">Cell Property</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.CPROP_TOP_PADDING">fort.CPROP_TOP_PADDING</a></td>
+	<td class="summary">Cell Property</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.CPROP_LEFT_PADDING">fort.CPROP_LEFT_PADDING</a></td>
+	<td class="summary">Cell Property</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.CPROP_BOTTOM_PADDING">fort.CPROP_BOTTOM_PADDING</a></td>
+	<td class="summary">Cell Property</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.CPROP_RIGHT_PADDING">fort.CPROP_RIGHT_PADDING</a></td>
+	<td class="summary">Cell Property</td>
+	</tr>
+</table>
+<h2><a href="#Row_Type">Row Type </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" ><a href="#fort.ROW_COMMON">fort.ROW_COMMON</a></td>
+	<td class="summary">Row Type</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.ROW_HEADER">fort.ROW_HEADER</a></td>
+	<td class="summary">Row Type</td>
+	</tr>
+</table>
+<h2><a href="#Table_Adding_Strategy">Table Adding Strategy </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" ><a href="#fort.STRATEGY_INSERT">fort.STRATEGY_INSERT</a></td>
+	<td class="summary">Insert new cells</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.STRATEGY_REPLACE">fort.STRATEGY_REPLACE</a></td>
+	<td class="summary">Replace current cells</td>
+	</tr>
+</table>
+<h2><a href="#Table_Property">Table Property </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" ><a href="#fort.TPROP_ADDING_STRATEGY">fort.TPROP_ADDING_STRATEGY</a></td>
+	<td class="summary">Table Property</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.TPROP_BOTTOM_MARGIN">fort.TPROP_BOTTOM_MARGIN</a></td>
+	<td class="summary">Table Property</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.TPROP_LEFT_MARGIN">fort.TPROP_LEFT_MARGIN</a></td>
+	<td class="summary">Table Property</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.TPROP_RIGHT_MARGIN">fort.TPROP_RIGHT_MARGIN</a></td>
+	<td class="summary">Table Property</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.TPROP_TOP_MARGIN">fort.TPROP_TOP_MARGIN</a></td>
+	<td class="summary">Table Property</td>
+	</tr>
+</table>
+<h2><a href="#Cell_Text_Style">Cell Text Style </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" ><a href="#fort.TSTYLE_BLINK">fort.TSTYLE_BLINK</a></td>
+	<td class="summary">Text Style</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.TSTYLE_BOLD">fort.TSTYLE_BOLD</a></td>
+	<td class="summary">Text Style</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.TSTYLE_DEFAULT">fort.TSTYLE_DEFAULT</a></td>
+	<td class="summary">Text Style</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.TSTYLE_DIM">fort.TSTYLE_DIM</a></td>
+	<td class="summary">Text Style</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.TSTYLE_HIDDEN">fort.TSTYLE_HIDDEN</a></td>
+	<td class="summary">Text Style</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.TSTYLE_INVERTED">fort.TSTYLE_INVERTED</a></td>
+	<td class="summary">Text Style</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.TSTYLE_ITALIC">fort.TSTYLE_ITALIC</a></td>
+	<td class="summary">Text Style</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort.TSTYLE_UNDERLINED">fort.TSTYLE_UNDERLINED</a></td>
+	<td class="summary">Text Style</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+    Methods
+    <dl class="function">
+    <dt>
+    <a name = "fort.new"></a>
+    <strong>fort.new ()</strong>
+    </dt>
+    <dd>
+    Alias of <a href="../index.html#fort.create_table">fort.create_table</a>
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.create_table"></a>
+    <strong>fort.create_table ()</strong>
+    </dt>
+    <dd>
+    Create a new formatted table
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">ftable</span></span>
+        new formatted table
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.set_default_border_style"></a>
+    <strong>fort.set_default_border_style (style)</strong>
+    </dt>
+    <dd>
+    Set the default border style for new tables.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">style</span>
+            <span class="types"><span class="type">userdata</span></span>
+         from available styles <a href="../index.html#fort.BASIC_STYLE">BASIC_STYLE</a>
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.set_default_cell_prop"></a>
+    <strong>fort.set_default_cell_prop (property, value)</strong>
+    </dt>
+    <dd>
+    Set a default cell property for new tables.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">property</span>
+            <span class="types"><span class="type">number</span></span>
+         the property to set
+        </li>
+        <li><span class="parameter">value</span>
+            <span class="types"><span class="type">number</span></span>
+         value to set
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.set_default_tbl_prop"></a>
+    <strong>fort.set_default_tbl_prop (property, value)</strong>
+    </dt>
+    <dd>
+    Set a default table property for new tables.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">property</span>
+            <span class="types"><span class="type">number</span></span>
+         the property to set
+        </li>
+        <li><span class="parameter">value</span>
+            <span class="types"><span class="type">number</span></span>
+         value to set
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Fields"></a>Fields</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "fort.default_separator"></a>
+    <strong>fort.default_separator</strong>
+    </dt>
+    <dd>
+    Control the default separator for <a href="../index.html#fort:printf">printf</a> and <a href="../index.html#fort:printf_ln">printf_ln</a> functions.
+(Defaults to &lsquo;|&rsquo;)
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Metamethods"></a>Metamethods</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "fort.__call"></a>
+    <strong>fort.__call</strong>
+    </dt>
+    <dd>
+    Alias of <a href="../index.html#fort.create_table">fort.create_table</a>
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Methods"></a>Methods</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "fort:printf"></a>
+    <strong>fort:printf (row_format, ...)</strong>
+    </dt>
+    <dd>
+    Use a formatted string to write a row. </p>
+
+<p>Splits cells on fort.default_separator. Uses lua <a href="https://www.lua.org/manual/5.1/manual.html#pdf-string.format">string.format</a> to
+format the text.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">row_format</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         row to write with formatting
+        </li>
+        <li><span class="parameter">...</span>
+         any format arguments
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort:printf_ln"></a>
+    <strong>fort:printf_ln (row_format, ...)</strong>
+    </dt>
+    <dd>
+    Use a formatted string to write a row and go to the next line. </p>
+
+<p>Splits cells on fort.default_separator. Uses lua <a href="https://www.lua.org/manual/5.1/manual.html#pdf-string.format">string.format</a> to
+format the text.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">row_format</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         row to write with formatting
+        </li>
+        <li><span class="parameter">...</span>
+         any format arguments
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort:print"></a>
+    <strong>fort:print (row_text[, sep=fort.default_separator])</strong>
+    </dt>
+    <dd>
+    Write a row.
+Use a single string to write a row. Allows using a custom cell separator
+without modifying the global separator.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">row_text</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+        </li>
+        <li><span class="parameter">sep</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         cell separator
+         (<em>default</em> fort.default_separator)
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort:print_ln"></a>
+    <strong>fort:print_ln (row_text[, sep=fort.default_separator])</strong>
+    </dt>
+    <dd>
+    Write a row and go to the next line.
+Use a single string to write a row. Allows using a custom cell separator
+without modifying the global separator.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">row_text</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+        </li>
+        <li><span class="parameter">sep</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         cell separator
+         (<em>default</em> fort.default_separator)
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort:table_write"></a>
+    <strong>fort:table_write (data_table[, colalign=false])</strong>
+    </dt>
+    <dd>
+    Write a 2d array of strings to the ftable.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">data_table</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">{{string}}</a></span>
+         2d array of strings to write, can be jagged.
+        </li>
+        <li><span class="parameter">colalign</span>
+            <span class="types"><span class="type">bool</span></span>
+         align to the <a href="../index.html#fort:cur_col">cur_col</a> at the start
+         (<em>default</em> false)
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort:table_write_ln"></a>
+    <strong>fort:table_write_ln (data_table[, colalign=false])</strong>
+    </dt>
+    <dd>
+    Write a 2d array of strings to the ftable and go to next line.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">data_table</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">{{string}}</a></span>
+         2d array of strings to write, can be jagged.
+        </li>
+        <li><span class="parameter">colalign</span>
+            <span class="types"><span class="type">bool</span></span>
+         align to the <a href="../index.html#fort:cur_col">cur_col</a> at the start
+         (<em>default</em> false)
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort:add_separator"></a>
+    <strong>fort:add_separator ()</strong>
+    </dt>
+    <dd>
+    Add a dividing separtor line at the current row.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort:copy_table"></a>
+    <strong>fort:copy_table ()</strong>
+    </dt>
+    <dd>
+    Completely Copy a table
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">ftable</span></span>
+        copied table
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort:copy"></a>
+    <strong>fort:copy ()</strong>
+    </dt>
+    <dd>
+    Alias of <a href="../index.html#fort:copy_table">fort.copy_table</a>
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">ftable</span></span>
+        copied table
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort:cur_col"></a>
+    <strong>fort:cur_col ()</strong>
+    </dt>
+    <dd>
+    Get the current column
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+
+
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort:cur_row"></a>
+    <strong>fort:cur_row ()</strong>
+    </dt>
+    <dd>
+    Get the current row
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+
+
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort:erase_range"></a>
+    <strong>fort:erase_range (top_left_row, top_left_col, bottom_right_row, bottom_right_col)</strong>
+    </dt>
+    <dd>
+    Erase a rectangular range of data from the ftable
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">top_left_row</span>
+            <span class="types"><span class="type">number</span></span>
+
+
+        </li>
+        <li><span class="parameter">top_left_col</span>
+            <span class="types"><span class="type">number</span></span>
+
+
+        </li>
+        <li><span class="parameter">bottom_right_row</span>
+            <span class="types"><span class="type">number</span></span>
+
+
+        </li>
+        <li><span class="parameter">bottom_right_col</span>
+            <span class="types"><span class="type">number</span></span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort:is_empty"></a>
+    <strong>fort:is_empty ()</strong>
+    </dt>
+    <dd>
+    Check if ftable is empty
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">boolean</span></span>
+
+
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort:ln"></a>
+    <strong>fort:ln ()</strong>
+    </dt>
+    <dd>
+    Go to the next line (row)
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort:row_count"></a>
+    <strong>fort:row_count ()</strong>
+    </dt>
+    <dd>
+    Get the number of rows in the ftable
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+
+
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort:row_write"></a>
+    <strong>fort:row_write (row)</strong>
+    </dt>
+    <dd>
+    Write a row of data.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">row</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">{string}</a></span>
+         row of strings to write
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort:row_write_ln"></a>
+    <strong>fort:row_write_ln (row)</strong>
+    </dt>
+    <dd>
+    Write a row of data and go to the next line.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">row</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">{string}</a></span>
+         row of strings to write
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort:write"></a>
+    <strong>fort:write (...)</strong>
+    </dt>
+    <dd>
+    Write a row
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">...</span>
+         string strings to write in the row
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort:write_ln"></a>
+    <strong>fort:write_ln (...)</strong>
+    </dt>
+    <dd>
+    Write a row and go to the next line
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">...</span>
+         string strings to write in the row
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort:set_border_style"></a>
+    <strong>fort:set_border_style (style)</strong>
+    </dt>
+    <dd>
+    Set the border style of the ftable.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">style</span>
+            <span class="types"><span class="type">userdata</span></span>
+         from available styles <a href="../index.html#fort.BASIC_STYLE">BASIC_STYLE</a>
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort:set_cell_prop"></a>
+    <strong>fort:set_cell_prop (row, col, property, value)</strong>
+    </dt>
+    <dd>
+    Set the cell property of the ftable.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">row</span>
+            <span class="types"><span class="type">number</span></span>
+         the row to set, can also use <a href="../index.html#fort.ANY_ROW">ANY_ROW</a>/<a href="../index.html#fort.CUR_ROW">CUR_ROW</a>
+        </li>
+        <li><span class="parameter">col</span>
+            <span class="types"><span class="type">number</span></span>
+         the column to set, can also use <a href="../index.html#fort.ANY_COLUMN">ANY_COLUMN</a>/<a href="../index.html#fort.CUR_COLUMN">CUR_COLUMN</a>
+        </li>
+        <li><span class="parameter">property</span>
+            <span class="types"><span class="type">number</span></span>
+         the property to set
+        </li>
+        <li><span class="parameter">value</span>
+            <span class="types"><span class="type">number</span></span>
+         value to set
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort:set_cell_span"></a>
+    <strong>fort:set_cell_span (row, col, span)</strong>
+    </dt>
+    <dd>
+    Set a cell&rsquo;s horizontal span in the ftable.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">row</span>
+            <span class="types"><span class="type">number</span></span>
+         the row to set. DO NOT USE <a href="../index.html#fort.ANY_ROW">ANY_ROW</a>/<a href="../index.html#fort.CUR_ROW">CUR_ROW</a>
+        </li>
+        <li><span class="parameter">col</span>
+            <span class="types"><span class="type">number</span></span>
+         the column to set. DO NOT USE <a href="../index.html#fort.ANY_COLUMN">ANY_COLUMN</a>/<a href="../index.html#fort.CUR_COLUMN">CUR_COLUMN</a>
+        </li>
+        <li><span class="parameter">span</span>
+            <span class="types"><span class="type">number</span></span>
+         how many columns the cell should span
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort:set_cur_cell"></a>
+    <strong>fort:set_cur_cell (row, col)</strong>
+    </dt>
+    <dd>
+    Set the current cell position.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">row</span>
+            <span class="types"><span class="type">number</span></span>
+         the row to set. DO NOT USE <a href="../index.html#fort.ANY_ROW">ANY_ROW</a>/<a href="../index.html#fort.CUR_ROW">CUR_ROW</a>
+        </li>
+        <li><span class="parameter">col</span>
+            <span class="types"><span class="type">number</span></span>
+         the column to set. DO NOT USE <a href="../index.html#fort.ANY_COLUMN">ANY_COLUMN</a>/<a href="../index.html#fort.CUR_COLUMN">CUR_COLUMN</a>
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort:set_tbl_prop"></a>
+    <strong>fort:set_tbl_prop (property, value)</strong>
+    </dt>
+    <dd>
+    Set a table property.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">property</span>
+            <span class="types"><span class="type">number</span></span>
+         the property to set
+        </li>
+        <li><span class="parameter">value</span>
+            <span class="types"><span class="type">number</span></span>
+         value to set
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort:to_string"></a>
+    <strong>fort:to_string ()</strong>
+    </dt>
+    <dd>
+    Generate the string version of the ftable.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+        formatted table string
+    </ol>
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header has-description"><a name="Cell_Text_Align"></a>Cell Text Align </h2>
+
+          <div class="section-description">
+           Indicate the text alignment inside a cell.</p>
+
+<p> Can be used with <a href="../index.html#fort:set_cell_prop">set_cell_prop</a>/<a href="../index.html#fort.set_default_cell_prop">set_default_cell_prop</a>
+          </div>
+    <dl class="function">
+    <dt>
+    <a name = "fort.ALIGNED_CENTER"></a>
+    <strong>fort.ALIGNED_CENTER</strong>
+    </dt>
+    <dd>
+    align text center
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.ALIGNED_LEFT"></a>
+    <strong>fort.ALIGNED_LEFT</strong>
+    </dt>
+    <dd>
+    align text left
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.ALIGNED_RIGHT"></a>
+    <strong>fort.ALIGNED_RIGHT</strong>
+    </dt>
+    <dd>
+    align text right
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header has-description"><a name="Cell_Selectors"></a>Cell Selectors </h2>
+
+          <div class="section-description">
+           Special flags that select a cell</p>
+
+<p> Can be used with <a href="../index.html#fort:set_cell_prop">set_cell_prop</a>
+          </div>
+    <dl class="function">
+    <dt>
+    <a name = "fort.ANY_COLUMN"></a>
+    <strong>fort.ANY_COLUMN</strong>
+    </dt>
+    <dd>
+    Select all columns
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.ANY_ROW"></a>
+    <strong>fort.ANY_ROW</strong>
+    </dt>
+    <dd>
+    Select all rows
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.CUR_COLUMN"></a>
+    <strong>fort.CUR_COLUMN</strong>
+    </dt>
+    <dd>
+    Select the current column
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.CUR_ROW"></a>
+    <strong>fort.CUR_ROW</strong>
+    </dt>
+    <dd>
+    Select the current row
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header has-description"><a name="Table_Border_Style"></a>Table Border Style </h2>
+
+          <div class="section-description">
+           Border styling of the table.</p>
+
+<p> Refer to refer to
+ <a href="https://github.com/seleznevae/libfort/wiki/Border-styles-%2528C-API%2529#built-in-border-styles">this page</a>
+ to see how each border style looks.
+          </div>
+    <dl class="function">
+    <dt>
+    <a name = "fort.BASIC_STYLE"></a>
+    <strong>fort.BASIC_STYLE</strong>
+    </dt>
+    <dd>
+    Border style
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.BASIC2_STYLE"></a>
+    <strong>fort.BASIC2_STYLE</strong>
+    </dt>
+    <dd>
+    Border style
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.BOLD_STYLE"></a>
+    <strong>fort.BOLD_STYLE</strong>
+    </dt>
+    <dd>
+    Border style
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.BOLD2_STYLE"></a>
+    <strong>fort.BOLD2_STYLE</strong>
+    </dt>
+    <dd>
+    Border style
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.DOT_STYLE"></a>
+    <strong>fort.DOT_STYLE</strong>
+    </dt>
+    <dd>
+    Border style
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.DOUBLE_STYLE"></a>
+    <strong>fort.DOUBLE_STYLE</strong>
+    </dt>
+    <dd>
+    Border style
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.DOUBLE2_STYLE"></a>
+    <strong>fort.DOUBLE2_STYLE</strong>
+    </dt>
+    <dd>
+    Border style
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.EMPTY_STYLE"></a>
+    <strong>fort.EMPTY_STYLE</strong>
+    </dt>
+    <dd>
+    Border style
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.EMPTY2_STYLE"></a>
+    <strong>fort.EMPTY2_STYLE</strong>
+    </dt>
+    <dd>
+    Border style
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.FRAME_STYLE"></a>
+    <strong>fort.FRAME_STYLE</strong>
+    </dt>
+    <dd>
+    Border style
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.NICE_STYLE"></a>
+    <strong>fort.NICE_STYLE</strong>
+    </dt>
+    <dd>
+    Border style
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.PLAIN_STYLE"></a>
+    <strong>fort.PLAIN_STYLE</strong>
+    </dt>
+    <dd>
+    Border style
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.SIMPLE_STYLE"></a>
+    <strong>fort.SIMPLE_STYLE</strong>
+    </dt>
+    <dd>
+    Border style
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.SOLID_ROUND_STYLE"></a>
+    <strong>fort.SOLID_ROUND_STYLE</strong>
+    </dt>
+    <dd>
+    Border style
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.SOLID_STYLE"></a>
+    <strong>fort.SOLID_STYLE</strong>
+    </dt>
+    <dd>
+    Border style
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header has-description"><a name="Cell_Color"></a>Cell Color </h2>
+
+          <div class="section-description">
+           Color used for cell/content properties.
+          </div>
+    <dl class="function">
+    <dt>
+    <a name = "fort.COLOR_BLACK"></a>
+    <strong>fort.COLOR_BLACK</strong>
+    </dt>
+    <dd>
+    Color
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.COLOR_BLUE"></a>
+    <strong>fort.COLOR_BLUE</strong>
+    </dt>
+    <dd>
+    Color
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.COLOR_CYAN"></a>
+    <strong>fort.COLOR_CYAN</strong>
+    </dt>
+    <dd>
+    Color
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.COLOR_DARK_GRAY"></a>
+    <strong>fort.COLOR_DARK_GRAY</strong>
+    </dt>
+    <dd>
+    Color
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.COLOR_DEFAULT"></a>
+    <strong>fort.COLOR_DEFAULT</strong>
+    </dt>
+    <dd>
+    Color
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.COLOR_GREEN"></a>
+    <strong>fort.COLOR_GREEN</strong>
+    </dt>
+    <dd>
+    Color
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.COLOR_LIGHT_BLUE"></a>
+    <strong>fort.COLOR_LIGHT_BLUE</strong>
+    </dt>
+    <dd>
+    Color
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.COLOR_LIGHT_CYAN"></a>
+    <strong>fort.COLOR_LIGHT_CYAN</strong>
+    </dt>
+    <dd>
+    Color
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.COLOR_LIGHT_GRAY"></a>
+    <strong>fort.COLOR_LIGHT_GRAY</strong>
+    </dt>
+    <dd>
+    Color
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.COLOR_LIGHT_GREEN"></a>
+    <strong>fort.COLOR_LIGHT_GREEN</strong>
+    </dt>
+    <dd>
+    Color
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.COLOR_LIGHT_MAGENTA"></a>
+    <strong>fort.COLOR_LIGHT_MAGENTA</strong>
+    </dt>
+    <dd>
+    Color
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.COLOR_LIGHT_RED"></a>
+    <strong>fort.COLOR_LIGHT_RED</strong>
+    </dt>
+    <dd>
+    Color
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.COLOR_LIGHT_WHITE"></a>
+    <strong>fort.COLOR_LIGHT_WHITE</strong>
+    </dt>
+    <dd>
+    Color
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.COLOR_LIGHT_YELLOW"></a>
+    <strong>fort.COLOR_LIGHT_YELLOW</strong>
+    </dt>
+    <dd>
+    Color
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.COLOR_MAGENTA"></a>
+    <strong>fort.COLOR_MAGENTA</strong>
+    </dt>
+    <dd>
+    Color
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.COLOR_RED"></a>
+    <strong>fort.COLOR_RED</strong>
+    </dt>
+    <dd>
+    Color
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.COLOR_YELLOW"></a>
+    <strong>fort.COLOR_YELLOW</strong>
+    </dt>
+    <dd>
+    Color
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Cell_Property"></a>Cell Property </h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "fort.CPROP_CELL_BG_COLOR"></a>
+    <strong>fort.CPROP_CELL_BG_COLOR</strong>
+    </dt>
+    <dd>
+    Cell Property
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.CPROP_CELL_TEXT_STYLE"></a>
+    <strong>fort.CPROP_CELL_TEXT_STYLE</strong>
+    </dt>
+    <dd>
+    Cell Property
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.CPROP_CONT_BG_COLOR"></a>
+    <strong>fort.CPROP_CONT_BG_COLOR</strong>
+    </dt>
+    <dd>
+    Cell Property
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.CPROP_CONT_FG_COLOR"></a>
+    <strong>fort.CPROP_CONT_FG_COLOR</strong>
+    </dt>
+    <dd>
+    Cell Property
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.CPROP_CONT_TEXT_STYLE"></a>
+    <strong>fort.CPROP_CONT_TEXT_STYLE</strong>
+    </dt>
+    <dd>
+    Cell Property
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.CPROP_EMPTY_STR_HEIGHT"></a>
+    <strong>fort.CPROP_EMPTY_STR_HEIGHT</strong>
+    </dt>
+    <dd>
+    Cell Property
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.CPROP_MIN_WIDTH"></a>
+    <strong>fort.CPROP_MIN_WIDTH</strong>
+    </dt>
+    <dd>
+    Cell Property
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.CPROP_ROW_TYPE"></a>
+    <strong>fort.CPROP_ROW_TYPE</strong>
+    </dt>
+    <dd>
+    Cell Property
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.CPROP_TEXT_ALIGN"></a>
+    <strong>fort.CPROP_TEXT_ALIGN</strong>
+    </dt>
+    <dd>
+    Cell Property
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.CPROP_TOP_PADDING"></a>
+    <strong>fort.CPROP_TOP_PADDING</strong>
+    </dt>
+    <dd>
+    Cell Property
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.CPROP_LEFT_PADDING"></a>
+    <strong>fort.CPROP_LEFT_PADDING</strong>
+    </dt>
+    <dd>
+    Cell Property
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.CPROP_BOTTOM_PADDING"></a>
+    <strong>fort.CPROP_BOTTOM_PADDING</strong>
+    </dt>
+    <dd>
+    Cell Property
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.CPROP_RIGHT_PADDING"></a>
+    <strong>fort.CPROP_RIGHT_PADDING</strong>
+    </dt>
+    <dd>
+    Cell Property
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Row_Type"></a>Row Type </h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "fort.ROW_COMMON"></a>
+    <strong>fort.ROW_COMMON</strong>
+    </dt>
+    <dd>
+    Row Type
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.ROW_HEADER"></a>
+    <strong>fort.ROW_HEADER</strong>
+    </dt>
+    <dd>
+    Row Type
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Table_Adding_Strategy"></a>Table Adding Strategy </h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "fort.STRATEGY_INSERT"></a>
+    <strong>fort.STRATEGY_INSERT</strong>
+    </dt>
+    <dd>
+    Insert new cells
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.STRATEGY_REPLACE"></a>
+    <strong>fort.STRATEGY_REPLACE</strong>
+    </dt>
+    <dd>
+    Replace current cells
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Table_Property"></a>Table Property </h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "fort.TPROP_ADDING_STRATEGY"></a>
+    <strong>fort.TPROP_ADDING_STRATEGY</strong>
+    </dt>
+    <dd>
+    Table Property
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.TPROP_BOTTOM_MARGIN"></a>
+    <strong>fort.TPROP_BOTTOM_MARGIN</strong>
+    </dt>
+    <dd>
+    Table Property
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.TPROP_LEFT_MARGIN"></a>
+    <strong>fort.TPROP_LEFT_MARGIN</strong>
+    </dt>
+    <dd>
+    Table Property
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.TPROP_RIGHT_MARGIN"></a>
+    <strong>fort.TPROP_RIGHT_MARGIN</strong>
+    </dt>
+    <dd>
+    Table Property
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.TPROP_TOP_MARGIN"></a>
+    <strong>fort.TPROP_TOP_MARGIN</strong>
+    </dt>
+    <dd>
+    Table Property
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Cell_Text_Style"></a>Cell Text Style </h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "fort.TSTYLE_BLINK"></a>
+    <strong>fort.TSTYLE_BLINK</strong>
+    </dt>
+    <dd>
+    Text Style
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.TSTYLE_BOLD"></a>
+    <strong>fort.TSTYLE_BOLD</strong>
+    </dt>
+    <dd>
+    Text Style
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.TSTYLE_DEFAULT"></a>
+    <strong>fort.TSTYLE_DEFAULT</strong>
+    </dt>
+    <dd>
+    Text Style
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.TSTYLE_DIM"></a>
+    <strong>fort.TSTYLE_DIM</strong>
+    </dt>
+    <dd>
+    Text Style
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.TSTYLE_HIDDEN"></a>
+    <strong>fort.TSTYLE_HIDDEN</strong>
+    </dt>
+    <dd>
+    Text Style
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.TSTYLE_INVERTED"></a>
+    <strong>fort.TSTYLE_INVERTED</strong>
+    </dt>
+    <dd>
+    Text Style
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.TSTYLE_ITALIC"></a>
+    <strong>fort.TSTYLE_ITALIC</strong>
+    </dt>
+    <dd>
+    Text Style
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fort.TSTYLE_UNDERLINED"></a>
+    <strong>fort.TSTYLE_UNDERLINED</strong>
+    </dt>
+    <dd>
+    Text Style
+
+
+
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2021-12-22 09:00:48 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

@@ -38,7 +38,7 @@ chronological order.
 - [x] Documentation site
 - [x] UTF-8 support
 - [x] Unit testing
-- [x] Detailed Examples (from libfort)
+- [x] Examples (from libfort)
 - [x] First release on luarocks
-- [ ] More detailed usage documentation
-- [ ] Add custom border style
+- [ ] Detailed usage documentation
+- [ ] Stronger unit testing
