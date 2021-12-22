@@ -1,25 +1,25 @@
 local ft = require "fort"
 local function print_table_with_styles(style, name)
     -- Just create a table with some content
-    table = ft.create_table()
-    ft.set_cell_prop(table, ft.ANY_ROW, 0, ft.CPROP_TEXT_ALIGN,
+    local ftable = ft.create_table()
+    ft.set_cell_prop(ftable, ft.ANY_ROW, 0, ft.CPROP_TEXT_ALIGN,
                      ft.ALIGNED_CENTER)
-    ft.set_cell_prop(table, ft.ANY_ROW, 1, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_LEFT)
+    ft.set_cell_prop(ftable, ft.ANY_ROW, 1, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_LEFT)
 
-    ft.set_cell_prop(table, 0, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
-    ft.write_ln(table, "Rank", "Title", "Year", "Rating")
+    ft.set_cell_prop(ftable, 0, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
+    ft.write_ln(ftable, "Rank", "Title", "Year", "Rating")
 
-    ft.write_ln(table, "1", "The Shawshank Redemption", "1994", "9.5")
-    ft.write_ln(table, "2", "12 Angry Men", "1957", "8.8")
-    ft.write_ln(table, "3", "It's a Wonderful Life", "1946", "8.6")
-    ft.add_separator(table)
-    ft.write_ln(table, "4", "2001: A Space Odyssey", "1968", "8.5")
-    ft.write_ln(table, "5", "Blade Runner", "1982", "8.1")
+    ft.write_ln(ftable, "1", "The Shawshank Redemption", "1994", "9.5")
+    ft.write_ln(ftable, "2", "12 Angry Men", "1957", "8.8")
+    ft.write_ln(ftable, "3", "It's a Wonderful Life", "1946", "8.6")
+    ft.add_separator(ftable)
+    ft.write_ln(ftable, "4", "2001: A Space Odyssey", "1968", "8.5")
+    ft.write_ln(ftable, "5", "Blade Runner", "1982", "8.1")
 
     -- Setup border style
-    ft.set_border_style(table, style)
-    -- Print table
-    print(string.format("%s style:\n\n%s\n\n", name, ft.to_string(table)))
+    ft.set_border_style(ftable, style)
+    -- Print ftable
+    print(string.format("%s style:\n\n%s\n\n", name, ft.to_string(ftable)))
 end
 
 local function print_table_with_different_styles()

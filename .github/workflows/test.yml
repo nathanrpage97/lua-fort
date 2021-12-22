@@ -1,6 +1,6 @@
 name: test
 
-on: 
+on:
   push:
     branches:
       - "master"
@@ -35,8 +35,8 @@ jobs:
       - name: build
         run: |
           luarocks install busted
-          luarocks make
+          make build
       - name: test
         run: busted -o utfTerminal
       - name: examples
-        run: ci/run_examples.sh
+        run: scripts/run_examples.sh
