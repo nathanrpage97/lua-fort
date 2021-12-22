@@ -14,14 +14,14 @@
 #define FTABLEMETA "fort.ftable"
 #define FBORDERSTYLE "fort.border_style"
 
-#define ERR_CHECK(func)                                    \
-    do                                                     \
-    {                                                      \
-        int error_code = func;                             \
-        if (error_code != 0)                               \
-        {                                                  \
-            return luaL_error(L, ft_strerror(error_code)); \
-        }                                                  \
+#define ERR_CHECK(func)                                     \
+    do                                                      \
+    {                                                       \
+        int _error_code = func;                             \
+        if (_error_code != 0)                               \
+        {                                                   \
+            return luaL_error(L, ft_strerror(_error_code)); \
+        }                                                   \
     } while (0);
 
 static ft_table_t **get_fort_table(lua_State *L, int arg_num)
