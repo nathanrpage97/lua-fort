@@ -13,3 +13,5 @@ sort = false
 examples = {'./examples'}
 tparam_alias('ftable', 'ftable')
 tparam_alias('userdata', 'userdata')
+use_markdown_titles = true
+template = true
