@@ -3,29 +3,25 @@
 <html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <head>
-    <title>lua-fort documentation v0.1.0</title>
+    <title>lua-fort documentation v0.2.0</title>
     <link rel="stylesheet" href="../ldoc_fixed.css" type="text/css" />
 </head>
 <body>
-
 <div id="container">
-
 <div id="product">
 	<div id="product_logo"></div>
 	<div id="product_name"><big><b></b></big></div>
 	<div id="product_description"></div>
 </div> <!-- id="product" -->
-
-
 <div id="main">
-
-
 <!-- Menu -->
-
 <div id="navigation">
 <br/>
 <h1>lua-fort</h1>
 
+<ul>
+<li><a href="https://github.com/nathanrpage97/lua-fort">Github</a></li>
+</ul>
 
 <h2>Contents</h2>
 <ul>
@@ -43,15 +39,14 @@
 <li><a href="#Table_Property">Table Property </a></li>
 <li><a href="#Cell_Text_Style">Cell Text Style </a></li>
 </ul>
-
-
 <h2>Classes</h2>
 <ul class="nowrap">
   <li><strong>fort</strong></li>
 </ul>
 <h2>Manual</h2>
 <ul class="nowrap">
-  <li><a href="../manual/README.md.html">README</a></li>
+  <li><a href="../manual/README.md.html">lua-fort</a></li>
+  <li><a href="../manual/CHANGELOG.md.html">Changelog</a></li>
 </ul>
 <h2>Examples</h2>
 <ul class="nowrap">
@@ -64,18 +59,12 @@
   <li><a href="../examples/6-print-styles.lua.html">6-print-styles.lua</a></li>
   <li><a href="../examples/8-math-table.lua.html">8-math-table.lua</a></li>
 </ul>
-
 </div>
-
 <div id="content">
-
 <h1>Class <code>fort</code></h1>
 <p>Fort Module</p>
 <p>
-
 </p>
-
-
 <h2><a href="#Functions">Functions</a></h2>
 <table class="function_list">
 	<tr>
@@ -201,7 +190,7 @@
 	</tr>
 	<tr>
 	<td class="name" ><a href="#fort:set_cell_span">fort:set_cell_span (row, col, span)</a></td>
-	<td class="summary">Set a cell's horizontal span in the ftable.</td>
+	<td class="summary">Set a cell&rsquo;s horizontal span in the ftable.</td>
 	</tr>
 	<tr>
 	<td class="name" ><a href="#fort:set_cur_cell">fort:set_cur_cell (row, col)</a></td>
@@ -519,11 +508,8 @@
 	<td class="summary">Text Style</td>
 	</tr>
 </table>
-
 <br/>
 <br/>
-
-
     <h2 class="section-header "><a name="Functions"></a>Functions</h2>
     Methods
     <dl class="function">
@@ -533,13 +519,6 @@
     </dt>
     <dd>
     Alias of <a href="../index.html#fort.create_table">fort.create_table</a>
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.create_table"></a>
@@ -547,19 +526,12 @@
     </dt>
     <dd>
     Create a new formatted table
-
-
-
     <h3>Returns:</h3>
     <ol>
 
            <span class="types"><span class="type">ftable</span></span>
         new formatted table
     </ol>
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.set_default_border_style"></a>
@@ -567,8 +539,6 @@
     </dt>
     <dd>
     Set the default border style for new tables.
-
-
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">style</span>
@@ -576,11 +546,6 @@
          from available styles <a href="../index.html#fort.BASIC_STYLE">BASIC_STYLE</a>
         </li>
     </ul>
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.set_default_cell_prop"></a>
@@ -588,8 +553,6 @@
     </dt>
     <dd>
     Set a default cell property for new tables.
-
-
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">property</span>
@@ -601,11 +564,6 @@
          value to set
         </li>
     </ul>
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.set_default_tbl_prop"></a>
@@ -613,8 +571,6 @@
     </dt>
     <dd>
     Set a default table property for new tables.
-
-
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">property</span>
@@ -626,11 +582,6 @@
          value to set
         </li>
     </ul>
-
-
-
-
-
 </dd>
 </dl>
     <h2 class="section-header "><a name="Fields"></a>Fields</h2>
@@ -642,14 +593,7 @@
     </dt>
     <dd>
     Control the default separator for <a href="../index.html#fort:printf">printf</a> and <a href="../index.html#fort:printf_ln">printf_ln</a> functions.
-(Defaults to '|')
-
-
-
-
-
-
-
+(Defaults to &lsquo;|&rsquo;)
 </dd>
 </dl>
     <h2 class="section-header "><a name="Metamethods"></a>Metamethods</h2>
@@ -661,13 +605,6 @@
     </dt>
     <dd>
     Alias of <a href="../index.html#fort.create_table">fort.create_table</a>
-
-
-
-
-
-
-
 </dd>
 </dl>
     <h2 class="section-header "><a name="Methods"></a>Methods</h2>
@@ -682,8 +619,6 @@
 
 <p>Splits cells on fort.default_separator. Uses lua <a href="https://www.lua.org/manual/5.1/manual.html#pdf-string.format">string.format</a> to
 format the text.
-
-
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">row_format</span>
@@ -694,11 +629,6 @@ format the text.
          any format arguments
         </li>
     </ul>
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort:printf_ln"></a>
@@ -709,8 +639,6 @@ format the text.
 
 <p>Splits cells on fort.default_separator. Uses lua <a href="https://www.lua.org/manual/5.1/manual.html#pdf-string.format">string.format</a> to
 format the text.
-
-
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">row_format</span>
@@ -721,11 +649,6 @@ format the text.
          any format arguments
         </li>
     </ul>
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort:print"></a>
@@ -735,13 +658,10 @@ format the text.
     Write a row.
 Use a single string to write a row. Allows using a custom cell separator
 without modifying the global separator.
-
-
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">row_text</span>
             <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
-
 
 
         </li>
@@ -751,11 +671,6 @@ without modifying the global separator.
          (<em>default</em> fort.default_separator)
         </li>
     </ul>
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort:print_ln"></a>
@@ -765,13 +680,10 @@ without modifying the global separator.
     Write a row and go to the next line.
 Use a single string to write a row. Allows using a custom cell separator
 without modifying the global separator.
-
-
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">row_text</span>
             <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
-
 
 
         </li>
@@ -781,11 +693,6 @@ without modifying the global separator.
          (<em>default</em> fort.default_separator)
         </li>
     </ul>
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort:table_write"></a>
@@ -793,8 +700,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Write a 2d array of strings to the ftable.
-
-
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">data_table</span>
@@ -807,11 +712,6 @@ without modifying the global separator.
          (<em>default</em> false)
         </li>
     </ul>
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort:table_write_ln"></a>
@@ -819,8 +719,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Write a 2d array of strings to the ftable and go to next line.
-
-
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">data_table</span>
@@ -833,11 +731,6 @@ without modifying the global separator.
          (<em>default</em> false)
         </li>
     </ul>
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort:add_separator"></a>
@@ -845,13 +738,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Add a dividing separtor line at the current row.
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort:copy_table"></a>
@@ -859,19 +745,12 @@ without modifying the global separator.
     </dt>
     <dd>
     Completely Copy a table
-
-
-
     <h3>Returns:</h3>
     <ol>
 
            <span class="types"><span class="type">ftable</span></span>
         copied table
     </ol>
-
-
-
-
 </dd>
     <dt>
     <a name = "fort:copy"></a>
@@ -879,19 +758,12 @@ without modifying the global separator.
     </dt>
     <dd>
     Alias of <a href="../index.html#fort:copy_table">fort.copy_table</a>
-
-
-
     <h3>Returns:</h3>
     <ol>
 
            <span class="types"><span class="type">ftable</span></span>
         copied table
     </ol>
-
-
-
-
 </dd>
     <dt>
     <a name = "fort:cur_col"></a>
@@ -899,21 +771,13 @@ without modifying the global separator.
     </dt>
     <dd>
     Get the current column
-
-
-
     <h3>Returns:</h3>
     <ol>
 
            <span class="types"><span class="type">number</span></span>
 
 
-
     </ol>
-
-
-
-
 </dd>
     <dt>
     <a name = "fort:cur_row"></a>
@@ -921,21 +785,13 @@ without modifying the global separator.
     </dt>
     <dd>
     Get the current row
-
-
-
     <h3>Returns:</h3>
     <ol>
 
            <span class="types"><span class="type">number</span></span>
 
 
-
     </ol>
-
-
-
-
 </dd>
     <dt>
     <a name = "fort:erase_range"></a>
@@ -943,13 +799,10 @@ without modifying the global separator.
     </dt>
     <dd>
     Erase a rectangular range of data from the ftable
-
-
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">top_left_row</span>
             <span class="types"><span class="type">number</span></span>
-
 
 
         </li>
@@ -957,11 +810,9 @@ without modifying the global separator.
             <span class="types"><span class="type">number</span></span>
 
 
-
         </li>
         <li><span class="parameter">bottom_right_row</span>
             <span class="types"><span class="type">number</span></span>
-
 
 
         </li>
@@ -969,14 +820,8 @@ without modifying the global separator.
             <span class="types"><span class="type">number</span></span>
 
 
-
         </li>
     </ul>
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort:is_empty"></a>
@@ -984,21 +829,13 @@ without modifying the global separator.
     </dt>
     <dd>
     Check if ftable is empty
-
-
-
     <h3>Returns:</h3>
     <ol>
 
            <span class="types"><span class="type">boolean</span></span>
 
 
-
     </ol>
-
-
-
-
 </dd>
     <dt>
     <a name = "fort:ln"></a>
@@ -1006,13 +843,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Go to the next line (row)
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort:row_count"></a>
@@ -1020,21 +850,13 @@ without modifying the global separator.
     </dt>
     <dd>
     Get the number of rows in the ftable
-
-
-
     <h3>Returns:</h3>
     <ol>
 
            <span class="types"><span class="type">number</span></span>
 
 
-
     </ol>
-
-
-
-
 </dd>
     <dt>
     <a name = "fort:row_write"></a>
@@ -1042,8 +864,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Write a row of data.
-
-
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">row</span>
@@ -1051,11 +871,6 @@ without modifying the global separator.
          row of strings to write
         </li>
     </ul>
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort:row_write_ln"></a>
@@ -1063,8 +878,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Write a row of data and go to the next line.
-
-
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">row</span>
@@ -1072,11 +885,6 @@ without modifying the global separator.
          row of strings to write
         </li>
     </ul>
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort:write"></a>
@@ -1084,19 +892,12 @@ without modifying the global separator.
     </dt>
     <dd>
     Write a row
-
-
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">...</span>
          string strings to write in the row
         </li>
     </ul>
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort:write_ln"></a>
@@ -1104,19 +905,12 @@ without modifying the global separator.
     </dt>
     <dd>
     Write a row and go to the next line
-
-
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">...</span>
          string strings to write in the row
         </li>
     </ul>
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort:set_border_style"></a>
@@ -1124,8 +918,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Set the border style of the ftable.
-
-
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">style</span>
@@ -1133,11 +925,6 @@ without modifying the global separator.
          from available styles <a href="../index.html#fort.BASIC_STYLE">BASIC_STYLE</a>
         </li>
     </ul>
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort:set_cell_prop"></a>
@@ -1145,8 +932,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Set the cell property of the ftable.
-
-
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">row</span>
@@ -1166,20 +951,13 @@ without modifying the global separator.
          value to set
         </li>
     </ul>
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort:set_cell_span"></a>
     <strong>fort:set_cell_span (row, col, span)</strong>
     </dt>
     <dd>
-    Set a cell's horizontal span in the ftable.
-
-
+    Set a cell&rsquo;s horizontal span in the ftable.
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">row</span>
@@ -1195,11 +973,6 @@ without modifying the global separator.
          how many columns the cell should span
         </li>
     </ul>
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort:set_cur_cell"></a>
@@ -1207,8 +980,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Set the current cell position.
-
-
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">row</span>
@@ -1220,11 +991,6 @@ without modifying the global separator.
          the column to set. DO NOT USE <a href="../index.html#fort.ANY_COLUMN">ANY_COLUMN</a>/<a href="../index.html#fort.CUR_COLUMN">CUR_COLUMN</a>
         </li>
     </ul>
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort:set_tbl_prop"></a>
@@ -1232,8 +998,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Set a table property.
-
-
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">property</span>
@@ -1245,11 +1009,6 @@ without modifying the global separator.
          value to set
         </li>
     </ul>
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort:to_string"></a>
@@ -1257,19 +1016,12 @@ without modifying the global separator.
     </dt>
     <dd>
     Generate the string version of the ftable.
-
-
-
     <h3>Returns:</h3>
     <ol>
 
            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
         formatted table string
     </ol>
-
-
-
-
 </dd>
 </dl>
     <h2 class="section-header has-description"><a name="Cell_Text_Align"></a>Cell Text Align </h2>
@@ -1286,13 +1038,6 @@ without modifying the global separator.
     </dt>
     <dd>
     align text center
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.ALIGNED_LEFT"></a>
@@ -1300,13 +1045,6 @@ without modifying the global separator.
     </dt>
     <dd>
     align text left
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.ALIGNED_RIGHT"></a>
@@ -1314,13 +1052,6 @@ without modifying the global separator.
     </dt>
     <dd>
     align text right
-
-
-
-
-
-
-
 </dd>
 </dl>
     <h2 class="section-header has-description"><a name="Cell_Selectors"></a>Cell Selectors </h2>
@@ -1337,13 +1068,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Select all columns
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.ANY_ROW"></a>
@@ -1351,13 +1075,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Select all rows
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.CUR_COLUMN"></a>
@@ -1365,13 +1082,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Select the current column
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.CUR_ROW"></a>
@@ -1379,13 +1089,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Select the current row
-
-
-
-
-
-
-
 </dd>
 </dl>
     <h2 class="section-header has-description"><a name="Table_Border_Style"></a>Table Border Style </h2>
@@ -1394,7 +1097,7 @@ without modifying the global separator.
            Border styling of the table.</p>
 
 <p> Refer to refer to
- <a href="https://github.com/seleznevae/libfort/wiki/Border-styles-%28C-API%29#built-in-border-styles">this page</a>
+ <a href="https://github.com/seleznevae/libfort/wiki/Border-styles-%2528C-API%2529#built-in-border-styles">this page</a>
  to see how each border style looks.
           </div>
     <dl class="function">
@@ -1404,13 +1107,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Border style
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.BASIC2_STYLE"></a>
@@ -1418,13 +1114,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Border style
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.BOLD_STYLE"></a>
@@ -1432,13 +1121,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Border style
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.BOLD2_STYLE"></a>
@@ -1446,13 +1128,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Border style
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.DOT_STYLE"></a>
@@ -1460,13 +1135,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Border style
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.DOUBLE_STYLE"></a>
@@ -1474,13 +1142,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Border style
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.DOUBLE2_STYLE"></a>
@@ -1488,13 +1149,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Border style
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.EMPTY_STYLE"></a>
@@ -1502,13 +1156,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Border style
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.EMPTY2_STYLE"></a>
@@ -1516,13 +1163,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Border style
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.FRAME_STYLE"></a>
@@ -1530,13 +1170,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Border style
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.NICE_STYLE"></a>
@@ -1544,13 +1177,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Border style
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.PLAIN_STYLE"></a>
@@ -1558,13 +1184,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Border style
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.SIMPLE_STYLE"></a>
@@ -1572,13 +1191,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Border style
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.SOLID_ROUND_STYLE"></a>
@@ -1586,13 +1198,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Border style
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.SOLID_STYLE"></a>
@@ -1600,13 +1205,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Border style
-
-
-
-
-
-
-
 </dd>
 </dl>
     <h2 class="section-header has-description"><a name="Cell_Color"></a>Cell Color </h2>
@@ -1621,13 +1219,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Color
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.COLOR_BLUE"></a>
@@ -1635,13 +1226,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Color
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.COLOR_CYAN"></a>
@@ -1649,13 +1233,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Color
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.COLOR_DARK_GRAY"></a>
@@ -1663,13 +1240,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Color
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.COLOR_DEFAULT"></a>
@@ -1677,13 +1247,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Color
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.COLOR_GREEN"></a>
@@ -1691,13 +1254,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Color
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.COLOR_LIGHT_BLUE"></a>
@@ -1705,13 +1261,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Color
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.COLOR_LIGHT_CYAN"></a>
@@ -1719,13 +1268,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Color
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.COLOR_LIGHT_GRAY"></a>
@@ -1733,13 +1275,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Color
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.COLOR_LIGHT_GREEN"></a>
@@ -1747,13 +1282,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Color
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.COLOR_LIGHT_MAGENTA"></a>
@@ -1761,13 +1289,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Color
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.COLOR_LIGHT_RED"></a>
@@ -1775,13 +1296,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Color
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.COLOR_LIGHT_WHITE"></a>
@@ -1789,13 +1303,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Color
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.COLOR_LIGHT_YELLOW"></a>
@@ -1803,13 +1310,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Color
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.COLOR_MAGENTA"></a>
@@ -1817,13 +1317,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Color
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.COLOR_RED"></a>
@@ -1831,13 +1324,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Color
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.COLOR_YELLOW"></a>
@@ -1845,13 +1331,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Color
-
-
-
-
-
-
-
 </dd>
 </dl>
     <h2 class="section-header "><a name="Cell_Property"></a>Cell Property </h2>
@@ -1863,13 +1342,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Cell Property
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.CPROP_CELL_TEXT_STYLE"></a>
@@ -1877,13 +1349,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Cell Property
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.CPROP_CONT_BG_COLOR"></a>
@@ -1891,13 +1356,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Cell Property
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.CPROP_CONT_FG_COLOR"></a>
@@ -1905,13 +1363,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Cell Property
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.CPROP_CONT_TEXT_STYLE"></a>
@@ -1919,13 +1370,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Cell Property
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.CPROP_EMPTY_STR_HEIGHT"></a>
@@ -1933,13 +1377,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Cell Property
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.CPROP_MIN_WIDTH"></a>
@@ -1947,13 +1384,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Cell Property
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.CPROP_ROW_TYPE"></a>
@@ -1961,13 +1391,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Cell Property
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.CPROP_TEXT_ALIGN"></a>
@@ -1975,13 +1398,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Cell Property
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.CPROP_TOP_PADDING"></a>
@@ -1989,13 +1405,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Cell Property
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.CPROP_LEFT_PADDING"></a>
@@ -2003,13 +1412,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Cell Property
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.CPROP_BOTTOM_PADDING"></a>
@@ -2017,13 +1419,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Cell Property
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.CPROP_RIGHT_PADDING"></a>
@@ -2031,13 +1426,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Cell Property
-
-
-
-
-
-
-
 </dd>
 </dl>
     <h2 class="section-header "><a name="Row_Type"></a>Row Type </h2>
@@ -2049,13 +1437,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Row Type
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.ROW_HEADER"></a>
@@ -2063,13 +1444,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Row Type
-
-
-
-
-
-
-
 </dd>
 </dl>
     <h2 class="section-header "><a name="Table_Adding_Strategy"></a>Table Adding Strategy </h2>
@@ -2081,13 +1455,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Insert new cells
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.STRATEGY_REPLACE"></a>
@@ -2095,13 +1462,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Replace current cells
-
-
-
-
-
-
-
 </dd>
 </dl>
     <h2 class="section-header "><a name="Table_Property"></a>Table Property </h2>
@@ -2113,13 +1473,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Table Property
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.TPROP_BOTTOM_MARGIN"></a>
@@ -2127,13 +1480,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Table Property
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.TPROP_LEFT_MARGIN"></a>
@@ -2141,13 +1487,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Table Property
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.TPROP_RIGHT_MARGIN"></a>
@@ -2155,13 +1494,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Table Property
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.TPROP_TOP_MARGIN"></a>
@@ -2169,13 +1501,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Table Property
-
-
-
-
-
-
-
 </dd>
 </dl>
     <h2 class="section-header "><a name="Cell_Text_Style"></a>Cell Text Style </h2>
@@ -2187,13 +1512,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Text Style
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.TSTYLE_BOLD"></a>
@@ -2201,13 +1519,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Text Style
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.TSTYLE_DEFAULT"></a>
@@ -2215,13 +1526,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Text Style
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.TSTYLE_DIM"></a>
@@ -2229,13 +1533,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Text Style
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.TSTYLE_HIDDEN"></a>
@@ -2243,13 +1540,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Text Style
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.TSTYLE_INVERTED"></a>
@@ -2257,13 +1547,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Text Style
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.TSTYLE_ITALIC"></a>
@@ -2271,13 +1554,6 @@ without modifying the global separator.
     </dt>
     <dd>
     Text Style
-
-
-
-
-
-
-
 </dd>
     <dt>
     <a name = "fort.TSTYLE_UNDERLINED"></a>
@@ -2285,22 +1561,12 @@ without modifying the global separator.
     </dt>
     <dd>
     Text Style
-
-
-
-
-
-
-
 </dd>
 </dl>
-
-
 </div> <!-- id="content" -->
 </div> <!-- id="main" -->
 <div id="about">
 <i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
-<i style="float:right;">Last updated 2021-12-22 03:02:09 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>
