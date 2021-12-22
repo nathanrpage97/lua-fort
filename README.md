@@ -20,6 +20,10 @@ library.
 The `fort` module directly maps the API from c to lua with the `FT_*`/`ft_*`
 prefixes.
 
+> \* libfort treats all UTF-8 as 1 codepoint will occupy one position by
+> default. lua-fort does not not currenlty support libfort callback to determine
+> presentation length
+
 ## Differences from libfort
 
 - No wchar support (Not needed for lua)
