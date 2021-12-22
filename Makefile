@@ -1,6 +1,6 @@
 # devtool only
 
-.PHONY: docs
+.PHONY: docs examples
 
 docs:
 	ldoc --fatalwarnings .
@@ -19,3 +19,6 @@ format:
 check:
 	luacheck src examples spec
 	luarocks lint *.rockspec
+
+examples:
+	./scripts/run_examples.sh
