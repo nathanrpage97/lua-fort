@@ -1,7 +1,7 @@
-#include "fort.h"
-
-#include <lua.h>
 #include <lauxlib.h>
+#include <lua.h>
+
+#include "fort.h"
 
 #if LUA_VERSION_NUM >= 502
 #define new_lib(L, l) (luaL_newlib(L, l))
@@ -15,29 +15,23 @@
 #define FBORDERSTYLE "fort.border_style"
 
 #define ERR_CHECK(func)                                     \
-    do                                                      \
-    {                                                       \
+    do {                                                    \
         int _error_code = func;                             \
-        if (_error_code != 0)                               \
-        {                                                   \
+        if (_error_code != 0) {                             \
             return luaL_error(L, ft_strerror(_error_code)); \
         }                                                   \
     } while (0);
 
-static ft_table_t **get_fort_table(lua_State *L, int arg_num)
-{
-    if (!lua_isuserdata(L, arg_num))
-    {
+static ft_table_t **get_fort_table(lua_State *L, int arg_num) {
+    if (!lua_isuserdata(L, arg_num)) {
         return NULL;
     }
     return (ft_table_t **)lua_touserdata(L, arg_num);
 }
 
-static int ftable_destroy(lua_State *L)
-{
+static int ftable_destroy(lua_State *L) {
     ft_table_t **table = luaL_checkudata(L, 1, FTABLEMETA);
-    if (table != NULL)
-    {
+    if (table != NULL) {
         ft_destroy_table(*table);
     }
     // The critical step that will prevent us from allowing
@@ -46,8 +40,7 @@ static int ftable_destroy(lua_State *L)
     return 0;
 }
 
-static void register_ftable(lua_State *L, ft_table_t *table)
-{
+static void register_ftable(lua_State *L, ft_table_t *table) {
     ft_table_t **data = lua_newuserdata(L, sizeof(ft_table_t *));
     *data = table;
     // add ftable
@@ -55,20 +48,16 @@ static void register_ftable(lua_State *L, ft_table_t *table)
     lua_setmetatable(L, -2);
 }
 
-static int lft_create_table(lua_State *L)
-{
+static int lft_create_table(lua_State *L) {
     ft_table_t *table = ft_create_table();
-    if (table == NULL)
-    {
+    if (table == NULL) {
         return luaL_error(L, "Unable to create table");
     }
     register_ftable(L, table);
     return 1;
 }
 
-static int lft_copy_table(lua_State *L)
-{
-
+static int lft_copy_table(lua_State *L) {
     ft_table_t **table = luaL_checkudata(L, 1, FTABLEMETA);
     ft_table_t *new_table = ft_copy_table(*table);
 
@@ -76,15 +65,13 @@ static int lft_copy_table(lua_State *L)
     return 1;
 }
 
-static int lft_ln(lua_State *L)
-{
+static int lft_ln(lua_State *L) {
     ft_table_t **table = luaL_checkudata(L, 1, FTABLEMETA);
     ERR_CHECK(ft_ln(*table));
     return 0;
 }
 
-static int lft_cur_row(lua_State *L)
-{
+static int lft_cur_row(lua_State *L) {
     ft_table_t **table = luaL_checkudata(L, 1, FTABLEMETA);
 
     int cur_row = ft_cur_row(*table);
@@ -92,17 +79,14 @@ static int lft_cur_row(lua_State *L)
     return 1;
 }
 
-static int lft_cur_col(lua_State *L)
-{
+static int lft_cur_col(lua_State *L) {
     ft_table_t **table = luaL_checkudata(L, 1, FTABLEMETA);
     int cur_col = ft_cur_col(*table);
     lua_pushnumber(L, cur_col);
     return 1;
 }
 
-static int lft_set_cur_cell(lua_State *L)
-{
-
+static int lft_set_cur_cell(lua_State *L) {
     ft_table_t **table = luaL_checkudata(L, 1, FTABLEMETA);
     size_t row = luaL_checknumber(L, 2);
     size_t col = luaL_checknumber(L, 3);
@@ -112,9 +96,7 @@ static int lft_set_cur_cell(lua_State *L)
     return 0;
 }
 
-static int lft_is_empty(lua_State *L)
-{
-
+static int lft_is_empty(lua_State *L) {
     ft_table_t **table = luaL_checkudata(L, 1, FTABLEMETA);
 
     int is_empty = ft_is_empty(*table);
@@ -122,9 +104,7 @@ static int lft_is_empty(lua_State *L)
     return 1;
 }
 
-static int lft_row_count(lua_State *L)
-{
-
+static int lft_row_count(lua_State *L) {
     ft_table_t **table = luaL_checkudata(L, 1, FTABLEMETA);
     size_t row_count = ft_row_count(*table);
 
@@ -132,37 +112,31 @@ static int lft_row_count(lua_State *L)
     return 1;
 }
 
-static int lft_erase_range(lua_State *L)
-{
-
+static int lft_erase_range(lua_State *L) {
     ft_table_t **table = luaL_checkudata(L, 1, FTABLEMETA);
     size_t top_left_row = luaL_checknumber(L, 2);
     size_t top_left_col = luaL_checknumber(L, 3);
     size_t bottom_right_row = luaL_checknumber(L, 4);
     size_t bottom_right_col = luaL_checknumber(L, 5);
 
-    ERR_CHECK(ft_erase_range(*table, top_left_row, top_left_col, bottom_right_row, bottom_right_col));
+    ERR_CHECK(ft_erase_range(*table, top_left_row, top_left_col,
+                             bottom_right_row, bottom_right_col));
 
     return 0;
 }
 
-static const char **generate_row_cells(lua_State *L, int arg_num)
-{
-
+static const char **generate_row_cells(lua_State *L, int arg_num) {
     size_t cols = lua_tbl_len(L, 2);
     const char **row_cells = malloc(cols * sizeof(char *));
-    if (row_cells == NULL)
-    {
+    if (row_cells == NULL) {
         return NULL;
     }
     size_t cols_populated = 0;
 
     lua_pushnil(L);
-    while (lua_next(L, arg_num) != 0)
-    {
+    while (lua_next(L, arg_num) != 0) {
         // ensure we dont go over bounds
-        if (cols_populated >= cols)
-        {
+        if (cols_populated >= cols) {
             lua_pop(L, 1);
             break;
         }
@@ -173,11 +147,8 @@ static const char **generate_row_cells(lua_State *L, int arg_num)
     return row_cells;
 }
 
-static int lft_row_write(lua_State *L)
-{
-
-    if (!lua_istable(L, 2))
-    {
+static int lft_row_write(lua_State *L) {
+    if (!lua_istable(L, 2)) {
         return luaL_error(L, "Expected string[] for argument 2");
     }
 
@@ -185,8 +156,7 @@ static int lft_row_write(lua_State *L)
 
     size_t cols = lua_tbl_len(L, 2);
     const char **row_cells = generate_row_cells(L, 2);
-    if (row_cells == NULL)
-    {
+    if (row_cells == NULL) {
         return luaL_error(L, "Unable to create row cells");
     }
 
@@ -196,11 +166,8 @@ static int lft_row_write(lua_State *L)
     return 0;
 }
 
-static int lft_row_write_ln(lua_State *L)
-{
-
-    if (!lua_istable(L, 2))
-    {
+static int lft_row_write_ln(lua_State *L) {
+    if (!lua_istable(L, 2)) {
         return luaL_error(L, "Expected string[] for argument 2");
     }
 
@@ -208,8 +175,7 @@ static int lft_row_write_ln(lua_State *L)
 
     size_t cols = lua_tbl_len(L, 2);
     const char **row_cells = generate_row_cells(L, 2);
-    if (row_cells == NULL)
-    {
+    if (row_cells == NULL) {
         return luaL_error(L, "Unable to create row cells");
     }
 
@@ -219,39 +185,29 @@ static int lft_row_write_ln(lua_State *L)
     return 0;
 }
 
-static int lft_add_separator(lua_State *L)
-{
-
+static int lft_add_separator(lua_State *L) {
     ft_table_t **table = luaL_checkudata(L, 1, FTABLEMETA);
 
     ERR_CHECK(ft_add_separator(*table));
     return 0;
 }
 
-static int lft_to_string(lua_State *L)
-{
-
+static int lft_to_string(lua_State *L) {
     ft_table_t **table = luaL_checkudata(L, 1, FTABLEMETA);
     const char *table_string = (const char *)ft_to_u8string(*table);
     lua_pushstring(L, table_string);
     return 1;
 }
 
-static int lft_create_border_style(lua_State *L)
-{
-    return 0;
-}
+static int lft_create_border_style(lua_State *L) { return 0; }
 
-static int lft_set_default_border_style(lua_State *L)
-{
+static int lft_set_default_border_style(lua_State *L) {
     const struct ft_border_style **style = luaL_checkudata(L, 1, FBORDERSTYLE);
 
     ERR_CHECK(ft_set_default_border_style(*style));
     return 0;
 }
-static int lft_set_border_style(lua_State *L)
-{
-
+static int lft_set_border_style(lua_State *L) {
     ft_table_t **table = luaL_checkudata(L, 1, FTABLEMETA);
     const struct ft_border_style **style = luaL_checkudata(L, 2, FBORDERSTYLE);
 
@@ -259,18 +215,14 @@ static int lft_set_border_style(lua_State *L)
     return 0;
 }
 
-static int lft_set_default_cell_prop(lua_State *L)
-{
-
+static int lft_set_default_cell_prop(lua_State *L) {
     uint32_t property = luaL_checknumber(L, 1);
     int value = luaL_checknumber(L, 2);
 
     ERR_CHECK(ft_set_default_cell_prop(property, value));
     return 0;
 }
-static int lft_set_cell_prop(lua_State *L)
-{
-
+static int lft_set_cell_prop(lua_State *L) {
     ft_table_t **table = luaL_checkudata(L, 1, FTABLEMETA);
     size_t row = luaL_checknumber(L, 2);
     size_t col = luaL_checknumber(L, 3);
@@ -281,18 +233,14 @@ static int lft_set_cell_prop(lua_State *L)
     return 0;
 }
 
-static int lft_set_default_tbl_prop(lua_State *L)
-{
-
+static int lft_set_default_tbl_prop(lua_State *L) {
     uint32_t property = luaL_checknumber(L, 1);
     int value = luaL_checknumber(L, 2);
 
     ERR_CHECK(ft_set_default_tbl_prop(property, value));
     return 0;
 }
-static int lft_set_tbl_prop(lua_State *L)
-{
-
+static int lft_set_tbl_prop(lua_State *L) {
     ft_table_t **table = luaL_checkudata(L, 1, FTABLEMETA);
     uint32_t property = luaL_checknumber(L, 2);
     int value = luaL_checknumber(L, 3);
@@ -300,9 +248,7 @@ static int lft_set_tbl_prop(lua_State *L)
     ERR_CHECK(ft_set_tbl_prop(*table, property, value));
     return 0;
 }
-static int lft_set_cell_span(lua_State *L)
-{
-
+static int lft_set_cell_span(lua_State *L) {
     ft_table_t **table = luaL_checkudata(L, 1, FTABLEMETA);
     size_t row = luaL_checknumber(L, 2);
     size_t col = luaL_checknumber(L, 3);
@@ -341,23 +287,22 @@ static const struct luaL_Reg ftable_meta[] = {
     {NULL, NULL},
 };
 
-static void register_fort_style(lua_State *L, const struct ft_border_style *style)
-{
-    const struct ft_border_style **border_style = lua_newuserdata(L, sizeof(struct ft_border_style **));
+static void register_fort_style(lua_State *L,
+                                const struct ft_border_style *style) {
+    const struct ft_border_style **border_style =
+        lua_newuserdata(L, sizeof(struct ft_border_style **));
     *border_style = style;
     luaL_getmetatable(L, FBORDERSTYLE);
     lua_setmetatable(L, -2);
 }
 
 #define REGISTER_FORT_STYLE(name, style) \
-    do                                   \
-    {                                    \
+    do {                                 \
         register_fort_style(L, style);   \
         lua_setfield(L, -2, name);       \
     } while (0)
 
-int luaopen_cfort(lua_State *L)
-{
+int luaopen_cfort(lua_State *L) {
     new_lib(L, fort_functions);
 
     luaL_newmetatable(L, FTABLEMETA);
@@ -368,11 +313,11 @@ int luaopen_cfort(lua_State *L)
 #endif
     // add fort functions to ftable object
     lua_pushliteral(L, "__index");
-    lua_pushvalue(L, -3); // dup methods table
-    lua_rawset(L, -3);    // metatable.__index = methods
+    lua_pushvalue(L, -3);  // dup methods table
+    lua_rawset(L, -3);     // metatable.__index = methods
     lua_pushliteral(L, "__metatable");
-    lua_pushvalue(L, -3); // dup methods table
-    lua_rawset(L, -3);    // hide metatable:  metatable.__metatable = methods
+    lua_pushvalue(L, -3);  // dup methods table
+    lua_rawset(L, -3);     // hide metatable:  metatable.__metatable = methods
     lua_pop(L, 1);
 
     luaL_newmetatable(L, FBORDERSTYLE);
