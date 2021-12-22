@@ -12,11 +12,11 @@ rockspec_format = "3.0"
 source = {
     url = "git://github.com/" .. github_account_name .. "nathanrpage97/lua-fort" ..
         package_name,
-    tag = "v0.1.0"
+    tag = git_checkout
 }
 
 description = {
-    summary = "A wrapper around the fort ascii table library",
+    summary = "A lua wrapper around the libfort ascii table c library",
     detailed = [[
         The lua-fort module provides ASCII table support for Lua. It wraps the fort library
         https://github.com/seleznevae/libfort.
@@ -26,7 +26,6 @@ description = {
     license = "MIT"
 }
 
--- TODO: make this lua >= 5.1
 dependencies = {"lua >= 5.1"}
 
 build = {
@@ -41,7 +40,7 @@ build = {
     install = {lua = {fort = "src/fort.lua"}},
     -- Override default build options (per platform)
     platforms = {},
-    copy_directories = {"examples", "spec"}
+    copy_directories = {"examples", "spec", "docs"}
 }
 
 test_dependencies = {"busted"}
