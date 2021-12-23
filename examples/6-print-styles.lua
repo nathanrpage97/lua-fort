@@ -19,7 +19,7 @@ local function print_table_with_styles(style, name)
     -- Setup border style
     ft.set_border_style(ftable, style)
     -- Print ftable
-    print(string.format("%s style:\n\n%s\n\n", name, ftable))
+    print(string.format("%s style:\n\n%s\n\n", name, tostring(ftable)))
 end
 
 local function print_table_with_different_styles()
