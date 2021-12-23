@@ -6274,6 +6274,15 @@ f_string_buffer_t *copy_string_buffer(const f_string_buffer_t *buffer) {
             }
             break;
 #endif /* FT_HAVE_WCHAR */
+#ifdef FT_HAVE_UTF8
+        case UTF8_BUF:
+            if (FT_IS_ERROR(
+                    fill_buffer_from_u8string(result, buffer->str.u8str))) {
+                destroy_string_buffer(result);
+                return NULL;
+            }
+            break;
+#endif
         default:
             destroy_string_buffer(result);
             return NULL;
