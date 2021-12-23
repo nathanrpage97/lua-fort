@@ -12,7 +12,7 @@
 #endif
 
 // use integer in newer lua for response values
-#if LUA_VERSION_NUM <= 503
+#if LUA_VERSION_NUM < 503
 #define lua_pushinteger(L, n) lua_pushinteger(L, n)
 #endif
 
