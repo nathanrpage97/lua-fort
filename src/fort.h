@@ -45,9 +45,9 @@ SOFTWARE.
  *****************************************************************************/
 
 #define LIBFORT_MAJOR_VERSION 0
-#define LIBFORT_MINOR_VERSION 4
-#define LIBFORT_REVISION 2
-#define LIBFORT_VERSION_STR "0.4.2"
+#define LIBFORT_MINOR_VERSION 5
+#define LIBFORT_REVISION 0
+#define LIBFORT_VERSION_STR "0.5.0"
 
 /*****************************************************************************
  *               Configuration
@@ -392,6 +392,16 @@ int ft_is_empty(const ft_table_t *table);
  *   Number of rows in the table.
  */
 size_t ft_row_count(const ft_table_t *table);
+
+/**
+ * Get number of columns in the table.
+ *
+ * @param table
+ *   Pointer to formatted table.
+ * @return
+ *   Number of columns in the table.
+ */
+size_t ft_col_count(const ft_table_t *table);
 
 /**
  *  Erase range of cells.
@@ -832,9 +842,9 @@ enum ft_color {
     FT_COLOR_LIGHT_GREEN = 11,   /**< Light green color */
     FT_COLOR_LIGHT_YELLOW = 12,  /**< Light yellow color */
     FT_COLOR_LIGHT_BLUE = 13,    /**< Light blue color */
-    FT_COLOR_LIGHT_MAGENTA = 15, /**< Light magenta color */
-    FT_COLOR_LIGHT_CYAN = 16,    /**< Light cyan color */
-    FT_COLOR_LIGHT_WHYTE = 17    /**< Light whyte color */
+    FT_COLOR_LIGHT_MAGENTA = 14, /**< Light magenta color */
+    FT_COLOR_LIGHT_CYAN = 15,    /**< Light cyan color */
+    FT_COLOR_LIGHT_WHYTE = 16    /**< Light whyte color */
 };
 
 /**

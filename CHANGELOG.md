@@ -10,6 +10,7 @@
   - `fort.erase_range`
   - `fort.set_cell_prop`
   - `fort.set_cell_span`
+- [Updated] libfort updated 0.4.2 -> 0.5.0
 
 ## v0.2.0 (2021.12.21)
 
