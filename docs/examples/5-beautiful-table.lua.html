@@ -66,34 +66,34 @@ ft.write_ln(<span class="global">table</span>, <span class="string">"mandelbrot"
 ft.write_ln(<span class="global">table</span>, <span class="string">""</span>, <span class="string">"2500"</span>, <span class="string">"19.8"</span>, <span class="string">"320,000,000"</span>, <span class="string">"✔"</span>)
 ft.write_ln(<span class="global">table</span>, <span class="string">""</span>, <span class="string">"10000"</span>, <span class="string">"60.7"</span>, <span class="string">"987,000,000"</span>)
 ft.add_separator(<span class="global">table</span>)
-ft.set_cell_span(<span class="global">table</span>, <span class="number">8</span>, <span class="number">0</span>, <span class="number">4</span>)
+ft.set_cell_span(<span class="global">table</span>, <span class="number">9</span>, <span class="number">1</span>, <span class="number">4</span>)
 ft.write_ln(<span class="global">table</span>, <span class="string">"Итог"</span>, <span class="string">""</span>, <span class="string">""</span>, <span class="string">""</span>, <span class="string">"✖"</span>)
 
 <span class="comment">-- Setting text styles
-</span>ft.set_cell_prop(<span class="global">table</span>, <span class="number">0</span>, ft.ANY_COLUMN, ft.CPROP_CONT_TEXT_STYLE,
+</span>ft.set_cell_prop(<span class="global">table</span>, <span class="number">1</span>, ft.ANY_COLUMN, ft.CPROP_CONT_TEXT_STYLE,
                  ft.TSTYLE_BOLD)
-ft.set_cell_prop(<span class="global">table</span>, <span class="number">8</span>, ft.ANY_COLUMN, ft.CPROP_CONT_TEXT_STYLE,
+ft.set_cell_prop(<span class="global">table</span>, <span class="number">9</span>, ft.ANY_COLUMN, ft.CPROP_CONT_TEXT_STYLE,
                  ft.TSTYLE_BOLD)
-ft.set_cell_prop(<span class="global">table</span>, ft.ANY_ROW, <span class="number">0</span>, ft.CPROP_CONT_TEXT_STYLE, ft.TSTYLE_BOLD)
-ft.set_cell_prop(<span class="global">table</span>, ft.ANY_ROW, <span class="number">4</span>, ft.CPROP_CONT_TEXT_STYLE, ft.TSTYLE_BOLD)
+ft.set_cell_prop(<span class="global">table</span>, ft.ANY_ROW, <span class="number">1</span>, ft.CPROP_CONT_TEXT_STYLE, ft.TSTYLE_BOLD)
+ft.set_cell_prop(<span class="global">table</span>, ft.ANY_ROW, <span class="number">5</span>, ft.CPROP_CONT_TEXT_STYLE, ft.TSTYLE_BOLD)
 ft.set_cell_prop(<span class="global">table</span>, ft.ANY_ROW, ft.ANY_COLUMN, ft.CPROP_CONT_TEXT_STYLE,
                  ft.TSTYLE_ITALIC)
 
 <span class="comment">-- Set alignment
-</span>ft.set_cell_prop(<span class="global">table</span>, ft.ANY_ROW, <span class="number">1</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_RIGHT)
-ft.set_cell_prop(<span class="global">table</span>, ft.ANY_ROW, <span class="number">2</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_RIGHT)
+</span>ft.set_cell_prop(<span class="global">table</span>, ft.ANY_ROW, <span class="number">2</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_RIGHT)
 ft.set_cell_prop(<span class="global">table</span>, ft.ANY_ROW, <span class="number">3</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_RIGHT)
-ft.set_cell_prop(<span class="global">table</span>, ft.ANY_ROW, <span class="number">4</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_CENTER)
-ft.set_cell_prop(<span class="global">table</span>, <span class="number">8</span>, <span class="number">0</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_CENTER)
+ft.set_cell_prop(<span class="global">table</span>, ft.ANY_ROW, <span class="number">4</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_RIGHT)
+ft.set_cell_prop(<span class="global">table</span>, ft.ANY_ROW, <span class="number">5</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_CENTER)
+ft.set_cell_prop(<span class="global">table</span>, <span class="number">9</span>, <span class="number">1</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_CENTER)
 
 <span class="comment">-- Set colors
-</span>ft.set_cell_prop(<span class="global">table</span>, <span class="number">1</span>, <span class="number">4</span>, ft.CPROP_CONT_FG_COLOR, ft.COLOR_GREEN)
-ft.set_cell_prop(<span class="global">table</span>, <span class="number">3</span>, <span class="number">4</span>, ft.CPROP_CONT_FG_COLOR, ft.COLOR_RED)
-ft.set_cell_prop(<span class="global">table</span>, <span class="number">6</span>, <span class="number">4</span>, ft.CPROP_CONT_FG_COLOR, ft.COLOR_GREEN)
-ft.set_cell_prop(<span class="global">table</span>, <span class="number">8</span>, <span class="number">4</span>, ft.CPROP_CONT_FG_COLOR, ft.COLOR_RED)
-ft.set_cell_prop(<span class="global">table</span>, <span class="number">3</span>, <span class="number">2</span>, ft.CPROP_CONT_FG_COLOR, ft.COLOR_RED)
-ft.set_cell_prop(<span class="global">table</span>, <span class="number">4</span>, <span class="number">3</span>, ft.CPROP_CONT_BG_COLOR, ft.COLOR_LIGHT_RED)
-ft.set_cell_prop(<span class="global">table</span>, <span class="number">0</span>, ft.ANY_COLUMN, ft.CPROP_CONT_FG_COLOR,
+</span>ft.set_cell_prop(<span class="global">table</span>, <span class="number">2</span>, <span class="number">5</span>, ft.CPROP_CONT_FG_COLOR, ft.COLOR_GREEN)
+ft.set_cell_prop(<span class="global">table</span>, <span class="number">4</span>, <span class="number">5</span>, ft.CPROP_CONT_FG_COLOR, ft.COLOR_RED)
+ft.set_cell_prop(<span class="global">table</span>, <span class="number">7</span>, <span class="number">5</span>, ft.CPROP_CONT_FG_COLOR, ft.COLOR_GREEN)
+ft.set_cell_prop(<span class="global">table</span>, <span class="number">9</span>, <span class="number">5</span>, ft.CPROP_CONT_FG_COLOR, ft.COLOR_RED)
+ft.set_cell_prop(<span class="global">table</span>, <span class="number">4</span>, <span class="number">3</span>, ft.CPROP_CONT_FG_COLOR, ft.COLOR_RED)
+ft.set_cell_prop(<span class="global">table</span>, <span class="number">5</span>, <span class="number">4</span>, ft.CPROP_CONT_BG_COLOR, ft.COLOR_LIGHT_RED)
+ft.set_cell_prop(<span class="global">table</span>, <span class="number">1</span>, ft.ANY_COLUMN, ft.CPROP_CONT_FG_COLOR,
                  ft.COLOR_LIGHT_BLUE)
 
 <span class="comment">-- Move table to the center of the screen

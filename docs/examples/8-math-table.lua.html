@@ -53,11 +53,11 @@
 ft.set_border_style(ftable, ft.DOUBLE2_STYLE);
 
 <span class="comment">-- 2 last columns are aligned right
-</span>ft.set_cell_prop(ftable, ft.ANY_ROW, <span class="number">2</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_RIGHT);
-ft.set_cell_prop(ftable, ft.ANY_ROW, <span class="number">3</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_RIGHT);
+</span>ft.set_cell_prop(ftable, ft.ANY_ROW, <span class="number">3</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_RIGHT);
+ft.set_cell_prop(ftable, ft.ANY_ROW, <span class="number">4</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_RIGHT);
 
 <span class="comment">-- Setup header
-</span>ft.set_cell_prop(ftable, <span class="number">0</span>, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER);
+</span>ft.set_cell_prop(ftable, <span class="number">1</span>, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER);
 ft.write_ln(ftable, <span class="string">"Figure"</span>, <span class="string">"Formula"</span>, <span class="string">"Volume, cm³"</span>, <span class="string">"Accuracy"</span>);
 
 ft.write_ln(ftable, <span class="string">"Sphere ○"</span>, <span class="string">"4πR³/3"</span>, <span class="string">"3.145"</span>, <span class="string">"±0.3"</span>);

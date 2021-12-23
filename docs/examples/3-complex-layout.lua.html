@@ -55,7 +55,7 @@
 </span>ft.set_border_style(ftable, ft.DOUBLE2_STYLE)
 
 <span class="comment">-- Setup header
-</span>ft.set_cell_prop(ftable, <span class="number">0</span>, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
+</span>ft.set_cell_prop(ftable, <span class="number">1</span>, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
 ft.write_ln(ftable, <span class="string">"Sed"</span>, <span class="string">"Aenean"</span>, <span class="string">"Text"</span>)
 
 <span class="comment">-- Fill table
@@ -68,9 +68,9 @@ ft.write_ln(ftable, <span class="string">"Mauris"</span>, <span class="string">"
 ft.write_ln(ftable, <span class="string">"Summary"</span>, <span class="string">""</span>, <span class="string">"Sed tempor est eget odio varius dignissim."</span>)
 
 <span class="comment">-- Setup alignments and cell span
-</span>ft.set_cell_prop(ftable, <span class="number">0</span>, <span class="number">2</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_CENTER)
-ft.set_cell_prop(ftable, <span class="number">3</span>, <span class="number">0</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_CENTER)
-ft.set_cell_span(ftable, <span class="number">3</span>, <span class="number">0</span>, <span class="number">2</span>)
+</span>ft.set_cell_prop(ftable, <span class="number">1</span>, <span class="number">3</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_CENTER)
+ft.set_cell_prop(ftable, <span class="number">4</span>, <span class="number">1</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_CENTER)
+ft.set_cell_span(ftable, <span class="number">4</span>, <span class="number">1</span>, <span class="number">2</span>)
 
 <span class="global">print</span>(ft.to_string(ftable))</pre>
 

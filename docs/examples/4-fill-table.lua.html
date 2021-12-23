@@ -52,7 +52,7 @@
 <span class="keyword">local</span> <span class="keyword">function</span> use_printf()
     <span class="keyword">local</span> <span class="global">table</span> = ft.create_table()
 
-    ft.set_cell_prop(<span class="global">table</span>, <span class="number">0</span>, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
+    ft.set_cell_prop(<span class="global">table</span>, <span class="number">1</span>, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
     ft.printf_ln(<span class="global">table</span>, <span class="string">"N|Planet|Speed, km/s"</span>)
 
     ft.printf_ln(<span class="global">table</span>, <span class="string">"%d|%s|%5.2f"</span>, <span class="number">1</span>, <span class="string">"Mercury"</span>, <span class="number">47.362</span>)
@@ -65,7 +65,7 @@
 <span class="keyword">local</span> <span class="keyword">function</span> use_print()
     <span class="keyword">local</span> <span class="global">table</span> = ft.create_table()
 
-    ft.set_cell_prop(<span class="global">table</span>, <span class="number">0</span>, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
+    ft.set_cell_prop(<span class="global">table</span>, <span class="number">1</span>, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
     ft.print_ln(<span class="global">table</span>, <span class="string">"N|Planet|Speed, km/s"</span>)
 
     ft.print_ln(<span class="global">table</span>, <span class="string">"1|Mercury|47.362"</span>)
@@ -78,7 +78,7 @@
 <span class="keyword">local</span> <span class="keyword">function</span> use_write()
     <span class="keyword">local</span> <span class="global">table</span> = ft.create_table()
 
-    ft.set_cell_prop(<span class="global">table</span>, <span class="number">0</span>, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
+    ft.set_cell_prop(<span class="global">table</span>, <span class="number">1</span>, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
     ft.write_ln(<span class="global">table</span>, <span class="string">"N"</span>, <span class="string">"Planet"</span>, <span class="string">"Speed, km/s"</span>)
 
     ft.write_ln(<span class="global">table</span>, <span class="string">"1"</span>, <span class="string">"Mercury"</span>, <span class="string">"47.362"</span>)
@@ -91,7 +91,7 @@
 <span class="keyword">local</span> <span class="keyword">function</span> use_row_write()
     <span class="keyword">local</span> <span class="global">table</span> = ft.create_table()
 
-    ft.set_cell_prop(<span class="global">table</span>, <span class="number">0</span>, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
+    ft.set_cell_prop(<span class="global">table</span>, <span class="number">1</span>, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
     ft.row_write_ln(<span class="global">table</span>, {<span class="string">"N"</span>, <span class="string">"Planet"</span>, <span class="string">"Speed, km/s"</span>})
 
     ft.row_write_ln(<span class="global">table</span>, {<span class="string">"1"</span>, <span class="string">"Mercury"</span>, <span class="string">"47.362"</span>})
@@ -104,7 +104,7 @@
 <span class="keyword">local</span> <span class="keyword">function</span> use_table_write()
     <span class="keyword">local</span> <span class="global">table</span> = ft.create_table()
 
-    ft.set_cell_prop(<span class="global">table</span>, <span class="number">0</span>, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
+    ft.set_cell_prop(<span class="global">table</span>, <span class="number">1</span>, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
     ft.table_write_ln(<span class="global">table</span>, {
         {<span class="string">"N"</span>, <span class="string">"Planet"</span>, <span class="string">"Speed, km/s"</span>}, {<span class="string">"1"</span>, <span class="string">"Mercury"</span>, <span class="string">"47.362"</span>},
         {<span class="string">"2"</span>, <span class="string">"Venus"</span>, <span class="string">"35.02"</span>}, {<span class="string">"3"</span>, <span class="string">"Earth"</span>, <span class="string">"29.78"</span>}

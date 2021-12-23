@@ -52,7 +52,7 @@
 <span class="keyword">local</span> ftable = ft.create_table()
 
 <span class="comment">-- Setup header
-</span>ft.set_cell_prop(ftable, <span class="number">0</span>, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
+</span>ft.set_cell_prop(ftable, <span class="number">1</span>, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
 ft.write_ln(ftable, <span class="string">"Rank"</span>, <span class="string">"Title"</span>, <span class="string">"Year"</span>, <span class="string">"Rating"</span>)
 
 <span class="comment">-- Fill table
@@ -64,9 +64,9 @@ ft.write_ln(ftable, <span class="string">"4"</span>, <span class="string">"2001:
 ft.write_ln(ftable, <span class="string">"5"</span>, <span class="string">"Blade Runner"</span>, <span class="string">"1982"</span>, <span class="string">"8.1"</span>)
 
 <span class="comment">-- Set alignment for columns
-</span>ft.set_cell_prop(ftable, ft.ANY_ROW, <span class="number">0</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_CENTER)
-ft.set_cell_prop(ftable, ft.ANY_ROW, <span class="number">1</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_LEFT)
-ft.set_cell_prop(ftable, ft.ANY_ROW, <span class="number">3</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_CENTER)
+</span>ft.set_cell_prop(ftable, ft.ANY_ROW, <span class="number">1</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_CENTER)
+ft.set_cell_prop(ftable, ft.ANY_ROW, <span class="number">2</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_LEFT)
+ft.set_cell_prop(ftable, ft.ANY_ROW, <span class="number">4</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_CENTER)
 
 <span class="global">print</span>(ft.to_string(ftable))</pre>
 
