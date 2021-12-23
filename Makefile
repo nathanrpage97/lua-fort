@@ -1,6 +1,6 @@
 # devtool only
 
-.PHONY: docs examples
+.PHONY: docs examples build
 
 docs:
 	ldoc --fatalwarnings .
