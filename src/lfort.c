@@ -316,6 +316,7 @@ static const struct luaL_Reg fort_functions[] = {
 
 static const struct luaL_Reg ftable_meta[] = {
     {"__gc", ftable_destroy},
+    {"__tostring", lft_to_string},
     {NULL, NULL},
 };
 
@@ -343,6 +344,7 @@ int luaopen_cfort(lua_State *L) {
 #else
     luaL_openlib(L, 0, ftable_meta, 0);
 #endif
+
     // add fort functions to ftable object
     lua_pushliteral(L, "__index");
     lua_pushvalue(L, -3);  // dup methods table
