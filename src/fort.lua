@@ -169,6 +169,7 @@ fortc.row_write = fort.row_write
 ---@tparam {string} row row of strings to write
 ---@within Methods
 function fort:row_write(row)
+    assert(type(row) == "table", "Expected table for arg 1")
     local stringified_row = {}
     for i, v in ipairs(row) do stringified_row[i] = tostring(v) end
     fortc.row_write(self, stringified_row)
@@ -179,6 +180,7 @@ fortc.row_write_ln = fort.row_write_ln
 ---@tparam {string} row row of strings to write
 ---@within Methods
 function fort:row_write_ln(row)
+    assert(type(row) == "table", "Expected table for arg 1")
     local stringified_row = {}
     for i, v in ipairs(row) do stringified_row[i] = tostring(v) end
     fortc.row_write_ln(self, stringified_row)

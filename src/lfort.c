@@ -92,6 +92,9 @@ static int lft_set_cur_cell(lua_State *L) {
     size_t row = luaL_checknumber(L, 2) - 1;
     size_t col = luaL_checknumber(L, 3) - 1;
 
+    luaL_argcheck(L, lua_tonumber(L, 2) > 0, 2, "must be > 0");
+    luaL_argcheck(L, lua_tonumber(L, 3) > 0, 3, "must be > 0");
+
     ft_set_cur_cell(*table, row, col);
 
     return 0;
@@ -122,8 +125,8 @@ static int lft_erase_range(lua_State *L) {
 
     luaL_argcheck(L, lua_tonumber(L, 2) > 0, 2, "must be > 0");
     luaL_argcheck(L, lua_tonumber(L, 3) > 0, 3, "must be > 0");
-    luaL_argcheck(L, lua_tonumber(L, 4) > 0, 3, "must be > 0");
-    luaL_argcheck(L, lua_tonumber(L, 5) > 0, 3, "must be > 0");
+    luaL_argcheck(L, lua_tonumber(L, 4) > 0, 4, "must be > 0");
+    luaL_argcheck(L, lua_tonumber(L, 5) > 0, 5, "must be > 0");
 
     ERR_CHECK(ft_erase_range(*table, top_left_row, top_left_col,
                              bottom_right_row, bottom_right_col));
@@ -205,8 +208,6 @@ static int lft_to_string(lua_State *L) {
     return 1;
 }
 
-static int lft_create_border_style(lua_State *L) { return 0; }
-
 static int lft_set_default_border_style(lua_State *L) {
     const struct ft_border_style **style = luaL_checkudata(L, 1, FBORDERSTYLE);
 
@@ -225,6 +226,8 @@ static int lft_set_default_cell_prop(lua_State *L) {
     uint32_t property = luaL_checknumber(L, 1);
     int value = luaL_checknumber(L, 2);
 
+    luaL_argcheck(L, lua_tonumber(L, 1) > 0, 1, "must be > 0");
+
     ERR_CHECK(ft_set_default_cell_prop(property, value));
     return 0;
 }
@@ -237,6 +240,10 @@ static int lft_set_cell_prop(lua_State *L) {
     uint32_t property = luaL_checknumber(L, 4);
     int value = luaL_checknumber(L, 5);
 
+    luaL_argcheck(L, lua_tonumber(L, 2) > 0, 2, "must be > 0");
+    luaL_argcheck(L, lua_tonumber(L, 3) > 0, 3, "must be > 0");
+    luaL_argcheck(L, lua_tonumber(L, 4) > 0, 4, "must be > 0");
+
     ERR_CHECK(ft_set_cell_prop(*table, row, col, property, value));
     return 0;
 }
@@ -244,6 +251,8 @@ static int lft_set_cell_prop(lua_State *L) {
 static int lft_set_default_tbl_prop(lua_State *L) {
     uint32_t property = luaL_checknumber(L, 1);
     int value = luaL_checknumber(L, 2);
+
+    luaL_argcheck(L, lua_tonumber(L, 1) > 0, 1, "must be > 0");
 
     ERR_CHECK(ft_set_default_tbl_prop(property, value));
     return 0;
@@ -253,6 +262,8 @@ static int lft_set_tbl_prop(lua_State *L) {
     uint32_t property = luaL_checknumber(L, 2);
     int value = luaL_checknumber(L, 3);
 
+    luaL_argcheck(L, lua_tonumber(L, 2) > 0, 2, "must be > 0");
+
     ERR_CHECK(ft_set_tbl_prop(*table, property, value));
     return 0;
 }
@@ -261,6 +272,10 @@ static int lft_set_cell_span(lua_State *L) {
     size_t row = luaL_checknumber(L, 2) - 1;
     size_t col = luaL_checknumber(L, 3) - 1;
     size_t hor_span = luaL_checknumber(L, 4);
+
+    luaL_argcheck(L, lua_tonumber(L, 2) > 0, 2, "must be > 0");
+    luaL_argcheck(L, lua_tonumber(L, 3) > 0, 3, "must be > 0");
+    luaL_argcheck(L, lua_tonumber(L, 4) > 0, 4, "must be > 0");
 
     ERR_CHECK(ft_set_cell_span(*table, row, col, hor_span));
     return 0;
