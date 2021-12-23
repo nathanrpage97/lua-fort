@@ -51,9 +51,8 @@ static void register_ftable(lua_State *L, ft_table_t *table) {
 
 static int lft_create_table(lua_State *L) {
     ft_table_t *table = ft_create_table();
-    if (table == NULL) {
-        return luaL_error(L, "Unable to create table");
-    }
+    ERR_CHECK(table != NULL ? FT_SUCCESS : FT_MEMORY_ERROR);
+
     register_ftable(L, table);
     return 1;
 }
@@ -61,6 +60,7 @@ static int lft_create_table(lua_State *L) {
 static int lft_copy_table(lua_State *L) {
     ft_table_t **table = luaL_checkudata(L, 1, FTABLEMETA);
     ft_table_t *new_table = ft_copy_table(*table);
+    ERR_CHECK((new_table != NULL) ? FT_SUCCESS : FT_GEN_ERROR);
 
     register_ftable(L, new_table);
     return 1;
