@@ -1,5 +1,16 @@
 # Changelog
 
+## v0.3.0
+
+- [BREAKING] `row` and `col` arguments are now 1 indexed to follow lua
+  convention. The following functions are affected:
+  - `fort.cur_row`
+  - `fort.cur_col`
+  - `fort.set_cur_cell`
+  - `fort.erase_range`
+  - `fort.set_cell_prop`
+  - `fort.set_cell_span`
+
 ## v0.2.0 (2021.12.21)
 
 - [Added] `fort.new` and `fort.__call` aliases of `fort.create_table`

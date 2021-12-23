@@ -14,12 +14,13 @@
 #define FTABLEMETA "fort.ftable"
 #define FBORDERSTYLE "fort.border_style"
 
-#define ERR_CHECK(func)                                     \
-    do {                                                    \
-        int _error_code = func;                             \
-        if (_error_code != 0) {                             \
-            return luaL_error(L, ft_strerror(_error_code)); \
-        }                                                   \
+#define ERR_CHECK(func)                                                      \
+    do {                                                                     \
+        int _error_code = func;                                              \
+        if (_error_code != 0) {                                              \
+            return luaL_error(L, "fort: %s (%d) ", ft_strerror(_error_code), \
+                              _error_code);                                  \
+        }                                                                    \
     } while (0);
 
 static ft_table_t **get_fort_table(lua_State *L, int arg_num) {
@@ -75,21 +76,21 @@ static int lft_cur_row(lua_State *L) {
     ft_table_t **table = luaL_checkudata(L, 1, FTABLEMETA);
 
     int cur_row = ft_cur_row(*table);
-    lua_pushnumber(L, cur_row);
+    lua_pushnumber(L, cur_row + 1);
     return 1;
 }
 
 static int lft_cur_col(lua_State *L) {
     ft_table_t **table = luaL_checkudata(L, 1, FTABLEMETA);
     int cur_col = ft_cur_col(*table);
-    lua_pushnumber(L, cur_col);
+    lua_pushnumber(L, cur_col + 1);
     return 1;
 }
 
 static int lft_set_cur_cell(lua_State *L) {
     ft_table_t **table = luaL_checkudata(L, 1, FTABLEMETA);
-    size_t row = luaL_checknumber(L, 2);
-    size_t col = luaL_checknumber(L, 3);
+    size_t row = luaL_checknumber(L, 2) - 1;
+    size_t col = luaL_checknumber(L, 3) - 1;
 
     ft_set_cur_cell(*table, row, col);
 
@@ -114,10 +115,15 @@ static int lft_row_count(lua_State *L) {
 
 static int lft_erase_range(lua_State *L) {
     ft_table_t **table = luaL_checkudata(L, 1, FTABLEMETA);
-    size_t top_left_row = luaL_checknumber(L, 2);
-    size_t top_left_col = luaL_checknumber(L, 3);
-    size_t bottom_right_row = luaL_checknumber(L, 4);
-    size_t bottom_right_col = luaL_checknumber(L, 5);
+    size_t top_left_row = luaL_checknumber(L, 2) - 1;
+    size_t top_left_col = luaL_checknumber(L, 3) - 1;
+    size_t bottom_right_row = luaL_checknumber(L, 4) - 1;
+    size_t bottom_right_col = luaL_checknumber(L, 5) - 1;
+
+    luaL_argcheck(L, lua_tonumber(L, 2) > 0, 2, "must be > 0");
+    luaL_argcheck(L, lua_tonumber(L, 3) > 0, 3, "must be > 0");
+    luaL_argcheck(L, lua_tonumber(L, 4) > 0, 3, "must be > 0");
+    luaL_argcheck(L, lua_tonumber(L, 5) > 0, 3, "must be > 0");
 
     ERR_CHECK(ft_erase_range(*table, top_left_row, top_left_col,
                              bottom_right_row, bottom_right_col));
@@ -225,7 +231,9 @@ static int lft_set_default_cell_prop(lua_State *L) {
 static int lft_set_cell_prop(lua_State *L) {
     ft_table_t **table = luaL_checkudata(L, 1, FTABLEMETA);
     size_t row = luaL_checknumber(L, 2);
+    row -= (row > FT_MAX_ROW_INDEX) ? 0 : 1;
     size_t col = luaL_checknumber(L, 3);
+    col -= (col > FT_MAX_COL_INDEX) ? 0 : 1;
     uint32_t property = luaL_checknumber(L, 4);
     int value = luaL_checknumber(L, 5);
 
@@ -250,8 +258,8 @@ static int lft_set_tbl_prop(lua_State *L) {
 }
 static int lft_set_cell_span(lua_State *L) {
     ft_table_t **table = luaL_checkudata(L, 1, FTABLEMETA);
-    size_t row = luaL_checknumber(L, 2);
-    size_t col = luaL_checknumber(L, 3);
+    size_t row = luaL_checknumber(L, 2) - 1;
+    size_t col = luaL_checknumber(L, 3) - 1;
     size_t hor_span = luaL_checknumber(L, 4);
 
     ERR_CHECK(ft_set_cell_span(*table, row, col, hor_span));

@@ -2,11 +2,11 @@ local ft = require "fort"
 local function print_table_with_styles(style, name)
     -- Just create a table with some content
     local ftable = ft.create_table()
-    ft.set_cell_prop(ftable, ft.ANY_ROW, 0, ft.CPROP_TEXT_ALIGN,
+    ft.set_cell_prop(ftable, ft.ANY_ROW, 1, ft.CPROP_TEXT_ALIGN,
                      ft.ALIGNED_CENTER)
-    ft.set_cell_prop(ftable, ft.ANY_ROW, 1, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_LEFT)
+    ft.set_cell_prop(ftable, ft.ANY_ROW, 2, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_LEFT)
 
-    ft.set_cell_prop(ftable, 0, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
+    ft.set_cell_prop(ftable, 1, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
     ft.write_ln(ftable, "Rank", "Title", "Year", "Rating")
 
     ft.write_ln(ftable, "1", "The Shawshank Redemption", "1994", "9.5")
