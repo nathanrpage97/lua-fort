@@ -2,11 +2,10 @@ local ft = require "fort"
 
 local table = ft.create_table()
 ft.set_border_style(table, ft.NICE_STYLE)
-ft.set_cell_prop(table, 0, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
+ft.set_cell_prop(table, 1, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
 
 -- Filling table with data
-ft.write_ln(table, "Тест", "Итерации", "ms/op", "Тики",
-            "Результат")
+ft.write_ln(table, "Тest", "Iterations", "ms/op", "Ticks", "Passed")
 ft.write_ln(table, "n-body", "1000", "1.6", "1,500,000", "✔")
 ft.add_separator(table)
 ft.write_ln(table, "regex-redux", "1000", "0.8", "8,000,000")
@@ -18,7 +17,7 @@ ft.write_ln(table, "", "2500", "19.8", "320,000,000", "✔")
 ft.write_ln(table, "", "10000", "60.7", "987,000,000")
 ft.add_separator(table)
 ft.set_cell_span(table, 9, 1, 4)
-ft.write_ln(table, "Итог", "", "", "", "✖")
+ft.write_ln(table, "Total Result", "", "", "", "✖")
 
 -- Setting text styles
 ft.set_cell_prop(table, 1, ft.ANY_COLUMN, ft.CPROP_CONT_TEXT_STYLE,

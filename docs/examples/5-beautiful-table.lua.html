@@ -52,11 +52,10 @@
 
 <span class="keyword">local</span> <span class="global">table</span> = ft.create_table()
 ft.set_border_style(<span class="global">table</span>, ft.NICE_STYLE)
-ft.set_cell_prop(<span class="global">table</span>, <span class="number">0</span>, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
+ft.set_cell_prop(<span class="global">table</span>, <span class="number">1</span>, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
 
 <span class="comment">-- Filling table with data
-</span>ft.write_ln(<span class="global">table</span>, <span class="string">"Тест"</span>, <span class="string">"Итерации"</span>, <span class="string">"ms/op"</span>, <span class="string">"Тики"</span>,
-            <span class="string">"Результат"</span>)
+</span>ft.write_ln(<span class="global">table</span>, <span class="string">"Тest"</span>, <span class="string">"Iterations"</span>, <span class="string">"ms/op"</span>, <span class="string">"Ticks"</span>, <span class="string">"Passed"</span>)
 ft.write_ln(<span class="global">table</span>, <span class="string">"n-body"</span>, <span class="string">"1000"</span>, <span class="string">"1.6"</span>, <span class="string">"1,500,000"</span>, <span class="string">"✔"</span>)
 ft.add_separator(<span class="global">table</span>)
 ft.write_ln(<span class="global">table</span>, <span class="string">"regex-redux"</span>, <span class="string">"1000"</span>, <span class="string">"0.8"</span>, <span class="string">"8,000,000"</span>)
@@ -68,7 +67,7 @@ ft.write_ln(<span class="global">table</span>, <span class="string">""</span>, <
 ft.write_ln(<span class="global">table</span>, <span class="string">""</span>, <span class="string">"10000"</span>, <span class="string">"60.7"</span>, <span class="string">"987,000,000"</span>)
 ft.add_separator(<span class="global">table</span>)
 ft.set_cell_span(<span class="global">table</span>, <span class="number">9</span>, <span class="number">1</span>, <span class="number">4</span>)
-ft.write_ln(<span class="global">table</span>, <span class="string">"Итог"</span>, <span class="string">""</span>, <span class="string">""</span>, <span class="string">""</span>, <span class="string">"✖"</span>)
+ft.write_ln(<span class="global">table</span>, <span class="string">"Total Result"</span>, <span class="string">""</span>, <span class="string">""</span>, <span class="string">""</span>, <span class="string">"✖"</span>)
 
 <span class="comment">-- Setting text styles
 </span>ft.set_cell_prop(<span class="global">table</span>, <span class="number">1</span>, ft.ANY_COLUMN, ft.CPROP_CONT_TEXT_STYLE,
