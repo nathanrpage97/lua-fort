@@ -17,11 +17,6 @@ local ftable2 = ft.copy(ftable)
 
 ft.write_ln(ftable2, "4", "?", "?", "?")
 
-local ftable_str = ft.to_string(ftable)
-local ftable2_str = ft.to_string(ftable2)
+ft.table_write(fgrid, {{ftable, ftable2, ftable}, {ftable, "", ftable}})
 
-ft.table_write(fgrid, {
-    {ftable_str, ftable2_str, ftable_str}, {ftable_str, "", ftable_str}
-})
-
-print(ft.to_string(fgrid))
+print(fgrid)

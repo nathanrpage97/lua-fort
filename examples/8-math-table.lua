@@ -15,4 +15,4 @@ ft.write_ln(ftable, "Sphere ○", "4πR³/3", "3.145", "±0.3");
 ft.write_ln(ftable, "Cone ◸", "πR²h/3", "4.95", "±0.25");
 ft.write_ln(ftable, "Random", "∫ρdv", "12.95", "±0.75");
 
-print(ft.to_string(ftable));
+print(ftable);

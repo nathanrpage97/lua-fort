@@ -19,4 +19,4 @@ ft.set_cell_prop(ftable, ft.ANY_ROW, 1, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_CENTER)
 ft.set_cell_prop(ftable, ft.ANY_ROW, 2, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_LEFT)
 ft.set_cell_prop(ftable, ft.ANY_ROW, 4, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_CENTER)
 
-print(ft.to_string(ftable))
+print(ftable)
