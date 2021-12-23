@@ -116,6 +116,14 @@ static int lft_row_count(lua_State *L) {
     return 1;
 }
 
+static int lft_col_count(lua_State *L) {
+    ft_table_t **table = luaL_checkudata(L, 1, FTABLEMETA);
+    size_t col_count = ft_col_count(*table);
+
+    lua_pushnumber(L, col_count);
+    return 1;
+}
+
 static int lft_erase_range(lua_State *L) {
     ft_table_t **table = luaL_checkudata(L, 1, FTABLEMETA);
     size_t top_left_row = luaL_checknumber(L, 2) - 1;
@@ -290,6 +298,7 @@ static const struct luaL_Reg fort_functions[] = {
     {"set_cur_cell", lft_set_cur_cell},
     {"is_empty", lft_is_empty},
     {"row_count", lft_row_count},
+    {"col_count", lft_col_count},
     {"erase_range", lft_erase_range},
     {"row_write", lft_row_write},
     {"row_write_ln", lft_row_write_ln},

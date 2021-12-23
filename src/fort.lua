@@ -163,6 +163,11 @@ fort.copy = fort.copy_table
 ---@within Methods
 ---@treturn number
 
+---Get the number of columns in the ftable
+---@function fort:col_count
+---@within Methods
+---@treturn number
+
 fortc.row_write = fort.row_write
 
 ---Write a row of data.
