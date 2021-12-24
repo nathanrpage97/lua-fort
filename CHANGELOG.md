@@ -11,6 +11,9 @@
   - `fort.set_cell_prop`
   - `fort.set_cell_span`
 - [Updated] libfort updated 0.4.2 -> 0.5.0
+- [Added] `fort.col_count` (new in libfort 0.5.0)
+- [Changed] in lua ≥ 5.3 returns integer values instead of floats. Input
+  parameters are still accepting of floating point
 
 ## v0.2.0 (2021.12.21)
 
