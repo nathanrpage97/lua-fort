@@ -2,6 +2,8 @@
 
 ## v0.3.0
 
+This should be the last minor release before v1 stable is released.
+
 - [BREAKING] `row` and `col` arguments are now 1 indexed to follow lua
   convention. The following functions are affected:
   - `fort.cur_row`
@@ -16,6 +18,8 @@
   accepting of floats
 - [Added] `ftable` implements the `__tostring()` metamethod to return formatted
   table string. `print(ftable:to_string())` → `print(ftable)`
+- [Fixed] `fort.copy_table` now works correctly with utf8 tables
+- [Added] `fort.__call` alias of `fort.create_table`
 
 ## v0.2.0 (2021.12.21)
 
