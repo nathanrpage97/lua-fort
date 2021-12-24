@@ -70,10 +70,12 @@ convention. The following functions are affected:
 <li><a href="../index.html#fort:set_cell_span">fort.set_cell_span</a></li>
 </ul>
 </li>
-<li>[Updated] libfort updated 0.4.2 &ndash;> 0.5.0</li>
+<li>[Updated] libfort updated 0.4.2 → 0.5.0</li>
 <li>[Added] <a href="../index.html#fort:col_count">fort.col_count</a> (new in libfort 0.5.0)</li>
 <li>[Changed] in lua ≥ 5.3 returns integer values instead of floats. Input
 parameters are still accepting of floats</li>
+<li>[Added] <code>ftable</code> implements the <code>__tostring()</code> metamethod to return formatted
+table string. <code>print(ftable:to_string())</code> → <code>print(ftable)</code></li>
 </ul>
 
 
@@ -87,11 +89,11 @@ parameters are still accepting of floats</li>
 <li>[Fixed] <code>fort.ftable</code> and <code>fort.border_style</code> udata types to ensure the user
 passes the correct type</li>
 <li>[Added] <a href="../index.html#">fort</a> is now a class module which means the function can be accessed
-from ftable.</li>
+from ftable</li>
 </ul>
 
 
-<p>  Example <code>fort.printf(ftable, &quot;test1|test2&quot;)</code> → <code>ftable:printf(&quot;test1|test2&quot;)</code></p>
+<p>  Example <code>fort.printf(ftable, &quot;test1|test2&quot;) == ftable:printf(&quot;test1|test2&quot;)</code></p>
 
 <pre>
 <span class="keyword">local</span> fort = <span class="global">require</span> <span class="string">"fort"</span>

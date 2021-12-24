@@ -10,10 +10,12 @@
   - `fort.erase_range`
   - `fort.set_cell_prop`
   - `fort.set_cell_span`
-- [Updated] libfort updated 0.4.2 -> 0.5.0
+- [Updated] libfort updated 0.4.2 → 0.5.0
 - [Added] `fort.col_count` (new in libfort 0.5.0)
-- [Changed] in lua ≥ 5.3 returns integer values instead of floats. Input
-  parameters are still accepting of floats
+- [Changed] in lua ≥ 5.3 returns integer values instead of floats. Input still
+  accepting of floats
+- [Added] `ftable` implements the `__tostring()` metamethod to return formatted
+  table string. `print(ftable:to_string())` → `print(ftable)`
 
 ## v0.2.0 (2021.12.21)
 
@@ -22,9 +24,9 @@
 - [Fixed] `fort.ftable` and `fort.border_style` udata types to ensure the user
   passes the correct type
 - [Added] `fort` is now a class module which means the function can be accessed
-  from ftable.
+  from ftable
 
-  Example `fort.printf(ftable, "test1|test2")` → `ftable:printf("test1|test2")`
+  Example `fort.printf(ftable, "test1|test2") == ftable:printf("test1|test2")`
 
         local fort = require "fort"
         local simple_table = fort()
