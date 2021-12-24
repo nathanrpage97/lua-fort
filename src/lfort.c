@@ -28,13 +28,6 @@
         }                                                                    \
     } while (0);
 
-static ft_table_t **get_fort_table(lua_State *L, int arg_num) {
-    if (!lua_isuserdata(L, arg_num)) {
-        return NULL;
-    }
-    return (ft_table_t **)lua_touserdata(L, arg_num);
-}
-
 static int ftable_destroy(lua_State *L) {
     ft_table_t **table = luaL_checkudata(L, 1, FTABLEMETA);
     if (table != NULL) {
