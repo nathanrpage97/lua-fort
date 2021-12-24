@@ -79,21 +79,13 @@ library.</p>
 </ul>
 </li>
 <li>Different Methods of filling in the formatted table</li>
-<li>UTF-8 support*
-
-<ul>
-<li>Handles all utf8 characters as 1-width for simplicity</li>
-</ul>
-</li>
+<li>UTF-8 support
+(<a href="https://github.com/nathanrpage97/lua-fort/blob/72b888f6dd3a05d61d99686c71b6f26984d7c58c/src/fort.h#L1047-L1054">More details</a>)</li>
 </ul>
 
 
 <p>The <a href="../index.html#">fort</a> module directly maps the API from c to lua with the <code>FT_<em></code>/<code>ft_</em></code>
 prefixes.</p>
-
-<blockquote><p>* libfort treats all UTF-8 as 1 codepoint will occupy one position by
-default. lua-fort does not not currently support the libfort callback to
-determine presentation length</p></blockquote>
 
 <p><a name="Differences_from_libfort"></a></p>
 
@@ -108,7 +100,7 @@ determine presentation length</p></blockquote>
 <li>String splitting on column separator is done in lua</li>
 </ul>
 </li>
-<li>all functions are utf8 compatible</li>
+<li>all functions are UTF-8 compatible</li>
 </ul>
 
 

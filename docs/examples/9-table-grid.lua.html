@@ -67,14 +67,9 @@ ft.set_border_style(fgrid, ft.EMPTY_STYLE)
 
 ft.write_ln(ftable2, <span class="string">"4"</span>, <span class="string">"?"</span>, <span class="string">"?"</span>, <span class="string">"?"</span>)
 
-<span class="keyword">local</span> ftable_str = ft.to_string(ftable)
-<span class="keyword">local</span> ftable2_str = ft.to_string(ftable2)
+ft.table_write(fgrid, {{ftable, ftable2, ftable}, {ftable, <span class="string">""</span>, ftable}})
 
-ft.table_write(fgrid, {
-    {ftable_str, ftable2_str, ftable_str}, {ftable_str, <span class="string">""</span>, ftable_str}
-})
-
-<span class="global">print</span>(ft.to_string(fgrid))</pre>
+<span class="global">print</span>(fgrid)</pre>
 
 </div> <!-- id="content" -->
 </div> <!-- id="main" -->

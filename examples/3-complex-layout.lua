@@ -23,4 +23,4 @@ ft.set_cell_prop(ftable, 1, 3, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_CENTER)
 ft.set_cell_prop(ftable, 4, 1, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_CENTER)
 ft.set_cell_span(ftable, 4, 1, 2)
 
-print(ft.to_string(ftable))
+print(ftable)

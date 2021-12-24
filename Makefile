@@ -1,12 +1,15 @@
 # devtool only
 
-.PHONY: docs examples
+.PHONY: docs examples build debug
 
 docs:
 	ldoc --fatalwarnings .
 
 build:
 	luarocks make
+
+debug:
+	luarocks make CFLAGS="-g"
 
 test:
 	busted .
