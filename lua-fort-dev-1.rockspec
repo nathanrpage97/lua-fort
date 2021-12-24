@@ -10,8 +10,7 @@ version = package_version .. "-" .. rockspec_revision
 
 rockspec_format = "3.0"
 source = {
-    url = "git://github.com/" .. github_account_name .. "nathanrpage97/lua-fort" ..
-        package_name,
+    url = "git://github.com/" .. github_account_name .. "/" .. package_name,
     tag = git_checkout
 }
 
