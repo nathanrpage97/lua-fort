@@ -25,6 +25,7 @@
 
 <h2>Contents</h2>
 <ul>
+<li><a href="#v0_3_0">v0.3.0 </a></li>
 <li><a href="#v0_2_0__2021_12_21_">v0.2.0 (2021.12.21) </a></li>
 </ul>
 <h2>Manual</h2>
@@ -46,10 +47,41 @@
   <li><a href="../examples/5-beautiful-table.lua.html">5-beautiful-table.lua</a></li>
   <li><a href="../examples/6-print-styles.lua.html">6-print-styles.lua</a></li>
   <li><a href="../examples/8-math-table.lua.html">8-math-table.lua</a></li>
+  <li><a href="../examples/9-table-grid.lua.html">9-table-grid.lua</a></li>
 </ul>
 </div>
 <div id="content">
     <h1>Changelog</h1>
+
+<p><a name="v0_3_0"></a></p>
+
+<h2>v0.3.0</h2>
+
+<p>This should be the last minor release before v1 stable is released.</p>
+
+<ul>
+<li>[BREAKING] <code>row</code> and <code>col</code> arguments are now 1 indexed to follow lua
+convention. The following functions are affected:
+
+<ul>
+<li><a href="../index.html#fort:cur_row">fort.cur_row</a></li>
+<li><a href="../index.html#fort:cur_col">fort.cur_col</a></li>
+<li><a href="../index.html#fort:set_cur_cell">fort.set_cur_cell</a></li>
+<li><a href="../index.html#fort:erase_range">fort.erase_range</a></li>
+<li><a href="../index.html#fort:set_cell_prop">fort.set_cell_prop</a></li>
+<li><a href="../index.html#fort:set_cell_span">fort.set_cell_span</a></li>
+</ul>
+</li>
+<li>[Updated] libfort updated 0.4.2 → 0.5.0</li>
+<li>[Added] <a href="../index.html#fort:col_count">fort.col_count</a> (new in libfort 0.5.0)</li>
+<li>[Changed] in lua ≥ 5.3 returns integer values instead of floats. Input still
+accepting of floats</li>
+<li>[Added] <code>ftable</code> implements the <code>__tostring()</code> metamethod to return formatted
+table string. <code>print(ftable:to_string())</code> → <code>print(ftable)</code></li>
+<li>[Fixed] <a href="../index.html#fort:copy_table">fort.copy_table</a> now works correctly with utf8 tables</li>
+<li>[Added] <a href="../index.html#fort.__call">fort.__call</a> alias of <a href="../index.html#fort.create_table">fort.create_table</a></li>
+</ul>
+
 
 <p><a name="v0_2_0__2021_12_21_"></a></p>
 
@@ -61,11 +93,11 @@
 <li>[Fixed] <code>fort.ftable</code> and <code>fort.border_style</code> udata types to ensure the user
 passes the correct type</li>
 <li>[Added] <a href="../index.html#">fort</a> is now a class module which means the function can be accessed
-from ftable.</li>
+from ftable</li>
 </ul>
 
 
-<p>  Example <code>fort.printf(ftable, &quot;test1|test2&quot;)</code> → <code>ftable:printf(&quot;test1|test2&quot;)</code></p>
+<p>  Example <code>fort.printf(ftable, &quot;test1|test2&quot;) == ftable:printf(&quot;test1|test2&quot;)</code></p>
 
 <pre>
 <span class="keyword">local</span> fort = <span class="global">require</span> <span class="string">"fort"</span>

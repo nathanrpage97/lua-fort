@@ -6,7 +6,7 @@ local ftable = ft.create_table()
 ft.set_border_style(ftable, ft.DOUBLE2_STYLE)
 
 -- Setup header
-ft.set_cell_prop(ftable, 0, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
+ft.set_cell_prop(ftable, 1, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
 ft.write_ln(ftable, "Sed", "Aenean", "Text")
 
 -- Fill table
@@ -19,8 +19,8 @@ ft.write_ln(ftable, "Mauris", "Curabitur",
 ft.write_ln(ftable, "Summary", "", "Sed tempor est eget odio varius dignissim.")
 
 -- Setup alignments and cell span
-ft.set_cell_prop(ftable, 0, 2, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_CENTER)
-ft.set_cell_prop(ftable, 3, 0, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_CENTER)
-ft.set_cell_span(ftable, 3, 0, 2)
+ft.set_cell_prop(ftable, 1, 3, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_CENTER)
+ft.set_cell_prop(ftable, 4, 1, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_CENTER)
+ft.set_cell_span(ftable, 4, 1, 2)
 
-print(ft.to_string(ftable))
+print(ftable)

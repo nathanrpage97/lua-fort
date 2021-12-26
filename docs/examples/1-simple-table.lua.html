@@ -33,6 +33,7 @@
   <li><a href="../examples/5-beautiful-table.lua.html">5-beautiful-table.lua</a></li>
   <li><a href="../examples/6-print-styles.lua.html">6-print-styles.lua</a></li>
   <li><a href="../examples/8-math-table.lua.html">8-math-table.lua</a></li>
+  <li><a href="../examples/9-table-grid.lua.html">9-table-grid.lua</a></li>
 </ul>
 <h2>Classes</h2>
 <ul class="nowrap">
@@ -52,13 +53,13 @@
 <span class="keyword">local</span> ftable = ft.create_table()
 
 <span class="comment">-- setup header
-</span>ft.set_cell_prop(ftable, <span class="number">0</span>, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
+</span>ft.set_cell_prop(ftable, <span class="number">1</span>, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
 ft.write_ln(ftable, <span class="string">"N"</span>, <span class="string">"Driver"</span>, <span class="string">"Time"</span>, <span class="string">"Avg Speed"</span>)
 ft.write_ln(ftable, <span class="string">"1"</span>, <span class="string">"Ricciardo"</span>, <span class="string">"1:25.945"</span>, <span class="string">"222.128"</span>)
 ft.write_ln(ftable, <span class="string">"2"</span>, <span class="string">"Hamilton"</span>, <span class="string">"1:26.373"</span>, <span class="string">"221.027"</span>)
 ft.write_ln(ftable, <span class="string">"3"</span>, <span class="string">"Verstappen"</span>, <span class="string">"1:26.469"</span>, <span class="string">"220.782"</span>)
 
-<span class="global">print</span>(ft.to_string(ftable))</pre>
+<span class="global">print</span>(ftable)</pre>
 
 </div> <!-- id="content" -->
 </div> <!-- id="main" -->

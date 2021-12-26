@@ -2572,8 +2572,8 @@ int cell_printf(f_cell_t *cell, size_t row, f_conv_context_t *cntx,
     buf_len += strlen(reset_content_style_tag);
 
     /*    CELL_STYLE_T   LEFT_PADDING   CONTENT_STYLE_T  CONTENT
-     * RESET_CONTENT_STYLE_T    RIGHT_PADDING   RESET_CELL_STYLE_T | | | | | | |
-     * | L1 R1 L2 R2 L3                               R3
+     * RESET_CONTENT_STYLE_T    RIGHT_PADDING   RESET_CELL_STYLE_T | | | | | |
+     * |                    | L1 R1 L2 R2 L3                               R3
      */
 
     size_t L2 = padding_left;
@@ -2919,6 +2919,19 @@ int ft_is_empty(const ft_table_t *table) {
 size_t ft_row_count(const ft_table_t *table) {
     assert(table && table->rows);
     return vector_size(table->rows);
+}
+
+size_t ft_col_count(const ft_table_t *table) {
+    assert(table && table->rows);
+    size_t i = 0;
+    size_t cols_n = 0;
+    size_t rows_n = vector_size(table->rows);
+    for (i = 0; i < rows_n; ++i) {
+        f_row_t *row = VECTOR_AT(table->rows, i, f_row_t *);
+        size_t ncols = columns_in_row(row);
+        cols_n = MAX(cols_n, ncols);
+    }
+    return cols_n;
 }
 
 int ft_erase_range(ft_table_t *table, size_t top_left_row, size_t top_left_col,
@@ -5285,6 +5298,11 @@ f_status swap_row(f_row_t *cur_row, f_row_t *ins_row, size_t pos) {
         return FT_SUCCESS;
     }
 
+    // Append empty cells to `cur_row` if needed.
+    while (vector_size(cur_row->cells) < pos) {
+        create_cell_in_position(cur_row, vector_size(cur_row->cells));
+    }
+
     return vector_swap(cur_row->cells, ins_row->cells, pos);
 }
 
@@ -6274,6 +6292,15 @@ f_string_buffer_t *copy_string_buffer(const f_string_buffer_t *buffer) {
             }
             break;
 #endif /* FT_HAVE_WCHAR */
+#ifdef FT_HAVE_UTF8
+        case UTF8_BUF:
+            if (FT_IS_ERROR(
+                    fill_buffer_from_u8string(result, buffer->str.u8str))) {
+                destroy_string_buffer(result);
+                return NULL;
+            }
+            break;
+#endif
         default:
             destroy_string_buffer(result);
             return NULL;

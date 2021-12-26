@@ -58,6 +58,7 @@
   <li><a href="../examples/5-beautiful-table.lua.html">5-beautiful-table.lua</a></li>
   <li><a href="../examples/6-print-styles.lua.html">6-print-styles.lua</a></li>
   <li><a href="../examples/8-math-table.lua.html">8-math-table.lua</a></li>
+  <li><a href="../examples/9-table-grid.lua.html">9-table-grid.lua</a></li>
 </ul>
 </div>
 <div id="content">
@@ -68,12 +69,16 @@
 <h2><a href="#Functions">Functions</a></h2>
 <table class="function_list">
 	<tr>
+	<td class="name" ><a href="#fort.create_table">fort.create_table ()</a></td>
+	<td class="summary">Create a new formatted table</td>
+	</tr>
+	<tr>
 	<td class="name" ><a href="#fort.new">fort.new ()</a></td>
 	<td class="summary">Alias of <a href="../index.html#fort.create_table">fort.create_table</a></td>
 	</tr>
 	<tr>
-	<td class="name" ><a href="#fort.create_table">fort.create_table ()</a></td>
-	<td class="summary">Create a new formatted table</td>
+	<td class="name" ><a href="#fort.create">fort.create ()</a></td>
+	<td class="summary">Alias of <a href="../index.html#fort.create_table">fort.create_table</a></td>
 	</tr>
 	<tr>
 	<td class="name" ><a href="#fort.set_default_border_style">fort.set_default_border_style (style)</a></td>
@@ -98,7 +103,7 @@
 <h2><a href="#Metamethods">Metamethods</a></h2>
 <table class="function_list">
 	<tr>
-	<td class="name" ><a href="#fort.__call">fort.__call</a></td>
+	<td class="name" ><a href="#fort.__call">fort.__call ()</a></td>
 	<td class="summary">Alias of <a href="../index.html#fort.create_table">fort.create_table</a></td>
 	</tr>
 </table>
@@ -163,6 +168,10 @@
 	<tr>
 	<td class="name" ><a href="#fort:row_count">fort:row_count ()</a></td>
 	<td class="summary">Get the number of rows in the ftable</td>
+	</tr>
+	<tr>
+	<td class="name" ><a href="#fort:col_count">fort:col_count ()</a></td>
+	<td class="summary">Get the number of columns in the ftable</td>
 	</tr>
 	<tr>
 	<td class="name" ><a href="#fort:row_write">fort:row_write (row)</a></td>
@@ -514,18 +523,37 @@
     Methods
     <dl class="function">
     <dt>
-    <a name = "fort.new"></a>
-    <strong>fort.new ()</strong>
-    </dt>
-    <dd>
-    Alias of <a href="../index.html#fort.create_table">fort.create_table</a>
-</dd>
-    <dt>
     <a name = "fort.create_table"></a>
     <strong>fort.create_table ()</strong>
     </dt>
     <dd>
     Create a new formatted table
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">ftable</span></span>
+        new formatted table
+    </ol>
+</dd>
+    <dt>
+    <a name = "fort.new"></a>
+    <strong>fort.new ()</strong>
+    </dt>
+    <dd>
+    Alias of <a href="../index.html#fort.create_table">fort.create_table</a>
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">ftable</span></span>
+        new formatted table
+    </ol>
+</dd>
+    <dt>
+    <a name = "fort.create"></a>
+    <strong>fort.create ()</strong>
+    </dt>
+    <dd>
+    Alias of <a href="../index.html#fort.create_table">fort.create_table</a>
     <h3>Returns:</h3>
     <ol>
 
@@ -601,10 +629,16 @@
     <dl class="function">
     <dt>
     <a name = "fort.__call"></a>
-    <strong>fort.__call</strong>
+    <strong>fort.__call ()</strong>
     </dt>
     <dd>
     Alias of <a href="../index.html#fort.create_table">fort.create_table</a>
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">ftable</span></span>
+        new formatted table
+    </ol>
 </dd>
 </dl>
     <h2 class="section-header "><a name="Methods"></a>Methods</h2>
@@ -850,6 +884,20 @@ without modifying the global separator.
     </dt>
     <dd>
     Get the number of rows in the ftable
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+
+
+    </ol>
+</dd>
+    <dt>
+    <a name = "fort:col_count"></a>
+    <strong>fort:col_count ()</strong>
+    </dt>
+    <dd>
+    Get the number of columns in the ftable
     <h3>Returns:</h3>
     <ol>
 
