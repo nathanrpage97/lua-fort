@@ -27,13 +27,13 @@
 <ul class="nowrap">
   <li><a href="../examples/1-simple-table.lua.html">1-simple-table.lua</a></li>
   <li><a href="../examples/1a-simple-table.lua.html">1a-simple-table.lua</a></li>
-  <li><strong>2-custom-table.lua</strong></li>
+  <li><a href="../examples/2-custom-table.lua.html">2-custom-table.lua</a></li>
   <li><a href="../examples/3-complex-layout.lua.html">3-complex-layout.lua</a></li>
   <li><a href="../examples/4-fill-table.lua.html">4-fill-table.lua</a></li>
   <li><a href="../examples/5-beautiful-table.lua.html">5-beautiful-table.lua</a></li>
   <li><a href="../examples/6-print-styles.lua.html">6-print-styles.lua</a></li>
   <li><a href="../examples/8-math-table.lua.html">8-math-table.lua</a></li>
-  <li><a href="../examples/9-table-grid.lua.html">9-table-grid.lua</a></li>
+  <li><strong>9-table-grid.lua</strong></li>
 </ul>
 <h2>Classes</h2>
 <ul class="nowrap">
@@ -46,30 +46,30 @@
 </ul>
 </div>
 <div id="content">
-    <h2>2-custom-table.lua</h2>
+    <h2>9-table-grid.lua</h2>
 <pre>
 <span class="keyword">local</span> ft = <span class="global">require</span> <span class="string">"fort"</span>
 
 <span class="keyword">local</span> ftable = ft.create_table()
 
-<span class="comment">-- Setup header
+<span class="comment">-- setup header
 </span>ft.set_cell_prop(ftable, <span class="number">1</span>, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
-ft.write_ln(ftable, <span class="string">"Rank"</span>, <span class="string">"Title"</span>, <span class="string">"Year"</span>, <span class="string">"Rating"</span>)
+ft.write_ln(ftable, <span class="string">"N"</span>, <span class="string">"Driver"</span>, <span class="string">"Time"</span>, <span class="string">"Avg Speed"</span>)
+ft.write_ln(ftable, <span class="string">"1"</span>, <span class="string">"Ricciardo"</span>, <span class="string">"1:25.945"</span>, <span class="string">"222.128"</span>)
+ft.write_ln(ftable, <span class="string">"2"</span>, <span class="string">"Hamilton"</span>, <span class="string">"1:26.373"</span>, <span class="string">"221.027"</span>)
+ft.write_ln(ftable, <span class="string">"3"</span>, <span class="string">"Verstappen"</span>, <span class="string">"1:26.469"</span>, <span class="string">"220.782"</span>)
 
-<span class="comment">-- Fill table
-</span>ft.write_ln(ftable, <span class="string">"1"</span>, <span class="string">"The Shawshank Redemption"</span>, <span class="string">"1994"</span>, <span class="string">"9.5"</span>)
-ft.write_ln(ftable, <span class="string">"2"</span>, <span class="string">"12 Angry Men"</span>, <span class="string">"1957"</span>, <span class="string">"8.8"</span>)
-ft.write_ln(ftable, <span class="string">"3"</span>, <span class="string">"It's a Wonderful Life"</span>, <span class="string">"1946"</span>, <span class="string">"8.6"</span>)
-ft.add_separator(ftable)
-ft.write_ln(ftable, <span class="string">"4"</span>, <span class="string">"2001: A Space Odyssey"</span>, <span class="string">"1968"</span>, <span class="string">"8.5"</span>)
-ft.write_ln(ftable, <span class="string">"5"</span>, <span class="string">"Blade Runner"</span>, <span class="string">"1982"</span>, <span class="string">"8.1"</span>)
+<span class="comment">--- create a table grid
+</span><span class="keyword">local</span> fgrid = ft.create_table()
+ft.set_border_style(fgrid, ft.EMPTY_STYLE)
 
-<span class="comment">-- Set alignment for columns
-</span>ft.set_cell_prop(ftable, ft.ANY_ROW, <span class="number">1</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_CENTER)
-ft.set_cell_prop(ftable, ft.ANY_ROW, <span class="number">2</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_LEFT)
-ft.set_cell_prop(ftable, ft.ANY_ROW, <span class="number">4</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_CENTER)
+<span class="keyword">local</span> ftable2 = ft.copy(ftable)
 
-<span class="global">print</span>(ftable)</pre>
+ft.write_ln(ftable2, <span class="string">"4"</span>, <span class="string">"?"</span>, <span class="string">"?"</span>, <span class="string">"?"</span>)
+
+ft.table_write(fgrid, {{ftable, ftable2, ftable}, {ftable, <span class="string">""</span>, ftable}})
+
+<span class="global">print</span>(fgrid)</pre>
 
 </div> <!-- id="content" -->
 </div> <!-- id="main" -->
