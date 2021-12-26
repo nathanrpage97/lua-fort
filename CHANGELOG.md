@@ -1,6 +1,6 @@
 # Changelog
 
-## v0.3.0
+## v0.3.0 (2021.12.26)
 
 This should be the last minor release before v1 stable is released.
 
