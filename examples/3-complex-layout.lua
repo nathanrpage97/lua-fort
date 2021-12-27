@@ -1,6 +1,6 @@
 local ft = require "fort"
 
-local ftable = ft.create_table()
+local ftable = ft.new()
 
 -- Change border style
 ftable:set_border_style(ft.DOUBLE2_STYLE)

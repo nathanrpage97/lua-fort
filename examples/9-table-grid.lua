@@ -1,6 +1,6 @@
 local ft = require "fort"
 
-local ftable = ft.create_table()
+local ftable = ft.new()
 
 -- setup header
 ftable:set_cell_prop(1, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
@@ -10,7 +10,7 @@ ftable:write_ln("2", "Hamilton", "1:26.373", "221.027")
 ftable:write_ln("3", "Verstappen", "1:26.469", "220.782")
 
 --- create a table grid
-local fgrid = ft.create_table()
+local fgrid = ft.new()
 fgrid:set_border_style(ft.EMPTY_STYLE)
 
 local ftable2 = ftable:copy()

@@ -1,7 +1,7 @@
 local ft = require "fort"
 local function print_table_with_styles(style, name)
     -- Just create a table with some content
-    local ftable = ft.create_table()
+    local ftable = ft.new()
     ftable:set_cell_prop(ft.ANY_ROW, 1, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_CENTER)
     ftable:set_cell_prop(ft.ANY_ROW, 2, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_LEFT)
 

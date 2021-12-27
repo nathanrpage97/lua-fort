@@ -1,6 +1,6 @@
 local ft = require "fort"
 
-local ftable = ft.create_table()
+local ftable = ft.new()
 
 -- setup header
 ftable:set_cell_prop(1, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)

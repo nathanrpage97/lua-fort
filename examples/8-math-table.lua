@@ -1,6 +1,6 @@
 local ft = require "fort"
 
-local ftable = ft.create_table();
+local ftable = ft.new();
 ftable:set_border_style(ft.DOUBLE2_STYLE);
 
 -- 2 last columns are aligned right
