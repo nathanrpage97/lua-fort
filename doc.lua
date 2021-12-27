@@ -81,7 +81,7 @@ fort.default_separator = "|"
 ---@within Methods: Table State
 ---@treturn ftable copied table
 
----Alias of @{fort.copy_table}
+---Alias of @{fort:copy_table}
 ---@function fort:copy
 ---@within Methods: Table State
 ---@treturn ftable copied table
