@@ -26,7 +26,6 @@
 <h2>Examples</h2>
 <ul class="nowrap">
   <li><a href="../examples/1-simple-table.lua.html">1-simple-table.lua</a></li>
-  <li><a href="../examples/1a-simple-table.lua.html">1a-simple-table.lua</a></li>
   <li><a href="../examples/2-custom-table.lua.html">2-custom-table.lua</a></li>
   <li><a href="../examples/3-complex-layout.lua.html">3-complex-layout.lua</a></li>
   <li><strong>4-fill-table.lua</strong></li>
@@ -53,12 +52,12 @@
 <span class="keyword">local</span> <span class="keyword">function</span> use_printf()
     <span class="keyword">local</span> ftable = ft.create_table()
 
-    ft.set_cell_prop(ftable, <span class="number">1</span>, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
-    ft.printf_ln(ftable, <span class="string">"N|Planet|Speed, km/s"</span>)
+    ftable:set_cell_prop(<span class="number">1</span>, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
+    ftable:printf_ln(<span class="string">"N|Planet|Speed, km/s"</span>)
 
-    ft.printf_ln(ftable, <span class="string">"%d|%s|%5.2f"</span>, <span class="number">1</span>, <span class="string">"Mercury"</span>, <span class="number">47.362</span>)
-    ft.printf_ln(ftable, <span class="string">"%d|%s|%5.2f"</span>, <span class="number">2</span>, <span class="string">"Venus"</span>, <span class="number">35.02</span>)
-    ft.printf_ln(ftable, <span class="string">"%d|%s|%5.2f"</span>, <span class="number">3</span>, <span class="string">"Earth"</span>, <span class="number">29.78</span>)
+    ftable:printf_ln(<span class="string">"%d|%s|%5.2f"</span>, <span class="number">1</span>, <span class="string">"Mercury"</span>, <span class="number">47.362</span>)
+    ftable:printf_ln(<span class="string">"%d|%s|%5.2f"</span>, <span class="number">2</span>, <span class="string">"Venus"</span>, <span class="number">35.02</span>)
+    ftable:printf_ln(<span class="string">"%d|%s|%5.2f"</span>, <span class="number">3</span>, <span class="string">"Earth"</span>, <span class="number">29.78</span>)
 
     <span class="global">print</span>(ftable)
 <span class="keyword">end</span>
@@ -66,12 +65,12 @@
 <span class="keyword">local</span> <span class="keyword">function</span> use_print()
     <span class="keyword">local</span> ftable = ft.create_table()
 
-    ft.set_cell_prop(ftable, <span class="number">1</span>, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
-    ft.print_ln(ftable, <span class="string">"N|Planet|Speed, km/s"</span>)
+    ftable:set_cell_prop(<span class="number">1</span>, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
+    ftable:print_ln(<span class="string">"N|Planet|Speed, km/s"</span>)
 
-    ft.print_ln(ftable, <span class="string">"1|Mercury|47.362"</span>)
-    ft.print_ln(ftable, <span class="string">"2|Venus|35.02"</span>)
-    ft.print_ln(ftable, <span class="string">"3|Earth|29.78"</span>)
+    ftable:print_ln(<span class="string">"1|Mercury|47.362"</span>)
+    ftable:print_ln(<span class="string">"2|Venus|35.02"</span>)
+    ftable:print_ln(<span class="string">"3|Earth|29.78"</span>)
 
     <span class="global">print</span>(ftable)
 <span class="keyword">end</span>
@@ -79,12 +78,12 @@
 <span class="keyword">local</span> <span class="keyword">function</span> use_write()
     <span class="keyword">local</span> ftable = ft.create_table()
 
-    ft.set_cell_prop(ftable, <span class="number">1</span>, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
-    ft.write_ln(ftable, <span class="string">"N"</span>, <span class="string">"Planet"</span>, <span class="string">"Speed, km/s"</span>)
+    ftable:set_cell_prop(<span class="number">1</span>, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
+    ftable:write_ln(<span class="string">"N"</span>, <span class="string">"Planet"</span>, <span class="string">"Speed, km/s"</span>)
 
-    ft.write_ln(ftable, <span class="string">"1"</span>, <span class="string">"Mercury"</span>, <span class="string">"47.362"</span>)
-    ft.write_ln(ftable, <span class="string">"2"</span>, <span class="string">"Venus"</span>, <span class="string">"35.02"</span>)
-    ft.write_ln(ftable, <span class="string">"3"</span>, <span class="string">"Earth"</span>, <span class="string">"29.78"</span>)
+    ftable:write_ln(<span class="string">"1"</span>, <span class="string">"Mercury"</span>, <span class="string">"47.362"</span>)
+    ftable:write_ln(<span class="string">"2"</span>, <span class="string">"Venus"</span>, <span class="string">"35.02"</span>)
+    ftable:write_ln(<span class="string">"3"</span>, <span class="string">"Earth"</span>, <span class="string">"29.78"</span>)
 
     <span class="global">print</span>(ftable)
 <span class="keyword">end</span>
@@ -92,12 +91,12 @@
 <span class="keyword">local</span> <span class="keyword">function</span> use_row_write()
     <span class="keyword">local</span> ftable = ft.create_table()
 
-    ft.set_cell_prop(ftable, <span class="number">1</span>, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
-    ft.row_write_ln(ftable, {<span class="string">"N"</span>, <span class="string">"Planet"</span>, <span class="string">"Speed, km/s"</span>})
+    ftable:set_cell_prop(<span class="number">1</span>, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
+    ftable:row_write_ln({<span class="string">"N"</span>, <span class="string">"Planet"</span>, <span class="string">"Speed, km/s"</span>})
 
-    ft.row_write_ln(ftable, {<span class="string">"1"</span>, <span class="string">"Mercury"</span>, <span class="string">"47.362"</span>})
-    ft.row_write_ln(ftable, {<span class="string">"2"</span>, <span class="string">"Venus"</span>, <span class="string">"35.02"</span>})
-    ft.row_write_ln(ftable, {<span class="string">"3"</span>, <span class="string">"Earth"</span>, <span class="string">"29.78"</span>})
+    ftable:row_write_ln({<span class="string">"1"</span>, <span class="string">"Mercury"</span>, <span class="string">"47.362"</span>})
+    ftable:row_write_ln({<span class="string">"2"</span>, <span class="string">"Venus"</span>, <span class="string">"35.02"</span>})
+    ftable:row_write_ln({<span class="string">"3"</span>, <span class="string">"Earth"</span>, <span class="string">"29.78"</span>})
 
     <span class="global">print</span>(ftable)
 <span class="keyword">end</span>
@@ -105,8 +104,8 @@
 <span class="keyword">local</span> <span class="keyword">function</span> use_table_write()
     <span class="keyword">local</span> ftable = ft.create_table()
 
-    ft.set_cell_prop(ftable, <span class="number">1</span>, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
-    ft.table_write_ln(ftable, {
+    ftable:set_cell_prop(<span class="number">1</span>, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
+    ftable:table_write_ln({
         {<span class="string">"N"</span>, <span class="string">"Planet"</span>, <span class="string">"Speed, km/s"</span>}, {<span class="string">"1"</span>, <span class="string">"Mercury"</span>, <span class="string">"47.362"</span>},
         {<span class="string">"2"</span>, <span class="string">"Venus"</span>, <span class="string">"35.02"</span>}, {<span class="string">"3"</span>, <span class="string">"Earth"</span>, <span class="string">"29.78"</span>}
     })
