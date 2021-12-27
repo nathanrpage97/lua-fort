@@ -6,8 +6,8 @@ local cfort = require "cfort"
 ---@class fort
 local fort = {}
 
--- enable new functions to be accessed in ftable object
-setmetatable(cfort, {__index = fort})
+-- enable table object access
+cfort.ftable_mt.__index = fort
 setmetatable(fort, fort)
 
 local function split(inputstr, sep)
@@ -64,7 +64,7 @@ end
 ---Use a single string to write a row. Allows using a custom cell separator
 ---without modifying the global separator.
 ---@param row_text string
----@param sep string? sep cell separator
+---@param sep? string sep cell separator
 function fort:print(row_text, sep)
     sep = sep or fort.default_separator
     local row = split(row_text, sep)
@@ -75,7 +75,7 @@ end
 ---Use a single string to write a row. Allows using a custom cell separator
 ---without modifying the global separator.
 ---@param row_text string
----@param sep string? sep cell separator
+---@param sep? string sep cell separator
 function fort:print_ln(row_text, sep)
     sep = sep or fort.default_separator
     local row = split(row_text, sep)
@@ -84,7 +84,7 @@ end
 
 ---Write a 2d array of strings to the ftable.
 ---@param data_table string[][] data_table 2d array of strings to write, can be jagged.
----@param colalign boolean?  align to the @{cur_col} at the start
+---@param colalign? boolean  align to the @{cur_col} at the start
 function fort:table_write(data_table, colalign)
     colalign = colalign or false
     local rows = #data_table
@@ -103,7 +103,7 @@ end
 
 ---Write a 2d array of strings to the ftable and go to next line.
 ---@param data_table string[][] 2d array of strings to write, can be jagged.
----@param colalign boolean? align to the @{cur_col} at the start
+---@param colalign? boolean align to the @{cur_col} at the start
 function fort:table_write_ln(data_table, colalign)
     local cur_col = fort.cur_col(self)
     colalign = colalign or false
@@ -140,6 +140,18 @@ function fort:cur_row() return cfort.cur_row(self) end
 ---@param bottom_right_col integer
 function fort:erase_range(top_left_row, top_left_col, bottom_right_row,
                           bottom_right_col)
+    if top_left_row < 0 then
+        top_left_row = self:row_count() + top_left_row + 1
+    end
+    if top_left_col < 0 then
+        top_left_col = self:col_count() + top_left_col + 1
+    end
+    if bottom_right_row < 0 then
+        bottom_right_row = self:row_count() + bottom_right_row + 1
+    end
+    if bottom_right_col < 0 then
+        bottom_right_col = self:col_count() + bottom_right_col + 1
+    end
     return cfort.erase_range(self, top_left_row, top_left_col, bottom_right_row,
                              bottom_right_col)
 end
@@ -164,7 +176,7 @@ function fort:col_count() return cfort.col_count(self) end
 function fort:row_write(row)
     assert(type(row) == "table", "Expected table for arg 1")
     local stringified_row = {}
-    for i, v in ipairs(row) do stringified_row[i] = tostring(v) end
+    for _, v in ipairs(row) do table.insert(stringified_row, tostring(v)) end
     cfort.row_write(self, stringified_row)
 end
 
@@ -173,7 +185,7 @@ end
 function fort:row_write_ln(row)
     assert(type(row) == "table", "Expected table for arg 1")
     local stringified_row = {}
-    for i, v in ipairs(row) do stringified_row[i] = tostring(v) end
+    for _, v in ipairs(row) do table.insert(stringified_row, tostring(v)) end
     cfort.row_write_ln(self, stringified_row)
 end
 
@@ -194,6 +206,10 @@ function fort:set_border_style(style) cfort.set_border_style(self, style) end
 ---@param property fort.CellProperty property to set
 ---@param value integer to set
 function fort:set_cell_prop(row, col, property, value)
+
+    if row < 0 then row = self:row_count() + row + 1 end
+    if col < 0 then col = self:col_count() + col + 1 end
+
     cfort.set_cell_prop(self, row, col, property, value)
 end
 
@@ -202,13 +218,19 @@ end
 ---@param col integer the column to set. DO NOT USE @{ANY_COLUMN}/@{CUR_COLUMN}
 ---@param span integer how many columns the cell should span
 function fort:set_cell_span(row, col, span)
+    if row < 0 then row = self:row_count() + row + 1 end
+    if col < 0 then col = self:col_count() + col + 1 end
     cfort.set_cell_span(self, row, col, span)
 end
 
 ---Set the current cell position.
 ---@param row integer the row to set. DO NOT USE @{ANY_ROW}/@{CUR_ROW}
 ---@param col integer the column to set. DO NOT USE @{ANY_COLUMN}/@{CUR_COLUMN}
-function fort:set_cur_cell(row, col) cfort.set_cur_cell(self, row, col) end
+function fort:set_cur_cell(row, col)
+    if row < 0 then row = self:row_count() + row + 1 end
+    if col < 0 then col = self:col_count() + col + 1 end
+    cfort.set_cur_cell(self, row, col)
+end
 
 ---Set the default border style for new tables.
 ---@param style fort.BorderStyle available styles @{BASIC_STYLE}
