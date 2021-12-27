@@ -1,5 +1,14 @@
 # Changelog
 
+## v1.0.0 (Unreleased)
+
+- [Fix] ftable metatable now links to fort instead of cfort module.
+- [Added] negative indices for rows and columns
+  - `fort.set_cur_cell`
+  - `fort.erase_range`
+  - `fort.set_cell_prop`
+  - `fort.set_cell_span`
+
 ## v0.3.0 (2021.12.26)
 
 This should be the last minor release before v1 stable is released.
