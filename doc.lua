@@ -6,23 +6,33 @@ local cfort = require "cfort"
 local fort = {}
 
 ---Create a new formatted table
----@function fort.create_table
----@treturn ftable new formatted table
-
----Alias of @{fort.create_table}
 ---@function fort.new
+---@within Functions: Creation
 ---@treturn ftable new formatted table
 
----Alias of @{fort.create_table}
----@function fort.create
----@treturn ftable new formatted table
+---Set the default border style for new tables.
+---@userdata style from available styles @{BASIC_STYLE}
+---@function fort.set_default_border_style
+---@within Functions: Default Style
 
----Alias of @{fort.create_table}
----@within Metamethods
+---Set a default cell property for new tables.
+---@number property the property to set
+---@number value value to set
+---@function fort.set_default_cell_prop
+---@within Functions: Default Style
+
+---Set a default table property for new tables.
+---@number property the property to set
+---@number value value to set
+---@function fort.set_default_tbl_prop
+---@within Functions: Default Style
+
+---Alias of @{fort.new}
+---@within Functions: Creation
 ---@function fort.__call
 ---@treturn ftable new formatted table
 
----Control the default separator for @{printf} and @{printf_ln} functions.
+---Control the default separator for @{fort:printf} and @{fort:printf_ln} functions.
 ---(Defaults to '|')
 fort.default_separator = "|"
 
@@ -74,26 +84,26 @@ fort.default_separator = "|"
 
 ---Add a dividing separtor line at the current row.
 ---@function fort:add_separator
----@within Methods: Table Appearance
+---@within Methods: Appearance
 
 ---Completely Copy a table
 ---@function fort:copy_table
----@within Methods: Table State
+---@within Methods: State
 ---@treturn ftable copied table
 
 ---Alias of @{fort:copy_table}
 ---@function fort:copy
----@within Methods: Table State
+---@within Methods: State
 ---@treturn ftable copied table
 
 ---Get the current column
 ---@function fort:cur_col
----@within Methods: Table State
+---@within Methods: State
 ---@treturn number
 
 ---Get the current row
 ---@function fort:cur_row
----@within Methods: Table State
+---@within Methods: State
 ---@treturn number
 
 ---Erase a rectangular range of data from the ftable
@@ -106,7 +116,7 @@ fort.default_separator = "|"
 
 ---Check if ftable is empty
 ---@function fort:is_empty
----@within Methods: Table State
+---@within Methods: State
 ---@treturn boolean
 
 ---Go to the next line (row)
@@ -115,12 +125,12 @@ fort.default_separator = "|"
 
 ---Get the number of rows in the ftable
 ---@function fort:row_count
----@within Methods: Table State
+---@within Methods: State
 ---@treturn number
 
 ---Get the number of columns in the ftable
 ---@function fort:col_count
----@within Methods: Table State
+---@within Methods: State
 ---@treturn number
 
 ---Write a row of data.
@@ -145,12 +155,12 @@ fort.default_separator = "|"
 
 ---Set the border style of the ftable.
 ---@function fort:set_border_style
----@within Methods: Table Appearance
+---@within Methods: Appearance
 ---@userdata style from available styles @{BASIC_STYLE}
 
 ---Set the cell property of the ftable.
 ---@function fort:set_cell_prop
----@within Methods: Table Appearance
+---@within Methods: Appearance
 ---@number row the row to set, can also use @{ANY_ROW}/@{CUR_ROW}
 ---@number col the column to set, can also use @{ANY_COLUMN}/@{CUR_COLUMN}
 ---@number property the property to set
@@ -158,7 +168,7 @@ fort.default_separator = "|"
 
 ---Set a cell's horizontal span in the ftable.
 ---@function fort:set_cell_span
----@within Methods: Table Appearance
+---@within Methods: Appearance
 ---@number row the row to set. DO NOT USE @{ANY_ROW}/@{CUR_ROW}
 ---@number col the column to set. DO NOT USE @{ANY_COLUMN}/@{CUR_COLUMN}
 ---@number span how many columns the cell should span
@@ -169,22 +179,8 @@ fort.default_separator = "|"
 ---@number row the row to set. DO NOT USE @{ANY_ROW}/@{CUR_ROW}
 ---@number col the column to set. DO NOT USE @{ANY_COLUMN}/@{CUR_COLUMN}
 
----Set the default border style for new tables.
----@userdata style from available styles @{BASIC_STYLE}
----@function fort.set_default_border_style
-
----Set a default cell property for new tables.
----@number property the property to set
----@number value value to set
----@function fort.set_default_cell_prop
-
----Set a default table property for new tables.
----@number property the property to set
----@number value value to set
----@function fort.set_default_tbl_prop
-
 ---Set a table property.
----@within Methods: Table Appearance
+---@within Methods: Appearance
 ---@number property the property to set
 ---@number value value to set
 ---@function fort:set_tbl_prop

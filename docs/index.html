@@ -25,12 +25,12 @@
 
 <h2>Contents</h2>
 <ul>
-<li><a href="#Functions">Functions</a></li>
 <li><a href="#Fields">Fields</a></li>
-<li><a href="#Metamethods">Metamethods</a></li>
+<li><a href="#Functions__Creation">Functions: Creation</a></li>
+<li><a href="#Functions__Default_Style">Functions: Default Style</a></li>
 <li><a href="#Methods__Data_Entry">Methods: Data Entry</a></li>
-<li><a href="#Methods__Table_Appearance">Methods: Table Appearance</a></li>
-<li><a href="#Methods__Table_State">Methods: Table State</a></li>
+<li><a href="#Methods__Appearance">Methods: Appearance</a></li>
+<li><a href="#Methods__State">Methods: State</a></li>
 <li><a href="#Cell_Text_Align">Cell Text Align </a></li>
 <li><a href="#Cell_Selectors">Cell Selectors </a></li>
 <li><a href="#Table_Border_Style">Table Border Style </a></li>
@@ -67,20 +67,26 @@
 <p>Fort Module</p>
 <p>
 </p>
-<h2><a href="#Functions">Functions</a></h2>
+<h2><a href="#Fields">Fields</a></h2>
 <table class="function_list">
 	<tr>
-	<td class="name" ><a href="#fort.create_table">fort.create_table ()</a></td>
+	<td class="name" ><a href="#fort.default_separator">fort.default_separator</a></td>
+	<td class="summary">Control the default separator for <a href="index.html#fort:printf">fort:printf</a> and <a href="index.html#fort:printf_ln">fort:printf_ln</a> functions.</td>
+	</tr>
+</table>
+<h2><a href="#Functions__Creation">Functions: Creation</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" ><a href="#fort.new">fort.new ()</a></td>
 	<td class="summary">Create a new formatted table</td>
 	</tr>
 	<tr>
-	<td class="name" ><a href="#fort.new">fort.new ()</a></td>
-	<td class="summary">Alias of <a href="index.html#fort.create_table">fort.create_table</a></td>
+	<td class="name" ><a href="#fort.__call">fort.__call ()</a></td>
+	<td class="summary">Alias of <a href="index.html#fort.new">fort.new</a></td>
 	</tr>
-	<tr>
-	<td class="name" ><a href="#fort.create">fort.create ()</a></td>
-	<td class="summary">Alias of <a href="index.html#fort.create_table">fort.create_table</a></td>
-	</tr>
+</table>
+<h2><a href="#Functions__Default_Style">Functions: Default Style</a></h2>
+<table class="function_list">
 	<tr>
 	<td class="name" ><a href="#fort.set_default_border_style">fort.set_default_border_style (style)</a></td>
 	<td class="summary">Set the default border style for new tables.</td>
@@ -92,20 +98,6 @@
 	<tr>
 	<td class="name" ><a href="#fort.set_default_tbl_prop">fort.set_default_tbl_prop (property, value)</a></td>
 	<td class="summary">Set a default table property for new tables.</td>
-	</tr>
-</table>
-<h2><a href="#Fields">Fields</a></h2>
-<table class="function_list">
-	<tr>
-	<td class="name" ><a href="#fort.default_separator">fort.default_separator</a></td>
-	<td class="summary">Control the default separator for <a href="index.html#fort:printf">printf</a> and <a href="index.html#fort:printf_ln">printf_ln</a> functions.</td>
-	</tr>
-</table>
-<h2><a href="#Metamethods">Metamethods</a></h2>
-<table class="function_list">
-	<tr>
-	<td class="name" ><a href="#fort.__call">fort.__call ()</a></td>
-	<td class="summary">Alias of <a href="index.html#fort.create_table">fort.create_table</a></td>
 	</tr>
 </table>
 <h2><a href="#Methods__Data_Entry">Methods: Data Entry</a></h2>
@@ -163,7 +155,7 @@
 	<td class="summary">Set the current cell position.</td>
 	</tr>
 </table>
-<h2><a href="#Methods__Table_Appearance">Methods: Table Appearance</a></h2>
+<h2><a href="#Methods__Appearance">Methods: Appearance</a></h2>
 <table class="function_list">
 	<tr>
 	<td class="name" ><a href="#fort:add_separator">fort:add_separator ()</a></td>
@@ -186,7 +178,7 @@
 	<td class="summary">Set a table property.</td>
 	</tr>
 </table>
-<h2><a href="#Methods__Table_State">Methods: Table State</a></h2>
+<h2><a href="#Methods__State">Methods: State</a></h2>
 <table class="function_list">
 	<tr>
 	<td class="name" ><a href="#fort:copy_table">fort:copy_table ()</a></td>
@@ -522,12 +514,24 @@
 </table>
 <br/>
 <br/>
-    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
-    Methods
+    <h2 class="section-header "><a name="Fields"></a>Fields</h2>
+
     <dl class="function">
     <dt>
-    <a name = "fort.create_table"></a>
-    <strong>fort.create_table ()</strong>
+    <a name = "fort.default_separator"></a>
+    <strong>fort.default_separator</strong>
+    </dt>
+    <dd>
+    Control the default separator for <a href="index.html#fort:printf">fort:printf</a> and <a href="index.html#fort:printf_ln">fort:printf_ln</a> functions.
+(Defaults to &lsquo;|&rsquo;)
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Functions__Creation"></a>Functions: Creation</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "fort.new"></a>
+    <strong>fort.new ()</strong>
     </dt>
     <dd>
     Create a new formatted table
@@ -539,11 +543,11 @@
     </ol>
 </dd>
     <dt>
-    <a name = "fort.new"></a>
-    <strong>fort.new ()</strong>
+    <a name = "fort.__call"></a>
+    <strong>fort.__call ()</strong>
     </dt>
     <dd>
-    Alias of <a href="index.html#fort.create_table">fort.create_table</a>
+    Alias of <a href="index.html#fort.new">fort.new</a>
     <h3>Returns:</h3>
     <ol>
 
@@ -551,19 +555,10 @@
         new formatted table
     </ol>
 </dd>
-    <dt>
-    <a name = "fort.create"></a>
-    <strong>fort.create ()</strong>
-    </dt>
-    <dd>
-    Alias of <a href="index.html#fort.create_table">fort.create_table</a>
-    <h3>Returns:</h3>
-    <ol>
+</dl>
+    <h2 class="section-header "><a name="Functions__Default_Style"></a>Functions: Default Style</h2>
 
-           <span class="types"><span class="type">ftable</span></span>
-        new formatted table
-    </ol>
-</dd>
+    <dl class="function">
     <dt>
     <a name = "fort.set_default_border_style"></a>
     <strong>fort.set_default_border_style (style)</strong>
@@ -613,35 +608,6 @@
          value to set
         </li>
     </ul>
-</dd>
-</dl>
-    <h2 class="section-header "><a name="Fields"></a>Fields</h2>
-
-    <dl class="function">
-    <dt>
-    <a name = "fort.default_separator"></a>
-    <strong>fort.default_separator</strong>
-    </dt>
-    <dd>
-    Control the default separator for <a href="index.html#fort:printf">printf</a> and <a href="index.html#fort:printf_ln">printf_ln</a> functions.
-(Defaults to &lsquo;|&rsquo;)
-</dd>
-</dl>
-    <h2 class="section-header "><a name="Metamethods"></a>Metamethods</h2>
-
-    <dl class="function">
-    <dt>
-    <a name = "fort.__call"></a>
-    <strong>fort.__call ()</strong>
-    </dt>
-    <dd>
-    Alias of <a href="index.html#fort.create_table">fort.create_table</a>
-    <h3>Returns:</h3>
-    <ol>
-
-           <span class="types"><span class="type">ftable</span></span>
-        new formatted table
-    </ol>
 </dd>
 </dl>
     <h2 class="section-header "><a name="Methods__Data_Entry"></a>Methods: Data Entry</h2>
@@ -879,7 +845,7 @@ without modifying the global separator.
     </ul>
 </dd>
 </dl>
-    <h2 class="section-header "><a name="Methods__Table_Appearance"></a>Methods: Table Appearance</h2>
+    <h2 class="section-header "><a name="Methods__Appearance"></a>Methods: Appearance</h2>
 
     <dl class="function">
     <dt>
@@ -970,7 +936,7 @@ without modifying the global separator.
     </ul>
 </dd>
 </dl>
-    <h2 class="section-header "><a name="Methods__Table_State"></a>Methods: Table State</h2>
+    <h2 class="section-header "><a name="Methods__State"></a>Methods: State</h2>
 
     <dl class="function">
     <dt>

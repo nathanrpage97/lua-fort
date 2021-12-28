@@ -50,7 +50,7 @@
 <span class="keyword">local</span> ft = <span class="global">require</span> <span class="string">"fort"</span>
 <span class="keyword">local</span> <span class="keyword">function</span> print_table_with_styles(style, name)
     <span class="comment">-- Just create a table with some content
-</span>    <span class="keyword">local</span> ftable = ft.create_table()
+</span>    <span class="keyword">local</span> ftable = ft.new()
     ftable:set_cell_prop(ft.ANY_ROW, <span class="number">1</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_CENTER)
     ftable:set_cell_prop(ft.ANY_ROW, <span class="number">2</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_LEFT)
 
