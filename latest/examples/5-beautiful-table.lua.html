@@ -26,7 +26,6 @@
 <h2>Examples</h2>
 <ul class="nowrap">
   <li><a href="../examples/1-simple-table.lua.html">1-simple-table.lua</a></li>
-  <li><a href="../examples/1a-simple-table.lua.html">1a-simple-table.lua</a></li>
   <li><a href="../examples/2-custom-table.lua.html">2-custom-table.lua</a></li>
   <li><a href="../examples/3-complex-layout.lua.html">3-complex-layout.lua</a></li>
   <li><a href="../examples/4-fill-table.lua.html">4-fill-table.lua</a></li>
@@ -50,55 +49,53 @@
 <pre>
 <span class="keyword">local</span> ft = <span class="global">require</span> <span class="string">"fort"</span>
 
-<span class="keyword">local</span> ftable = ft.create_table()
-ft.set_border_style(ftable, ft.NICE_STYLE)
-ft.set_cell_prop(ftable, <span class="number">1</span>, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
+<span class="keyword">local</span> ftable = ft.new()
+ftable:set_border_style(ft.NICE_STYLE)
+ftable:set_cell_prop(<span class="number">1</span>, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
 
 <span class="comment">-- Filling ftable with data
-</span>ft.write_ln(ftable, <span class="string">"Тest"</span>, <span class="string">"Iterations"</span>, <span class="string">"ms/op"</span>, <span class="string">"Ticks"</span>, <span class="string">"Passed"</span>)
-ft.write_ln(ftable, <span class="string">"n-body"</span>, <span class="string">"1000"</span>, <span class="string">"1.6"</span>, <span class="string">"1,500,000"</span>, <span class="string">"✔"</span>)
-ft.add_separator(ftable)
-ft.write_ln(ftable, <span class="string">"regex-redux"</span>, <span class="string">"1000"</span>, <span class="string">"0.8"</span>, <span class="string">"8,000,000"</span>)
-ft.write_ln(ftable, <span class="string">""</span>, <span class="string">"2500"</span>, <span class="string">"3.9"</span>, <span class="string">"27,000,000"</span>, <span class="string">"✖"</span>)
-ft.write_ln(ftable, <span class="string">""</span>, <span class="string">"10000"</span>, <span class="string">"12.5"</span>, <span class="string">"96,800,000"</span>)
-ft.add_separator(ftable)
-ft.write_ln(ftable, <span class="string">"mandelbrot"</span>, <span class="string">"1000"</span>, <span class="string">"8.1"</span>, <span class="string">"89,000,000"</span>)
-ft.write_ln(ftable, <span class="string">""</span>, <span class="string">"2500"</span>, <span class="string">"19.8"</span>, <span class="string">"320,000,000"</span>, <span class="string">"✔"</span>)
-ft.write_ln(ftable, <span class="string">""</span>, <span class="string">"10000"</span>, <span class="string">"60.7"</span>, <span class="string">"987,000,000"</span>)
-ft.add_separator(ftable)
-ft.set_cell_span(ftable, <span class="number">9</span>, <span class="number">1</span>, <span class="number">4</span>)
-ft.write_ln(ftable, <span class="string">"Total Result"</span>, <span class="string">""</span>, <span class="string">""</span>, <span class="string">""</span>, <span class="string">"✖"</span>)
+</span>ftable:write_ln(<span class="string">"Тest"</span>, <span class="string">"Iterations"</span>, <span class="string">"ms/op"</span>, <span class="string">"Ticks"</span>, <span class="string">"Passed"</span>)
+ftable:write_ln(<span class="string">"n-body"</span>, <span class="string">"1000"</span>, <span class="string">"1.6"</span>, <span class="string">"1,500,000"</span>, <span class="string">"✔"</span>)
+ftable:add_separator()
+ftable:write_ln(<span class="string">"regex-redux"</span>, <span class="string">"1000"</span>, <span class="string">"0.8"</span>, <span class="string">"8,000,000"</span>)
+ftable:write_ln(<span class="string">""</span>, <span class="string">"2500"</span>, <span class="string">"3.9"</span>, <span class="string">"27,000,000"</span>, <span class="string">"✖"</span>)
+ftable:write_ln(<span class="string">""</span>, <span class="string">"10000"</span>, <span class="string">"12.5"</span>, <span class="string">"96,800,000"</span>)
+ftable:add_separator()
+ftable:write_ln(<span class="string">"mandelbrot"</span>, <span class="string">"1000"</span>, <span class="string">"8.1"</span>, <span class="string">"89,000,000"</span>)
+ftable:write_ln(<span class="string">""</span>, <span class="string">"2500"</span>, <span class="string">"19.8"</span>, <span class="string">"320,000,000"</span>, <span class="string">"✔"</span>)
+ftable:write_ln(<span class="string">""</span>, <span class="string">"10000"</span>, <span class="string">"60.7"</span>, <span class="string">"987,000,000"</span>)
+ftable:add_separator()
+ftable:set_cell_span(<span class="number">9</span>, <span class="number">1</span>, <span class="number">4</span>)
+ftable:write_ln(<span class="string">"Total Result"</span>, <span class="string">""</span>, <span class="string">""</span>, <span class="string">""</span>, <span class="string">"✖"</span>)
 
 <span class="comment">-- Setting text styles
-</span>ft.set_cell_prop(ftable, <span class="number">1</span>, ft.ANY_COLUMN, ft.CPROP_CONT_TEXT_STYLE,
-                 ft.TSTYLE_BOLD)
-ft.set_cell_prop(ftable, <span class="number">9</span>, ft.ANY_COLUMN, ft.CPROP_CONT_TEXT_STYLE,
-                 ft.TSTYLE_BOLD)
-ft.set_cell_prop(ftable, ft.ANY_ROW, <span class="number">1</span>, ft.CPROP_CONT_TEXT_STYLE, ft.TSTYLE_BOLD)
-ft.set_cell_prop(ftable, ft.ANY_ROW, <span class="number">5</span>, ft.CPROP_CONT_TEXT_STYLE, ft.TSTYLE_BOLD)
-ft.set_cell_prop(ftable, ft.ANY_ROW, ft.ANY_COLUMN, ft.CPROP_CONT_TEXT_STYLE,
-                 ft.TSTYLE_ITALIC)
+</span>ftable:set_cell_prop(<span class="number">1</span>, ft.ANY_COLUMN, ft.CPROP_CONT_TEXT_STYLE, ft.TSTYLE_BOLD)
+ftable:set_cell_prop(<span class="number">9</span>, ft.ANY_COLUMN, ft.CPROP_CONT_TEXT_STYLE, ft.TSTYLE_BOLD)
+ftable:set_cell_prop(ft.ANY_ROW, <span class="number">1</span>, ft.CPROP_CONT_TEXT_STYLE, ft.TSTYLE_BOLD)
+ftable:set_cell_prop(ft.ANY_ROW, <span class="number">5</span>, ft.CPROP_CONT_TEXT_STYLE, ft.TSTYLE_BOLD)
+ftable:set_cell_prop(ft.ANY_ROW, ft.ANY_COLUMN, ft.CPROP_CONT_TEXT_STYLE,
+                     ft.TSTYLE_ITALIC)
 
 <span class="comment">-- Set alignment
-</span>ft.set_cell_prop(ftable, ft.ANY_ROW, <span class="number">2</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_RIGHT)
-ft.set_cell_prop(ftable, ft.ANY_ROW, <span class="number">3</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_RIGHT)
-ft.set_cell_prop(ftable, ft.ANY_ROW, <span class="number">4</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_RIGHT)
-ft.set_cell_prop(ftable, ft.ANY_ROW, <span class="number">5</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_CENTER)
-ft.set_cell_prop(ftable, <span class="number">9</span>, <span class="number">1</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_CENTER)
+</span>ftable:set_cell_prop(ft.ANY_ROW, <span class="number">2</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_RIGHT)
+ftable:set_cell_prop(ft.ANY_ROW, <span class="number">3</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_RIGHT)
+ftable:set_cell_prop(ft.ANY_ROW, <span class="number">4</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_RIGHT)
+ftable:set_cell_prop(ft.ANY_ROW, <span class="number">5</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_CENTER)
+ftable:set_cell_prop(<span class="number">9</span>, <span class="number">1</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_CENTER)
 
 <span class="comment">-- Set colors
-</span>ft.set_cell_prop(ftable, <span class="number">2</span>, <span class="number">5</span>, ft.CPROP_CONT_FG_COLOR, ft.COLOR_GREEN)
-ft.set_cell_prop(ftable, <span class="number">4</span>, <span class="number">5</span>, ft.CPROP_CONT_FG_COLOR, ft.COLOR_RED)
-ft.set_cell_prop(ftable, <span class="number">7</span>, <span class="number">5</span>, ft.CPROP_CONT_FG_COLOR, ft.COLOR_GREEN)
-ft.set_cell_prop(ftable, <span class="number">9</span>, <span class="number">5</span>, ft.CPROP_CONT_FG_COLOR, ft.COLOR_RED)
-ft.set_cell_prop(ftable, <span class="number">4</span>, <span class="number">3</span>, ft.CPROP_CONT_FG_COLOR, ft.COLOR_RED)
-ft.set_cell_prop(ftable, <span class="number">5</span>, <span class="number">4</span>, ft.CPROP_CONT_BG_COLOR, ft.COLOR_LIGHT_RED)
-ft.set_cell_prop(ftable, <span class="number">1</span>, ft.ANY_COLUMN, ft.CPROP_CONT_FG_COLOR,
-                 ft.COLOR_LIGHT_BLUE)
+</span>ftable:set_cell_prop(<span class="number">2</span>, <span class="number">5</span>, ft.CPROP_CONT_FG_COLOR, ft.COLOR_GREEN)
+ftable:set_cell_prop(<span class="number">4</span>, <span class="number">5</span>, ft.CPROP_CONT_FG_COLOR, ft.COLOR_RED)
+ftable:set_cell_prop(<span class="number">7</span>, <span class="number">5</span>, ft.CPROP_CONT_FG_COLOR, ft.COLOR_GREEN)
+ftable:set_cell_prop(<span class="number">9</span>, <span class="number">5</span>, ft.CPROP_CONT_FG_COLOR, ft.COLOR_RED)
+ftable:set_cell_prop(<span class="number">4</span>, <span class="number">3</span>, ft.CPROP_CONT_FG_COLOR, ft.COLOR_RED)
+ftable:set_cell_prop(<span class="number">5</span>, <span class="number">4</span>, ft.CPROP_CONT_BG_COLOR, ft.COLOR_LIGHT_RED)
+ftable:set_cell_prop(<span class="number">1</span>, ft.ANY_COLUMN, ft.CPROP_CONT_FG_COLOR,
+                     ft.COLOR_LIGHT_BLUE)
 
 <span class="comment">-- Move ftable to the center of the screen
-</span>ft.set_tbl_prop(ftable, ft.TPROP_TOP_MARGIN, <span class="number">1</span>)
-ft.set_tbl_prop(ftable, ft.TPROP_LEFT_MARGIN, <span class="number">10</span>)
+</span>ftable:set_tbl_prop(ft.TPROP_TOP_MARGIN, <span class="number">1</span>)
+ftable:set_tbl_prop(ft.TPROP_LEFT_MARGIN, <span class="number">10</span>)
 
 <span class="global">print</span>(<span class="string">"ftable:\n"</span> .. <span class="global">tostring</span>(ftable))</pre>
 
