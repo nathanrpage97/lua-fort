@@ -1,62 +1,62 @@
 local ft = require "fort"
 
 local function use_printf()
-    local ftable = ft.create_table()
+    local ftable = ft.new()
 
-    ft.set_cell_prop(ftable, 1, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
-    ft.printf_ln(ftable, "N|Planet|Speed, km/s")
+    ftable:set_cell_prop(1, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
+    ftable:printf_ln("N|Planet|Speed, km/s")
 
-    ft.printf_ln(ftable, "%d|%s|%5.2f", 1, "Mercury", 47.362)
-    ft.printf_ln(ftable, "%d|%s|%5.2f", 2, "Venus", 35.02)
-    ft.printf_ln(ftable, "%d|%s|%5.2f", 3, "Earth", 29.78)
+    ftable:printf_ln("%d|%s|%5.2f", 1, "Mercury", 47.362)
+    ftable:printf_ln("%d|%s|%5.2f", 2, "Venus", 35.02)
+    ftable:printf_ln("%d|%s|%5.2f", 3, "Earth", 29.78)
 
     print(ftable)
 end
 
 local function use_print()
-    local ftable = ft.create_table()
+    local ftable = ft.new()
 
-    ft.set_cell_prop(ftable, 1, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
-    ft.print_ln(ftable, "N|Planet|Speed, km/s")
+    ftable:set_cell_prop(1, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
+    ftable:print_ln("N|Planet|Speed, km/s")
 
-    ft.print_ln(ftable, "1|Mercury|47.362")
-    ft.print_ln(ftable, "2|Venus|35.02")
-    ft.print_ln(ftable, "3|Earth|29.78")
+    ftable:print_ln("1|Mercury|47.362")
+    ftable:print_ln("2|Venus|35.02")
+    ftable:print_ln("3|Earth|29.78")
 
     print(ftable)
 end
 
 local function use_write()
-    local ftable = ft.create_table()
+    local ftable = ft.new()
 
-    ft.set_cell_prop(ftable, 1, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
-    ft.write_ln(ftable, "N", "Planet", "Speed, km/s")
+    ftable:set_cell_prop(1, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
+    ftable:write_ln("N", "Planet", "Speed, km/s")
 
-    ft.write_ln(ftable, "1", "Mercury", "47.362")
-    ft.write_ln(ftable, "2", "Venus", "35.02")
-    ft.write_ln(ftable, "3", "Earth", "29.78")
+    ftable:write_ln("1", "Mercury", "47.362")
+    ftable:write_ln("2", "Venus", "35.02")
+    ftable:write_ln("3", "Earth", "29.78")
 
     print(ftable)
 end
 
 local function use_row_write()
-    local ftable = ft.create_table()
+    local ftable = ft.new()
 
-    ft.set_cell_prop(ftable, 1, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
-    ft.row_write_ln(ftable, {"N", "Planet", "Speed, km/s"})
+    ftable:set_cell_prop(1, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
+    ftable:row_write_ln({"N", "Planet", "Speed, km/s"})
 
-    ft.row_write_ln(ftable, {"1", "Mercury", "47.362"})
-    ft.row_write_ln(ftable, {"2", "Venus", "35.02"})
-    ft.row_write_ln(ftable, {"3", "Earth", "29.78"})
+    ftable:row_write_ln({"1", "Mercury", "47.362"})
+    ftable:row_write_ln({"2", "Venus", "35.02"})
+    ftable:row_write_ln({"3", "Earth", "29.78"})
 
     print(ftable)
 end
 
 local function use_table_write()
-    local ftable = ft.create_table()
+    local ftable = ft.new()
 
-    ft.set_cell_prop(ftable, 1, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
-    ft.table_write_ln(ftable, {
+    ftable:set_cell_prop(1, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
+    ftable:table_write_ln({
         {"N", "Planet", "Speed, km/s"}, {"1", "Mercury", "47.362"},
         {"2", "Venus", "35.02"}, {"3", "Earth", "29.78"}
     })

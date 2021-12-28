@@ -26,7 +26,6 @@
 <h2>Examples</h2>
 <ul class="nowrap">
   <li><strong>1-simple-table.lua</strong></li>
-  <li><a href="../examples/1a-simple-table.lua.html">1a-simple-table.lua</a></li>
   <li><a href="../examples/2-custom-table.lua.html">2-custom-table.lua</a></li>
   <li><a href="../examples/3-complex-layout.lua.html">3-complex-layout.lua</a></li>
   <li><a href="../examples/4-fill-table.lua.html">4-fill-table.lua</a></li>
@@ -50,14 +49,14 @@
 <pre>
 <span class="keyword">local</span> ft = <span class="global">require</span> <span class="string">"fort"</span>
 
-<span class="keyword">local</span> ftable = ft.create_table()
+<span class="keyword">local</span> ftable = ft.new()
 
 <span class="comment">-- setup header
-</span>ft.set_cell_prop(ftable, <span class="number">1</span>, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
-ft.write_ln(ftable, <span class="string">"N"</span>, <span class="string">"Driver"</span>, <span class="string">"Time"</span>, <span class="string">"Avg Speed"</span>)
-ft.write_ln(ftable, <span class="string">"1"</span>, <span class="string">"Ricciardo"</span>, <span class="string">"1:25.945"</span>, <span class="string">"222.128"</span>)
-ft.write_ln(ftable, <span class="string">"2"</span>, <span class="string">"Hamilton"</span>, <span class="string">"1:26.373"</span>, <span class="string">"221.027"</span>)
-ft.write_ln(ftable, <span class="string">"3"</span>, <span class="string">"Verstappen"</span>, <span class="string">"1:26.469"</span>, <span class="string">"220.782"</span>)
+</span>ftable:set_cell_prop(<span class="number">1</span>, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
+ftable:write_ln(<span class="string">"N"</span>, <span class="string">"Driver"</span>, <span class="string">"Time"</span>, <span class="string">"Avg Speed"</span>)
+ftable:write_ln(<span class="string">"1"</span>, <span class="string">"Ricciardo"</span>, <span class="string">"1:25.945"</span>, <span class="string">"222.128"</span>)
+ftable:write_ln(<span class="string">"2"</span>, <span class="string">"Hamilton"</span>, <span class="string">"1:26.373"</span>, <span class="string">"221.027"</span>)
+ftable:write_ln(<span class="string">"3"</span>, <span class="string">"Verstappen"</span>, <span class="string">"1:26.469"</span>, <span class="string">"220.782"</span>)
 
 <span class="global">print</span>(ftable)</pre>
 

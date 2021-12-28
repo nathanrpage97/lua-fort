@@ -1,26 +1,26 @@
 local ft = require "fort"
 
-local ftable = ft.create_table()
+local ftable = ft.new()
 
 -- Change border style
-ft.set_border_style(ftable, ft.DOUBLE2_STYLE)
+ftable:set_border_style(ft.DOUBLE2_STYLE)
 
 -- Setup header
-ft.set_cell_prop(ftable, 1, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
-ft.write_ln(ftable, "Sed", "Aenean", "Text")
+ftable:set_cell_prop(1, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
+ftable:write_ln("Sed", "Aenean", "Text")
 
 -- Fill table
-ft.write_ln(ftable, "Duis", "Aliquam",
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n" ..
-                "In accumsan felis eros, nec malesuada sapien bibendum eget.")
-ft.write_ln(ftable, "Mauris", "Curabitur",
-            "Proin condimentum eros viverra nunc ultricies, at fringilla \n" ..
-                "quam pellentesque.")
-ft.write_ln(ftable, "Summary", "", "Sed tempor est eget odio varius dignissim.")
+ftable:write_ln("Duis", "Aliquam",
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n" ..
+                    "In accumsan felis eros, nec malesuada sapien bibendum eget.")
+ftable:write_ln("Mauris", "Curabitur",
+                "Proin condimentum eros viverra nunc ultricies, at fringilla \n" ..
+                    "quam pellentesque.")
+ftable:write_ln("Summary", "", "Sed tempor est eget odio varius dignissim.")
 
 -- Setup alignments and cell span
-ft.set_cell_prop(ftable, 1, 3, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_CENTER)
-ft.set_cell_prop(ftable, 4, 1, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_CENTER)
-ft.set_cell_span(ftable, 4, 1, 2)
+ftable:set_cell_prop(1, 3, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_CENTER)
+ftable:set_cell_prop(4, 1, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_CENTER)
+ftable:set_cell_span(4, 1, 2)
 
 print(ftable)

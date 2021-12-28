@@ -26,7 +26,6 @@
 <h2>Examples</h2>
 <ul class="nowrap">
   <li><a href="../examples/1-simple-table.lua.html">1-simple-table.lua</a></li>
-  <li><a href="../examples/1a-simple-table.lua.html">1a-simple-table.lua</a></li>
   <li><a href="../examples/2-custom-table.lua.html">2-custom-table.lua</a></li>
   <li><strong>3-complex-layout.lua</strong></li>
   <li><a href="../examples/4-fill-table.lua.html">4-fill-table.lua</a></li>
@@ -50,28 +49,28 @@
 <pre>
 <span class="keyword">local</span> ft = <span class="global">require</span> <span class="string">"fort"</span>
 
-<span class="keyword">local</span> ftable = ft.create_table()
+<span class="keyword">local</span> ftable = ft.new()
 
 <span class="comment">-- Change border style
-</span>ft.set_border_style(ftable, ft.DOUBLE2_STYLE)
+</span>ftable:set_border_style(ft.DOUBLE2_STYLE)
 
 <span class="comment">-- Setup header
-</span>ft.set_cell_prop(ftable, <span class="number">1</span>, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
-ft.write_ln(ftable, <span class="string">"Sed"</span>, <span class="string">"Aenean"</span>, <span class="string">"Text"</span>)
+</span>ftable:set_cell_prop(<span class="number">1</span>, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
+ftable:write_ln(<span class="string">"Sed"</span>, <span class="string">"Aenean"</span>, <span class="string">"Text"</span>)
 
 <span class="comment">-- Fill table
-</span>ft.write_ln(ftable, <span class="string">"Duis"</span>, <span class="string">"Aliquam"</span>,
-            <span class="string">"Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n"</span> ..
-                <span class="string">"In accumsan felis eros, nec malesuada sapien bibendum eget."</span>)
-ft.write_ln(ftable, <span class="string">"Mauris"</span>, <span class="string">"Curabitur"</span>,
-            <span class="string">"Proin condimentum eros viverra nunc ultricies, at fringilla \n"</span> ..
-                <span class="string">"quam pellentesque."</span>)
-ft.write_ln(ftable, <span class="string">"Summary"</span>, <span class="string">""</span>, <span class="string">"Sed tempor est eget odio varius dignissim."</span>)
+</span>ftable:write_ln(<span class="string">"Duis"</span>, <span class="string">"Aliquam"</span>,
+                <span class="string">"Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n"</span> ..
+                    <span class="string">"In accumsan felis eros, nec malesuada sapien bibendum eget."</span>)
+ftable:write_ln(<span class="string">"Mauris"</span>, <span class="string">"Curabitur"</span>,
+                <span class="string">"Proin condimentum eros viverra nunc ultricies, at fringilla \n"</span> ..
+                    <span class="string">"quam pellentesque."</span>)
+ftable:write_ln(<span class="string">"Summary"</span>, <span class="string">""</span>, <span class="string">"Sed tempor est eget odio varius dignissim."</span>)
 
 <span class="comment">-- Setup alignments and cell span
-</span>ft.set_cell_prop(ftable, <span class="number">1</span>, <span class="number">3</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_CENTER)
-ft.set_cell_prop(ftable, <span class="number">4</span>, <span class="number">1</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_CENTER)
-ft.set_cell_span(ftable, <span class="number">4</span>, <span class="number">1</span>, <span class="number">2</span>)
+</span>ftable:set_cell_prop(<span class="number">1</span>, <span class="number">3</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_CENTER)
+ftable:set_cell_prop(<span class="number">4</span>, <span class="number">1</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_CENTER)
+ftable:set_cell_span(<span class="number">4</span>, <span class="number">1</span>, <span class="number">2</span>)
 
 <span class="global">print</span>(ftable)</pre>
 

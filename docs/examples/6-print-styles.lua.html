@@ -26,7 +26,6 @@
 <h2>Examples</h2>
 <ul class="nowrap">
   <li><a href="../examples/1-simple-table.lua.html">1-simple-table.lua</a></li>
-  <li><a href="../examples/1a-simple-table.lua.html">1a-simple-table.lua</a></li>
   <li><a href="../examples/2-custom-table.lua.html">2-custom-table.lua</a></li>
   <li><a href="../examples/3-complex-layout.lua.html">3-complex-layout.lua</a></li>
   <li><a href="../examples/4-fill-table.lua.html">4-fill-table.lua</a></li>
@@ -51,23 +50,22 @@
 <span class="keyword">local</span> ft = <span class="global">require</span> <span class="string">"fort"</span>
 <span class="keyword">local</span> <span class="keyword">function</span> print_table_with_styles(style, name)
     <span class="comment">-- Just create a table with some content
-</span>    <span class="keyword">local</span> ftable = ft.create_table()
-    ft.set_cell_prop(ftable, ft.ANY_ROW, <span class="number">1</span>, ft.CPROP_TEXT_ALIGN,
-                     ft.ALIGNED_CENTER)
-    ft.set_cell_prop(ftable, ft.ANY_ROW, <span class="number">2</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_LEFT)
+</span>    <span class="keyword">local</span> ftable = ft.new()
+    ftable:set_cell_prop(ft.ANY_ROW, <span class="number">1</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_CENTER)
+    ftable:set_cell_prop(ft.ANY_ROW, <span class="number">2</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_LEFT)
 
-    ft.set_cell_prop(ftable, <span class="number">1</span>, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
-    ft.write_ln(ftable, <span class="string">"Rank"</span>, <span class="string">"Title"</span>, <span class="string">"Year"</span>, <span class="string">"Rating"</span>)
+    ftable:set_cell_prop(<span class="number">1</span>, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
+    ftable:write_ln(<span class="string">"Rank"</span>, <span class="string">"Title"</span>, <span class="string">"Year"</span>, <span class="string">"Rating"</span>)
 
-    ft.write_ln(ftable, <span class="string">"1"</span>, <span class="string">"The Shawshank Redemption"</span>, <span class="string">"1994"</span>, <span class="string">"9.5"</span>)
-    ft.write_ln(ftable, <span class="string">"2"</span>, <span class="string">"12 Angry Men"</span>, <span class="string">"1957"</span>, <span class="string">"8.8"</span>)
-    ft.write_ln(ftable, <span class="string">"3"</span>, <span class="string">"It's a Wonderful Life"</span>, <span class="string">"1946"</span>, <span class="string">"8.6"</span>)
-    ft.add_separator(ftable)
-    ft.write_ln(ftable, <span class="string">"4"</span>, <span class="string">"2001: A Space Odyssey"</span>, <span class="string">"1968"</span>, <span class="string">"8.5"</span>)
-    ft.write_ln(ftable, <span class="string">"5"</span>, <span class="string">"Blade Runner"</span>, <span class="string">"1982"</span>, <span class="string">"8.1"</span>)
+    ftable:write_ln(<span class="string">"1"</span>, <span class="string">"The Shawshank Redemption"</span>, <span class="string">"1994"</span>, <span class="string">"9.5"</span>)
+    ftable:write_ln(<span class="string">"2"</span>, <span class="string">"12 Angry Men"</span>, <span class="string">"1957"</span>, <span class="string">"8.8"</span>)
+    ftable:write_ln(<span class="string">"3"</span>, <span class="string">"It's a Wonderful Life"</span>, <span class="string">"1946"</span>, <span class="string">"8.6"</span>)
+    ftable:add_separator()
+    ftable:write_ln(<span class="string">"4"</span>, <span class="string">"2001: A Space Odyssey"</span>, <span class="string">"1968"</span>, <span class="string">"8.5"</span>)
+    ftable:write_ln(<span class="string">"5"</span>, <span class="string">"Blade Runner"</span>, <span class="string">"1982"</span>, <span class="string">"8.1"</span>)
 
     <span class="comment">-- Setup border style
-</span>    ft.set_border_style(ftable, style)
+</span>    ftable:set_border_style(style)
     <span class="comment">-- Print ftable
 </span>    <span class="global">print</span>(<span class="global">string</span>.format(<span class="string">"%s style:\n\n%s\n\n"</span>, name, <span class="global">tostring</span>(ftable)))
 <span class="keyword">end</span>
