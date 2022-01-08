@@ -13,7 +13,9 @@ setmetatable(fort, fort)
 local function split(inputstr, sep)
     if sep == nil then sep = "%s" end
     local t = {}
-    for str in string.gmatch(inputstr, "([^" .. sep .. "]*)") do
+    -- a bit weird, but needed to fix for lua5.1
+    -- https://stackoverflow.com/a/61057053/9174589
+    for str in string.gmatch(inputstr .. sep, "([^" .. sep .. "]*)" .. sep) do
         table.insert(t, str)
     end
     return t
