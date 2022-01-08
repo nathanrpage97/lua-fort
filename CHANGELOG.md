@@ -8,6 +8,9 @@
   - `fort.erase_range`
   - `fort.set_cell_prop`
   - `fort.set_cell_span`
+- [Fix] splitting of rows follows libfort methodology
+  - "" -> {""}
+  - "|" -> {"",""}
 
 ## v0.3.0 (2021.12.26)
 
