@@ -40,5 +40,3 @@ chronological order.
 - [x] Unit testing
 - [x] Examples (from libfort)
 - [x] First release on luarocks
-- [ ] Detailed usage documentation
-- [ ] Stronger unit testing

@@ -1,6 +1,6 @@
 # Changelog
 
-## v1.0.0 (Unreleased)
+## v1.0.0 (2022.1.8)
 
 - [Fix] ftable metatable now links to fort instead of cfort module.
 - [Added] negative indices for rows and columns
