@@ -123,9 +123,11 @@ function tabulate.tabulate(data, options)
                 value = options.format(row_index, col_name, value)
             end
             if options.wrap then
+                -- allow for penlight text wrap or other func
                 value = table.concat(options.wrap(row_index, col_name, value),
                                      "\n")
             end
+            value = value or "" -- show empty for nil (user can use format to change this)
             ftable:row_write({value})
         end
         ftable:ln()
