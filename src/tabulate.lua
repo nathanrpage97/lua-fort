@@ -1,5 +1,6 @@
 local fort = require "fort"
 
+---@overload fun(data: tabulate.Data, options?: tabulate.Options): string
 local tabulate = {}
 
 ---@alias tabulate.Data table<any, any>[]|table<any, any[]>|any[][]
