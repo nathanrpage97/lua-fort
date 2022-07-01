@@ -2,7 +2,7 @@ local fort = require "fort"
 
 local tabulate = {}
 
----@alias tabulate.Data table<string, any>[]|table<string, any[]>|any[][]
+---@alias tabulate.Data table<any, any>[]|table<any, any[]>|any[][]
 
 ---@alias tabulate.Frame
 --- |'basic'
@@ -133,9 +133,10 @@ local function get_column_keys(data)
 end
 
 ---@param table_data tabulate.Data
----@param options tabulate.Options
+---@param options? tabulate.Options
 ---@return string
 function tabulate.tabulate(table_data, options)
+    options = options or {}
     local ftable = fort.create()
 
     ---@type table<string, any>[]
