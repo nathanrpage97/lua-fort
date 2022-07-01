@@ -7,7 +7,7 @@ local tabulate = {}
 ---@diagnostic disable-next-line: param-type-mismatch
 setmetatable(tabulate, tabulate)
 
----@alias tabulate.Data table<any, any>[]|table<any, any[]>|any[][]
+---@alias tabulate.Data table<string, any>[]|table<string, any[]>|any[][]
 
 ---@alias tabulate.Frame
 --- |'basic'
@@ -28,8 +28,8 @@ setmetatable(tabulate, tabulate)
 
 ---@alias tabulate.Align 'left'|'center'|'right'
 
----@alias tabulate.Formatter  fun(row: integer, col_name: any, value: any):string
----@alias tabulate.Wrapper fun (row: integer, col_name: any, value: any): string[]
+---@alias tabulate.Formatter  fun(row: integer, col_name: string, value: any):string
+---@alias tabulate.Wrapper fun (row: integer, col_name: string, value: any): string[]
 
 ---@class tabulate.Padding
 ---@field top? integer
@@ -41,8 +41,8 @@ setmetatable(tabulate, tabulate)
 
 ---@class tabulate.Options
 ---@field column? any[] default to determine columns, but order of columns not guaranteed
----@field header? table<any, string>
----@field align? table<any, tabulate.Align>
+---@field header? table<string, string>
+---@field align? table<string, tabulate.Align>
 ---@field row_separator? integer[]|integer
 ---@field cell_span? table<integer, table<string, integer>>
 ---@field frame? tabulate.Frame
@@ -57,8 +57,8 @@ setmetatable(tabulate, tabulate)
 ---@field footer_span? table<string, integer>
 ---@field footer_separator? boolean  defaults to true when valid footer
 ---@field footer_align? table<string, tabulate.Align>
----@field sort? fun(row1: table<any, any>, row2: table<any, any>):boolean
----@field filter? fun(row1: table<any, any>, row2: table<any, any>):boolean
+---@field sort? fun(row1: table<string, any>, row2: table<string, any>):boolean
+---@field filter? fun(row1: table<string, any>, row2: table<string, any>):boolean
 ---@field show_index? boolean defaults to false, unless dict of dict
 
 ---@type table<tabulate.Frame, fort.BorderStyle>
@@ -147,8 +147,8 @@ local function get_column_keys(data)
     return keys
 end
 
----@param data table<any, any>[]
----@return table<any, any>[]
+---@param data table<string, any>[]
+---@return table<string, any>[]
 local function shallow_list_copy(data)
     local copy = {}
     for k, v in ipairs(data) do copy[k] = v end
@@ -414,7 +414,7 @@ end
 
 ---convert 2d table (dict of dict) to list of dict
 ---inject key
----@param dict2d table<any, table<any, any>>
+---@param dict2d table<string, table<string, any>>
 ---@param key? any key to inject in row
 function tabulate.dict2d(dict2d, key)
     key = key or "index"
