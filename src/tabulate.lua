@@ -238,10 +238,6 @@ function tabulate.tabulate(data, options)
     --- set column padding, after generic padding to override
     if options.col_padding then
         for col_name, padding in pairs(options.col_padding) do
-            if padding.top ~= nil then
-                ftable:set_cell_prop(fort.ANY_ROW, column_index_map[col_name],
-                                     fort.CPROP_TOP_PADDING, padding.top)
-            end
             if padding.left ~= nil then
                 ftable:set_cell_prop(fort.ANY_ROW, column_index_map[col_name],
                                      fort.CPROP_LEFT_PADDING, padding.left)
@@ -249,10 +245,6 @@ function tabulate.tabulate(data, options)
             if padding.bottom ~= nil then
                 ftable:set_cell_prop(fort.ANY_ROW, column_index_map[col_name],
                                      fort.CPROP_BOTTOM_PADDING, padding.bottom)
-            end
-            if padding.right ~= nil then
-                ftable:set_cell_prop(fort.ANY_ROW, column_index_map[col_name],
-                                     fort.CPROP_RIGHT_PADDING, padding.right)
             end
         end
     end
@@ -296,5 +288,41 @@ end
 function tabulate:__call(data, options) return self.tabulate(data, options) end
 
 setmetatable(tabulate, tabulate)
+
+---@class tabulate.GridOptions
+---@field padding? tabulate.Padding
+---@field frame? tabulate.Frame defaults to 'empty'
+---@field align? table<integer, table<integer, tabulate.Align>>
+
+--- Create a grid of tables
+---@param table_grid string[][]
+---@param options? tabulate.GridOptions
+---@return string
+function tabulate.grid(table_grid, options)
+    options = options or {}
+
+    options.frame = options.frame or 'empty'
+
+    ---@type table<string, string>>[]
+    local table_map = {}
+    local table_cols = {}
+    for row, table_row in ipairs(table_grid) do
+        table_map[row] = {}
+        for col, dtable in ipairs(table_row) do
+            table_map[row][tostring(col)] = dtable
+            if #table_cols < col then
+                table.insert(table_cols, tostring(col))
+            end
+        end
+
+    end
+    return tabulate.tabulate(table_map, {
+        column = table_cols,
+        align = options.align,
+        col_padding = options.padding,
+        frame = options.frame,
+        show_header = false
+    })
+end
 
 return tabulate
