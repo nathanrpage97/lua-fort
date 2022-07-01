@@ -23,8 +23,8 @@ local tabulate = {}
 
 ---@alias tabulate.Align 'left'|'center'|'right'
 
----@alias tabulate.Formatter  fun(row: integer, col_name: string, value: any):string
----@alias tabulate.Wrapper fun (row: integer, col_name: string, value: string): string[]
+---@alias tabulate.Formatter  fun(row: integer, col_name: any, value: any):string
+---@alias tabulate.Wrapper fun (row: integer, col_name: any, value: any): string[]
 
 ---@class tabulate.Padding
 ---@field top? integer
@@ -52,6 +52,8 @@ local tabulate = {}
 ---@field footer_span? table<string, integer>
 ---@field footer_separator? boolean  defaults to true when valid footer
 ---@field footer_align? table<string, tabulate.Align>
+---@field sort? fun(row1: table<any, any>, row2: table<any, any>):boolean
+---@field filter? fun(row1: table<any, any>, row2: table<any, any>):boolean
 
 ---@type table<tabulate.Frame, fort.BorderStyle>
 local border_style_mapping = {
@@ -97,9 +99,16 @@ local function hashmapify(data)
     return res
 end
 
----assumes user is giving string keys
 ---@param data tabulate.Data
-local function is_table_list(data) return data[1] == nil end
+---@return boolean
+local function is_table_list(data)
+    local i = 0
+    for _ in pairs(data) do
+        i = i + 1
+        if data[i] == nil then return false end
+    end
+    return true
+end
 
 ---comment
 ---@param data table<string, any[]>
@@ -132,6 +141,20 @@ local function get_column_keys(data)
     return keys
 end
 
+---@param data table<any, any>[]
+---@return table<any, any>[]
+local function shallow_list_copy(data)
+    local copy = {}
+    for k, v in ipairs(data) do copy[k] = v end
+    return copy
+end
+
+local function shallow_copy(data)
+    local copy = {}
+    for k, v in pairs(data) do copy[k] = v end
+    return copy
+end
+
 ---@param table_data tabulate.Data
 ---@param options? tabulate.Options
 ---@return string
@@ -144,7 +167,7 @@ function tabulate.tabulate(table_data, options)
     if is_table_list(table_data) then
         data = remap_to_list_table(table_data)
     else
-        data = table_data
+        data = shallow_list_copy(table_data)
     end
 
     local column = options.column or get_column_keys(data)
@@ -371,6 +394,21 @@ function tabulate.grid(table_grid, options)
         frame = options.frame,
         show_header = false
     })
+end
+
+---convert 2d table (dict of dict) to list of dict
+---inject key
+---@param dict2d table<any, table<any, any>>
+---@param key? any key to inject in row
+function tabulate.dict2d(dict2d, key)
+    key = key or "key"
+    local data = {}
+    for row_name, row in pairs(dict2d) do
+        local new_row = shallow_copy(row)
+        new_row[key] = row_name
+        table.insert(data, new_row)
+    end
+    return data
 end
 
 return tabulate
