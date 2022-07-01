@@ -45,6 +45,11 @@ local tabulate = {}
 ---@field show_header? boolean  defaults to true
 ---@field format? tabulate.Formatter
 ---@field wrap? tabulate.Wrapper
+---@field footer? table<string, any>
+---@field footer_column? string[]
+---@field footer_span? table<string, integer>
+---@field footer_separator? boolean  defaults to true when valid footer
+---@field footer_align? table<string, tabulate.Align>
 
 ---@type table<tabulate.Frame, fort.BorderStyle>
 local border_style_mapping = {
@@ -98,10 +103,14 @@ function tabulate.tabulate(data, options)
 
     local base_row_separator = options.row_separator or {}
     local row_separator = hashmapify(base_row_separator)
-    local header_offset = 0
+    local header_row_offset = 0
+    local footer_row_offset = 0
     local show_header = options.show_header == nil or options.show_header
-    if show_header then header_offset = 1 end
+    -- add
+    if options.footer then footer_row_offset = -1 end
+    if show_header then header_row_offset = 1 end
     local column_index_map = indexify(options.column)
+    local footer_index_map = indexify(options.footer_column or options.column)
 
     local header = options.header or {}
 
@@ -134,6 +143,27 @@ function tabulate.tabulate(data, options)
         if row_separator[row_index] then ftable:add_separator() end
     end
 
+    if options.footer then
+        if options.footer_separator == nil or options.footer_separator then
+            ftable:add_separator()
+        end
+        local footer_column = options.footer_column or options.column
+        for _, col_name in ipairs(footer_column) do
+            local value = options.footer[col_name]
+            if options.format then
+                -- pass -1 for footer as special index
+                value = options.format(-1, col_name, value)
+            end
+            if options.wrap then
+                -- allow for penlight text wrap or other func
+                value = table.concat(options.wrap(-1, col_name, value), "\n")
+            end
+            value = value or "" -- show empty for nil (user can use format to change this)
+            ftable:row_write({value})
+        end
+        ftable:ln()
+    end
+
     -- add table margins
     if options.margin then
         if options.margin.top then
@@ -156,6 +186,17 @@ function tabulate.tabulate(data, options)
             assert(text_align_mapping[text_align],
                    "tabulate: invalid text align:" .. tostring(text_align))
             ftable:set_cell_prop(fort.ANY_ROW, column_index_map[col_name],
+                                 fort.CPROP_TEXT_ALIGN,
+                                 text_align_mapping[text_align])
+        end
+    end
+
+    --- set footer alignment
+    if options.footer_align then
+        for col_name, text_align in pairs(options.footer_align) do
+            assert(text_align_mapping[text_align],
+                   "tabulate: invalid footer align:" .. tostring(text_align))
+            ftable:set_cell_prop(-1, footer_index_map[col_name],
                                  fort.CPROP_TEXT_ALIGN,
                                  text_align_mapping[text_align])
         end
@@ -202,15 +243,26 @@ function tabulate.tabulate(data, options)
         end
     end
 
+    -- add cell spanning
     if options.cell_span then
         for row_index, cell_span in pairs(options.cell_span) do
             for col_name, span in pairs(cell_span) do
                 -- only add header offset when positive indices
                 if row_index > 0 then
-                    row_index = row_index + header_offset
+                    row_index = row_index + header_row_offset
+                else
+                    row_index = row_index + footer_row_offset
                 end
                 ftable:set_cell_span(row_index, column_index_map[col_name], span)
             end
+        end
+    end
+
+    --- add footer spanning
+    if options.footer and options.footer_span then
+        for col_name, span in pairs(options.footer_span) do
+            -- will be the last index
+            ftable:set_cell_span(-1, footer_index_map[col_name], span)
         end
     end
 
