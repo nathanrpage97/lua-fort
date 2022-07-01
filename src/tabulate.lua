@@ -40,9 +40,9 @@ setmetatable(tabulate, tabulate)
 ---@alias tabulate.Margin tabulate.Padding
 
 ---@class tabulate.Options
----@field column? string[] default to determine columns, but order of columns not guaranteed
----@field header? table<string, string>
----@field align? table<string, tabulate.Align>
+---@field column? any[] default to determine columns, but order of columns not guaranteed
+---@field header? table<any, string>
+---@field align? table<any, tabulate.Align>
 ---@field row_separator? integer[]|integer
 ---@field cell_span? table<integer, table<string, integer>>
 ---@field frame? tabulate.Frame
@@ -53,12 +53,13 @@ setmetatable(tabulate, tabulate)
 ---@field format? tabulate.Formatter
 ---@field wrap? tabulate.Wrapper
 ---@field footer? table<string, any>
----@field footer_column? string[]
+---@field footer_column? any[]
 ---@field footer_span? table<string, integer>
 ---@field footer_separator? boolean  defaults to true when valid footer
 ---@field footer_align? table<string, tabulate.Align>
 ---@field sort? fun(row1: table<any, any>, row2: table<any, any>):boolean
 ---@field filter? fun(row1: table<any, any>, row2: table<any, any>):boolean
+---@field show_index? boolean defaults to false, unless dict of dict
 
 ---@type table<tabulate.Frame, fort.BorderStyle>
 local border_style_mapping = {
@@ -176,6 +177,7 @@ function tabulate.tabulate(table_data, options)
     end
 
     local column = options.column or get_column_keys(data)
+    if options.show_index then table.insert(column, 1, "index") end
 
     local base_row_separator = options.row_separator or {}
     local row_separator
@@ -200,7 +202,7 @@ function tabulate.tabulate(table_data, options)
     if show_header then
         for _, col_name in ipairs(column) do
             local name = header[col_name] or col_name
-            ftable:row_write({name})
+            ftable:write(name)
         end
         ftable:ln()
         ftable:set_cell_prop(1, fort.ANY_COLUMN, fort.CPROP_ROW_TYPE,
@@ -211,6 +213,9 @@ function tabulate.tabulate(table_data, options)
     for row_index, row in ipairs(data) do
         for _, col_name in ipairs(column) do
             local value = row[col_name]
+            if options.show_index and col_name == "index" then
+                value = row_index
+            end
             if options.format then
                 value = options.format(row_index, col_name, value)
             end
@@ -220,7 +225,7 @@ function tabulate.tabulate(table_data, options)
                                      "\n")
             end
             value = value or "" -- show empty for nil (user can use format to change this)
-            ftable:row_write({value})
+            ftable:write(value)
         end
         ftable:ln()
         if type(row_separator) == "number" then
@@ -249,7 +254,7 @@ function tabulate.tabulate(table_data, options)
                 value = table.concat(options.wrap(-1, col_name, value), "\n")
             end
             value = value or "" -- show empty for nil (user can use format to change this)
-            ftable:row_write({value})
+            ftable:write(value)
         end
         ftable:ln()
     end
@@ -314,6 +319,10 @@ function tabulate.tabulate(table_data, options)
     --- set column padding, after generic padding to override
     if options.col_padding then
         for col_name, padding in pairs(options.col_padding) do
+            if padding.top ~= nil then
+                ftable:set_cell_prop(fort.ANY_ROW, column_index_map[col_name],
+                                     fort.CPROP_TOP_PADDING, padding.top)
+            end
             if padding.left ~= nil then
                 ftable:set_cell_prop(fort.ANY_ROW, column_index_map[col_name],
                                      fort.CPROP_LEFT_PADDING, padding.left)
@@ -321,6 +330,10 @@ function tabulate.tabulate(table_data, options)
             if padding.bottom ~= nil then
                 ftable:set_cell_prop(fort.ANY_ROW, column_index_map[col_name],
                                      fort.CPROP_BOTTOM_PADDING, padding.bottom)
+            end
+            if padding.right ~= nil then
+                ftable:set_cell_prop(fort.ANY_ROW, column_index_map[col_name],
+                                     fort.CPROP_RIGHT_PADDING, padding.right)
             end
         end
     end
@@ -404,7 +417,7 @@ end
 ---@param dict2d table<any, table<any, any>>
 ---@param key? any key to inject in row
 function tabulate.dict2d(dict2d, key)
-    key = key or "key"
+    key = key or "index"
     local data = {}
     for row_name, row in pairs(dict2d) do
         local new_row = shallow_copy(row)
