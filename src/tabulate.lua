@@ -1,7 +1,11 @@
 local fort = require "fort"
 
+---@class tabulate
 ---@overload fun(data: tabulate.Data, options?: tabulate.Options): string
 local tabulate = {}
+
+---@diagnostic disable-next-line: param-type-mismatch
+setmetatable(tabulate, tabulate)
 
 ---@alias tabulate.Data table<any, any>[]|table<any, any[]>|any[][]
 
@@ -358,8 +362,6 @@ end
 ---@param options tabulate.Options
 ---@return string
 function tabulate:__call(data, options) return self.tabulate(data, options) end
-
-setmetatable(tabulate, tabulate)
 
 ---@class tabulate.GridOptions
 ---@field padding? tabulate.Padding
