@@ -36,7 +36,7 @@ local tabulate = {}
 ---@field column string[]
 ---@field header? table<string, string>
 ---@field align? table<string, tabulate.Align>
----@field row_separator? integer[]
+---@field row_separator? integer[]|integer
 ---@field cell_span? table<integer, table<string, integer>>
 ---@field frame? tabulate.Frame
 ---@field margin? tabulate.Margin
@@ -102,7 +102,14 @@ function tabulate.tabulate(data, options)
     local ftable = fort.create()
 
     local base_row_separator = options.row_separator or {}
-    local row_separator = hashmapify(base_row_separator)
+    local row_separator
+    if type(base_row_separator) == "number" then
+        row_separator = base_row_separator
+    else
+        ---@diagnostic disable-next-line: param-type-mismatch
+        row_separator = hashmapify(base_row_separator)
+    end
+
     local header_row_offset = 0
     local footer_row_offset = 0
     local show_header = options.show_header == nil or options.show_header
@@ -140,7 +147,14 @@ function tabulate.tabulate(data, options)
             ftable:row_write({value})
         end
         ftable:ln()
-        if row_separator[row_index] then ftable:add_separator() end
+        if type(row_separator) == "number" then
+            if row_index % row_separator == 0 then
+                ftable:add_separator()
+            end
+        elseif row_separator[row_index] then
+            ftable:add_separator()
+        end
+
     end
 
     if options.footer then
