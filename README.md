@@ -28,6 +28,14 @@ prefixes.
   - String splitting on column separator is done in lua
 - all functions are UTF-8 compatible
 
+## tabulate
+
+A mix of python [tabulate](https://pypi.org/project/tabulate/) and
+[tprint](https://github.com/smi11/tprint-lua) to enable quick (but powerful)
+ascii table generation. It alleviates the tedious code format generation of the
+`fort` module and allows for separation of data generation from table
+formatting.
+
 ## Roadmap
 
 There are a few things that I would like to add with lua fort. This list is in

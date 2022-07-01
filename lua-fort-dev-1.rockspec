@@ -36,7 +36,7 @@ build = {
             defines = {"FT_CONGIG_DISABLE_WCHAR"}
         }
     },
-    install = {lua = {fort = "src/fort.lua"}},
+    install = {lua = {fort = "src/fort.lua", tabulate = "src/tabulate.lua"}},
     -- Override default build options (per platform)
     platforms = {},
     copy_directories = {"examples", "spec", "docs"}
