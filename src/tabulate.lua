@@ -2,7 +2,23 @@ local fort = require "fort"
 
 local tabulate = {}
 
----@alias tabulate.Frame  'basic'|'basic2'|'bold'|'bold2'|'dot'|'double'|'double2'|'empty'|'empty2'|'frame'|'nice'|'plain'|'simple'|'solid_round'|'solid'
+---@alias tabulate.Frame
+--- | 'basic'
+--- |'basic2'
+--- |'bold'
+--- |'bold2'
+--- |'dot'
+--- |'double'
+--- |'double2'
+--- |'empty'
+--- | 'empty2'
+--- |'frame'
+--- |'nice'
+--- |'plain'
+--- |'simple'
+--- |'solid_round'
+--- |'solid'
+
 ---@alias tabulate.Align 'left'|'center'|'right'
 
 ---@alias tabulate.Formatter  fun(row: integer, col_name: string, value: any):string
