@@ -2,8 +2,10 @@ local fort = require "fort"
 
 local tabulate = {}
 
+---@alias tabulate.Data table<string, any>[]|table<string, any[]>
+
 ---@alias tabulate.Frame
---- | 'basic'
+--- |'basic'
 --- |'basic2'
 --- |'bold'
 --- |'bold2'
@@ -11,7 +13,7 @@ local tabulate = {}
 --- |'double'
 --- |'double2'
 --- |'empty'
---- | 'empty2'
+--- |'empty2'
 --- |'frame'
 --- |'nice'
 --- |'plain'
@@ -95,10 +97,35 @@ local function hashmapify(data)
     return res
 end
 
----@param data table<string, any>[]
+---assumes user is giving string keys
+---@param data tabulate.Data
+local function is_table_list(data) return data[1] == nil end
+
+---comment
+---@param data table<string, any[]>
+---@return table<string, any>[]
+local function remap_to_list_table(data)
+    local table_list = {}
+    for col_name, col in pairs(data) do
+        for row, value in ipairs(col) do
+            if table_list[row] == nil then table_list[row] = {} end
+            table_list[row][col_name] = value
+        end
+    end
+    return table_list
+end
+
+---@param table_data tabulate.Data
 ---@param options tabulate.Options
 ---@return string
-function tabulate.tabulate(data, options)
+function tabulate.tabulate(table_data, options)
+    ---@type table<string, any>[]
+    local data
+    if is_table_list(table_data) then
+        data = remap_to_list_table(table_data)
+    else
+        data = table_data
+    end
     local ftable = fort.create()
 
     local base_row_separator = options.row_separator or {}
@@ -282,7 +309,7 @@ function tabulate.tabulate(data, options)
 end
 
 ---convenience call to tabulate.tabulate
----@param data table<string, any>[]
+---@param data tabulate.Data
 ---@param options tabulate.Options
 ---@return string
 function tabulate:__call(data, options) return self.tabulate(data, options) end
