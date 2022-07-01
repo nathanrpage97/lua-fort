@@ -2,7 +2,7 @@ local fort = require "fort"
 
 local tabulate = {}
 
----@alias tabulate.Data table<string, any>[]|table<string, any[]>
+---@alias tabulate.Data table<string, any>[]|table<string, any[]>|any[][]
 
 ---@alias tabulate.Frame
 --- |'basic'
@@ -35,7 +35,7 @@ local tabulate = {}
 ---@alias tabulate.Margin tabulate.Padding
 
 ---@class tabulate.Options
----@field column string[]
+---@field column? string[] default to determine columns, but order of columns not guaranteed
 ---@field header? table<string, string>
 ---@field align? table<string, tabulate.Align>
 ---@field row_separator? integer[]|integer
@@ -115,10 +115,29 @@ local function remap_to_list_table(data)
     return table_list
 end
 
+---@param data table<string, any>[]
+---@return string[]
+local function get_column_keys(data)
+    ---@type string[]
+    local keys = {}
+    local key_map = {}
+    for _, row in ipairs(data) do
+        for col_name, _ in pairs(row) do
+            if key_map[col_name] == nil then
+                key_map[col_name] = true
+                table.insert(keys, col_name)
+            end
+        end
+    end
+    return keys
+end
+
 ---@param table_data tabulate.Data
 ---@param options tabulate.Options
 ---@return string
 function tabulate.tabulate(table_data, options)
+    local ftable = fort.create()
+
     ---@type table<string, any>[]
     local data
     if is_table_list(table_data) then
@@ -126,7 +145,8 @@ function tabulate.tabulate(table_data, options)
     else
         data = table_data
     end
-    local ftable = fort.create()
+
+    local column = options.column or get_column_keys(data)
 
     local base_row_separator = options.row_separator or {}
     local row_separator
@@ -143,13 +163,13 @@ function tabulate.tabulate(table_data, options)
     -- add
     if options.footer then footer_row_offset = -1 end
     if show_header then header_row_offset = 1 end
-    local column_index_map = indexify(options.column)
-    local footer_index_map = indexify(options.footer_column or options.column)
+    local column_index_map = indexify(column)
+    local footer_index_map = indexify(options.footer_column or column)
 
     local header = options.header or {}
 
     if show_header then
-        for _, col_name in ipairs(options.column) do
+        for _, col_name in ipairs(column) do
             local name = header[col_name] or col_name
             ftable:row_write({name})
         end
@@ -160,7 +180,7 @@ function tabulate.tabulate(table_data, options)
 
     -- add data to table
     for row_index, row in ipairs(data) do
-        for _, col_name in ipairs(options.column) do
+        for _, col_name in ipairs(column) do
             local value = row[col_name]
             if options.format then
                 value = options.format(row_index, col_name, value)
@@ -188,7 +208,7 @@ function tabulate.tabulate(table_data, options)
         if options.footer_separator == nil or options.footer_separator then
             ftable:add_separator()
         end
-        local footer_column = options.footer_column or options.column
+        local footer_column = options.footer_column or column
         for _, col_name in ipairs(footer_column) do
             local value = options.footer[col_name]
             if options.format then
