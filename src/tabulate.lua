@@ -59,7 +59,6 @@ setmetatable(tabulate, tabulate)
 ---@field footer_align? table<string, tabulate.Align>
 ---@field sort? fun(row1: table<string, any>, row2: table<string, any>):boolean
 ---@field filter? fun(row1: table<string, any>, row2: table<string, any>):boolean
----@field show_index? boolean defaults to false, unless dict of dict
 
 ---@type table<tabulate.Frame, fort.BorderStyle>
 local border_style_mapping = {
@@ -177,7 +176,6 @@ function tabulate.tabulate(table_data, options)
     end
 
     local column = options.column or get_column_keys(data)
-    if options.show_index then table.insert(column, 1, "index") end
 
     local base_row_separator = options.row_separator or {}
     local row_separator
@@ -213,9 +211,6 @@ function tabulate.tabulate(table_data, options)
     for row_index, row in ipairs(data) do
         for _, col_name in ipairs(column) do
             local value = row[col_name]
-            if options.show_index and col_name == "index" then
-                value = row_index
-            end
             if options.format then
                 value = options.format(row_index, col_name, value)
             end
@@ -410,21 +405,6 @@ function tabulate.grid(table_grid, options)
         frame = options.frame,
         show_header = false
     })
-end
-
----convert 2d table (dict of dict) to list of dict
----inject key
----@param dict2d table<string, table<string, any>>
----@param key? any key to inject in row
-function tabulate.dict2d(dict2d, key)
-    key = key or "index"
-    local data = {}
-    for row_name, row in pairs(dict2d) do
-        local new_row = shallow_copy(row)
-        new_row[key] = row_name
-        table.insert(data, new_row)
-    end
-    return data
 end
 
 return tabulate
