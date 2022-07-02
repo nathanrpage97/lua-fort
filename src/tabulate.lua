@@ -175,6 +175,7 @@ function tabulate.tabulate(table_data, options)
     local row_separator
     if type(base_row_separator) == "number" then
         row_separator = base_row_separator
+        assert(row_separator > 0, "tabulate: row_separator must be > 0")
     elseif type(base_row_separator) == "table" then
         row_separator = hashmapify(base_row_separator)
     else
