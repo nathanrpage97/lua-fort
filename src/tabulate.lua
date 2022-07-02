@@ -154,12 +154,6 @@ local function shallow_list_copy(data)
     return copy
 end
 
-local function shallow_copy(data)
-    local copy = {}
-    for k, v in pairs(data) do copy[k] = v end
-    return copy
-end
-
 ---@param table_data tabulate.Data
 ---@param options? tabulate.Options
 ---@return string
