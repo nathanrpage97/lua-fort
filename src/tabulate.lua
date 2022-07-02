@@ -175,9 +175,10 @@ function tabulate.tabulate(table_data, options)
     local row_separator
     if type(base_row_separator) == "number" then
         row_separator = base_row_separator
-    else
-        ---@diagnostic disable-next-line: param-type-mismatch
+    elseif type(base_row_separator) == "table" then
         row_separator = hashmapify(base_row_separator)
+    else
+        error("Invalid row separator type:" .. type(base_row_separator))
     end
 
     local header_row_offset = 0
