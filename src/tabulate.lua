@@ -169,6 +169,7 @@ function tabulate.tabulate(table_data, options)
         data = listdict_to_dictlist(table_data)
     end
 
+    if options.sort then table.sort(data, options.sort) end
     local column = options.column or get_column_keys(data)
 
     local base_row_separator = options.row_separator or {}
