@@ -106,7 +106,7 @@ end
 
 ---@param data tabulate.Data
 ---@return boolean
-local function is_table_list(data)
+local function is_list(data)
     local i = 0
     for _ in pairs(data) do
         i = i + 1
@@ -118,7 +118,7 @@ end
 ---comment
 ---@param data table<string, any[]>
 ---@return table<string, any>[]
-local function remap_to_list_table(data)
+local function listdict_to_dictlist(data)
     local table_list = {}
     for col_name, col in pairs(data) do
         for row, value in ipairs(col) do
@@ -169,10 +169,10 @@ function tabulate.tabulate(table_data, options)
 
     ---@type table<string, any>[]
     local data
-    if is_table_list(table_data) then
-        data = remap_to_list_table(table_data)
-    else
+    if is_list(table_data) then
         data = shallow_list_copy(table_data)
+    else
+        data = listdict_to_dictlist(table_data)
     end
 
     local column = options.column or get_column_keys(data)
