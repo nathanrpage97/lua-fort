@@ -28,8 +28,8 @@ setmetatable(tabulate, tabulate)
 
 ---@alias tabulate.Align 'left'|'center'|'right'
 
----@alias tabulate.Formatter  fun(row: integer, col_name: string, value: any):string
----@alias tabulate.Wrapper fun (row: integer, col_name: string, value: any): string[]
+---@alias tabulate.Formatter  (fun (value: any, row: integer, col_name: string):string)
+---@alias tabulate.Wrapper fun (value: any, row: integer, col_name: string): string[]
 
 ---@class tabulate.Padding
 ---@field top? integer
@@ -222,11 +222,11 @@ function tabulate.tabulate(table_data, options)
         for _, col_name in ipairs(column) do
             local value = row[col_name]
             if options.format then
-                value = options.format(row_index, col_name, value)
+                value = options.format(value, row_index, col_name)
             end
             if options.wrap then
                 -- allow for penlight text wrap or other func
-                value = table.concat(options.wrap(row_index, col_name, value),
+                value = table.concat(options.wrap(value, row_index, col_name),
                                      "\n")
             end
             value = value or "" -- show empty for nil (user can use format to change this)
@@ -252,11 +252,11 @@ function tabulate.tabulate(table_data, options)
             local value = options.footer[col_name]
             if options.format then
                 -- pass -1 for footer as special index
-                value = options.format(-1, col_name, value)
+                value = options.format(value, -1, col_name)
             end
             if options.wrap then
                 -- allow for penlight text wrap or other func
-                value = table.concat(options.wrap(-1, col_name, value), "\n")
+                value = table.concat(options.wrap(value, -1, col_name), "\n")
             end
             value = value or "" -- show empty for nil (user can use format to change this)
             ftable:write(value)
