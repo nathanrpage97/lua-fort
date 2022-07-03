@@ -58,7 +58,7 @@ setmetatable(tabulate, tabulate)
 ---@field footer_separator? boolean  defaults to true when valid footer
 ---@field footer_align? table<string, tabulate.Align>
 ---@field sort? fun(row1: table<string, any>, row2: table<string, any>):boolean
----@field filter? fun(row1: table<string, any>, row2: table<string, any>):boolean
+---@field filter? fun(row: table<string, any>):boolean
 
 ---@type table<tabulate.Frame, fort.BorderStyle>
 local border_style_mapping = {
@@ -143,6 +143,7 @@ local function get_column_keys(data)
             end
         end
     end
+    table.sort(keys, function(a, b) return tostring(a) < tostring(b) end)
     return keys
 end
 
@@ -152,6 +153,16 @@ local function shallow_list_copy(data)
     local copy = {}
     for k, v in ipairs(data) do copy[k] = v end
     return copy
+end
+
+---@generic FT
+---@param data FT[]
+---@param filter fun(val: any): boolean
+---@return FT[]
+local function filter_list(data, filter)
+    local res = {}
+    for _, v in ipairs(data) do if filter(v) then table.insert(res, v) end end
+    return res
 end
 
 ---@param table_data tabulate.Data
@@ -170,6 +181,8 @@ function tabulate.tabulate(table_data, options)
     end
 
     if options.sort then table.sort(data, options.sort) end
+    if options.filter then data = filter_list(data, options.filter) end
+
     local column = options.column or get_column_keys(data)
 
     local base_row_separator = options.row_separator or {}
