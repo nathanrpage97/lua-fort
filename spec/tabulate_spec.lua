@@ -5,7 +5,7 @@ describe("data types", function()
         local value = tabulate({
             {"cool", "testing"}, {"more", "third", "fourth"}
         })
-        assert.equals(value, [[
+        assert.equals(tostring(value), [[
 +------+---------+--------+
 | 1    | 2       | 3      |
 +------+---------+--------+
@@ -20,7 +20,7 @@ describe("data types", function()
             {a = "cool", b = "running"}, {a = "534", b = "sdfsdf"},
             {a = "534", b = "sdfsdf", c = "testing"}
         }, {column = {"a", "b", 'c'}})
-        assert.equals(value, [[
+        assert.equals(tostring(value), [[
 +------+---------+---------+
 | a    | b       | c       |
 +------+---------+---------+
@@ -37,7 +37,7 @@ describe("data types", function()
             c = {"wow this is a longer text", 2, 4, "sdf", ""},
             d = {"this is a good test", 2, 3434}
         }, {column = {"a", "d", "c"}})
-        assert.equals(value, [[
+        assert.equals(tostring(value), [[
 +-------+---------------------+---------------------------+
 | a     | d                   | c                         |
 +-------+---------------------+---------------------------+
@@ -61,7 +61,7 @@ describe("frame", function()
     it("basic", function()
         local value = tabulate(data,
                                {column = {"cool", "testing"}, frame = "basic"})
-        assert.equals(value, [[
+        assert.equals(tostring(value), [[
 +------+---------+
 | cool | testing |
 +------+---------+
@@ -76,7 +76,7 @@ describe("frame", function()
     it("bold", function()
         local value = tabulate(data,
                                {column = {"cool", "testing"}, frame = "bold"})
-        assert.equals(value, [[
+        assert.equals(tostring(value), [[
 ┏━━━━━━┳━━━━━━━━━┓
 ┃ cool ┃ testing ┃
 ┣━━━━━━╋━━━━━━━━━┫
@@ -92,7 +92,7 @@ describe("frame", function()
             column = {"cool", "testing"},
             frame = "solid_round"
         })
-        assert.equals(value, [[
+        assert.equals(tostring(value), [[
 ╭──────┬─────────╮
 │ cool │ testing │
 ├──────┼─────────┤
@@ -115,7 +115,7 @@ describe("header", function()
             column = {1, 2, 3},
             header = {[1] = "first", [2] = "second", [3] = "third"}
         })
-        assert.equals(value, [[
+        assert.equals(tostring(value), [[
 +-------+--------+--------+
 | first | second | third  |
 +-------+--------+--------+
@@ -129,7 +129,7 @@ describe("header", function()
             column = {"a", "b", 1},
             header = {a = "first", b = "second", [1] = "third"}
         })
-        assert.equals(value, [[
+        assert.equals(tostring(value), [[
 +-------+--------+--------+
 | first | second | third  |
 +-------+--------+--------+
@@ -143,7 +143,7 @@ describe("header", function()
             column = {"a", "b", "c"},
             header = {a = "first", b = "second", c = "third"}
         })
-        assert.equals(value, [[
+        assert.equals(tostring(value), [[
 +-------+--------+--------+
 | first | second | third  |
 +-------+--------+--------+
@@ -165,7 +165,7 @@ describe("align", function()
             header = {a = "first", b = "second", c = "third"},
             align = {a = "left", b = "left"}
         })
-        assert.equals(value, [[
+        assert.equals(tostring(value), [[
 +-------+--------+--------+
 | first | second | third  |
 +-------+--------+--------+
@@ -180,7 +180,7 @@ describe("align", function()
             header = {a = "first", b = "second", c = "third"},
             align = {a = "center", b = "center"}
         })
-        assert.equals(value, [[
+        assert.equals(tostring(value), [[
 +-------+--------+--------+
 | first | second | third  |
 +-------+--------+--------+
@@ -195,7 +195,7 @@ describe("align", function()
             header = {a = "first", b = "second", c = "third"},
             align = {a = "right", b = "right"}
         })
-        assert.equals(value, [[
+        assert.equals(tostring(value), [[
 +-------+--------+--------+
 | first | second | third  |
 +-------+--------+--------+
