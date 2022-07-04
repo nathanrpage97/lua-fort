@@ -30,8 +30,8 @@ setmetatable(tabulate, tabulate)
 
 ---@alias tabulate.Align 'left'|'center'|'right'
 
----@alias tabulate.Formatter  (fun (value: any, row: integer, col_name: string):string) | table<string, (fun (value: any, row: integer):string)>
----@alias tabulate.Wrapper fun (value: any, row: integer, col_name: string): string[]
+---@alias tabulate.Formatter  (fun (value: any, row: integer, col_name: tabulate.ColumnKey):string) | table<tabulate.ColumnKey, (fun (value: any, row: integer):string)>
+---@alias tabulate.Wrapper fun (value: any, row: integer, col_name: tabulate.ColumnKey): string[]
 
 ---@class tabulate.Padding
 ---@field top? integer
