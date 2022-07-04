@@ -9,6 +9,8 @@ setmetatable(tabulate, tabulate)
 
 ---@alias tabulate.Data table<string, any>[]|table<string, any[]>|any[][]
 
+---@alias tabulate.ColumnKey any
+
 ---@alias tabulate.Frame
 --- |'basic'
 --- |'basic2'
@@ -40,25 +42,25 @@ setmetatable(tabulate, tabulate)
 ---@alias tabulate.Margin tabulate.Padding
 
 ---@class tabulate.Options
----@field column? any[] default to determine columns, but order of columns not guaranteed
----@field header? table<string, string>
----@field align? table<string, tabulate.Align>
+---@field column? tabulate.ColumnKey[] default to determine columns, but order of columns not guaranteed
+---@field header? table<tabulate.ColumnKey, string>
+---@field align? table<tabulate.ColumnKey, tabulate.Align>
 ---@field row_separator? integer[]|integer
----@field cell_span? table<integer, table<string, integer>>
+---@field cell_span? table<integer, table<tabulate.ColumnKey, integer>>
 ---@field frame? tabulate.Frame
 ---@field margin? tabulate.Margin
----@field col_padding? table<string, tabulate.Padding>
+---@field col_padding? table<tabulate.ColumnKey, tabulate.Padding>
 ---@field padding? tabulate.Padding
 ---@field show_header? boolean  defaults to true
 ---@field format? tabulate.Formatter
 ---@field wrap? tabulate.Wrapper
----@field footer? table<string, any>
----@field footer_column? any[]
----@field footer_span? table<string, integer>
+---@field footer? table<tabulate.ColumnKey, any>
+---@field footer_column? tabulate.ColumnKey[]
+---@field footer_span? table<tabulate.ColumnKey, integer>
 ---@field footer_separator? boolean  defaults to true when footer enabled
----@field footer_align? table<string, tabulate.Align>
----@field sort? fun(row1: table<string, any>, row2: table<string, any>):boolean
----@field filter? fun(row: table<string, any>):boolean
+---@field footer_align? table<tabulate.ColumnKey, tabulate.Align>
+---@field sort? fun(row1: table<tabulate.ColumnKey, any>, row2: table<tabulate.ColumnKey, any>):boolean
+---@field filter? fun(row: table<tabulate.ColumnKey, any>):boolean
 
 ---@type table<tabulate.Frame, fort.BorderStyle>
 local border_style_mapping = {
@@ -116,8 +118,8 @@ local function is_list(data)
 end
 
 ---comment
----@param data table<string, any[]>
----@return table<string, any>[]
+---@param data table<tabulate.ColumnKey, any[]>
+---@return table<tabulate.ColumnKey, any>[]
 local function listdict_to_dictlist(data)
     local table_list = {}
     for col_name, col in pairs(data) do
@@ -129,7 +131,7 @@ local function listdict_to_dictlist(data)
     return table_list
 end
 
----@param data table<string, any>[]
+---@param data table<tabulate.ColumnKey, any>[]
 ---@return string[]
 local function get_column_keys(data)
     ---@type string[]
@@ -172,7 +174,7 @@ function tabulate.tabulate(table_data, options)
     options = options or {}
     local ftable = fort.create()
 
-    ---@type table<string, any>[]
+    ---@type table<tabulate.ColumnKey, any>[]
     local data
     if is_list(table_data) then
         data = shallow_list_copy(table_data)
