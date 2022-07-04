@@ -145,7 +145,10 @@ local function get_column_keys(data)
             end
         end
     end
-    table.sort(keys, function(a, b) return tostring(a) < tostring(b) end)
+    table.sort(keys, function(a, b)
+        if type(a) == type(b) then return a < b end
+        return tostring(a) < tostring(b)
+    end)
     return keys
 end
 
