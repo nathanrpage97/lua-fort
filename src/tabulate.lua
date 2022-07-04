@@ -28,7 +28,7 @@ setmetatable(tabulate, tabulate)
 
 ---@alias tabulate.Align 'left'|'center'|'right'
 
----@alias tabulate.Formatter  (fun (value: any, row: integer, col_name: string):string)
+---@alias tabulate.Formatter  (fun (value: any, row: integer, col_name: string):string) | table<string, (fun (value: any, row: integer):string)>
 ---@alias tabulate.Wrapper fun (value: any, row: integer, col_name: string): string[]
 
 ---@class tabulate.Padding
@@ -55,7 +55,7 @@ setmetatable(tabulate, tabulate)
 ---@field footer? table<string, any>
 ---@field footer_column? any[]
 ---@field footer_span? table<string, integer>
----@field footer_separator? boolean  defaults to true when valid footer
+---@field footer_separator? boolean  defaults to true when footer enabled
 ---@field footer_align? table<string, tabulate.Align>
 ---@field sort? fun(row1: table<string, any>, row2: table<string, any>):boolean
 ---@field filter? fun(row: table<string, any>):boolean
@@ -222,7 +222,15 @@ function tabulate.tabulate(table_data, options)
         for _, col_name in ipairs(column) do
             local value = row[col_name]
             if options.format then
-                value = options.format(value, row_index, col_name)
+                if type(options.format) == "table" then
+                    local col_formatter = options.format[col_name]
+                    if col_formatter ~= nil then
+                        value = col_formatter(value, row_index)
+                    end
+                elseif type(options.format) == "function" then
+                    value = options.format(value, row_index, col_name)
+                end
+
             end
             if options.wrap then
                 -- allow for penlight text wrap or other func
