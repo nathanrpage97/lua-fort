@@ -167,7 +167,7 @@ end
 
 ---@param table_data tabulate.Data
 ---@param options? tabulate.Options
----@return string
+---@return fort
 function tabulate.tabulate(table_data, options)
     options = options or {}
     local ftable = fort.create()
@@ -380,13 +380,13 @@ function tabulate.tabulate(table_data, options)
         ftable:set_border_style(border_style_mapping[options.frame])
     end
 
-    return tostring(ftable)
+    return ftable
 end
 
 ---convenience call to tabulate.tabulate
 ---@param data tabulate.Data
 ---@param options tabulate.Options
----@return string
+---@return fort
 function tabulate:__call(data, options) return self.tabulate(data, options) end
 
 ---@class tabulate.GridOptions
@@ -397,7 +397,7 @@ function tabulate:__call(data, options) return self.tabulate(data, options) end
 --- Create a grid of tables
 ---@param table_grid string[][]
 ---@param options? tabulate.GridOptions
----@return string
+---@return fort
 function tabulate.grid(table_grid, options)
     options = options or {}
 
