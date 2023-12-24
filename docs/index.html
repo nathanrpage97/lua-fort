@@ -569,7 +569,7 @@
     <ul>
         <li><span class="parameter">style</span>
             <span class="types"><span class="type">userdata</span></span>
-         from available styles <a href="index.html#fort.BASIC_STYLE">BASIC_STYLE</a>
+         from available styles <a href="index.html#fort.BASIC_STYLE">fort.BASIC_STYLE</a>
         </li>
     </ul>
 </dd>
@@ -620,18 +620,25 @@
     <dd>
     Use a formatted string to write a row. </p>
 
-<p>Splits cells on fort.default_separator. Uses lua <a href="https://www.lua.org/manual/5.1/manual.html#pdf-string.format">string.format</a> to
+<p>Splits cells on fort.default_separator. Uses lua <a href="https://www.lua.org/manual/5.4/manual.html#pdf-string.format">string.format</a> to
 format the text.
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">row_format</span>
-            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.4">string</a></span>
          row to write with formatting
         </li>
         <li><span class="parameter">...</span>
          any format arguments
         </li>
     </ul>
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">ftable</span></span>
+
+
+    </ol>
 </dd>
     <dt>
     <a name = "fort:printf_ln"></a>
@@ -640,18 +647,25 @@ format the text.
     <dd>
     Use a formatted string to write a row and go to the next line. </p>
 
-<p>Splits cells on fort.default_separator. Uses lua <a href="https://www.lua.org/manual/5.1/manual.html#pdf-string.format">string.format</a> to
+<p>Splits cells on fort.default_separator. Uses lua <a href="https://www.lua.org/manual/5.4/manual.html#pdf-string.format">string.format</a> to
 format the text.
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">row_format</span>
-            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.4">string</a></span>
          row to write with formatting
         </li>
         <li><span class="parameter">...</span>
          any format arguments
         </li>
     </ul>
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">ftable</span></span>
+
+
+    </ol>
 </dd>
     <dt>
     <a name = "fort:print"></a>
@@ -664,16 +678,23 @@ without modifying the global separator.
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">row_text</span>
-            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.4">string</a></span>
 
 
         </li>
         <li><span class="parameter">sep</span>
-            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.4">string</a></span>
          cell separator
          (<em>default</em> fort.default_separator)
         </li>
     </ul>
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">ftable</span></span>
+
+
+    </ol>
 </dd>
     <dt>
     <a name = "fort:print_ln"></a>
@@ -686,16 +707,23 @@ without modifying the global separator.
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">row_text</span>
-            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.4">string</a></span>
 
 
         </li>
         <li><span class="parameter">sep</span>
-            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.4">string</a></span>
          cell separator
          (<em>default</em> fort.default_separator)
         </li>
     </ul>
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">ftable</span></span>
+
+
+    </ol>
 </dd>
     <dt>
     <a name = "fort:table_write"></a>
@@ -706,15 +734,22 @@ without modifying the global separator.
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">data_table</span>
-            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">{{string}}</a></span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.4">{{string}}</a></span>
          2d array of strings to write, can be jagged.
         </li>
         <li><span class="parameter">colalign</span>
-            <span class="types"><span class="type">bool</span></span>
+            <span class="types"><span class="type">boolean</span></span>
          align to the <a href="index.html#fort:cur_col">cur_col</a> at the start
          (<em>default</em> false)
         </li>
     </ul>
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">ftable</span></span>
+
+
+    </ol>
 </dd>
     <dt>
     <a name = "fort:table_write_ln"></a>
@@ -725,15 +760,22 @@ without modifying the global separator.
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">data_table</span>
-            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">{{string}}</a></span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.4">{{string}}</a></span>
          2d array of strings to write, can be jagged.
         </li>
         <li><span class="parameter">colalign</span>
-            <span class="types"><span class="type">bool</span></span>
+            <span class="types"><span class="type">boolean</span></span>
          align to the <a href="index.html#fort:cur_col">cur_col</a> at the start
          (<em>default</em> false)
         </li>
     </ul>
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">ftable</span></span>
+
+
+    </ol>
 </dd>
     <dt>
     <a name = "fort:erase_range"></a>
@@ -764,6 +806,13 @@ without modifying the global separator.
 
         </li>
     </ul>
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">ftable</span></span>
+
+
+    </ol>
 </dd>
     <dt>
     <a name = "fort:ln"></a>
@@ -771,6 +820,13 @@ without modifying the global separator.
     </dt>
     <dd>
     Go to the next line (row)
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">ftable</span></span>
+
+
+    </ol>
 </dd>
     <dt>
     <a name = "fort:row_write"></a>
@@ -781,10 +837,17 @@ without modifying the global separator.
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">row</span>
-            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">{string}</a></span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.4">{string}</a></span>
          row of strings to write
         </li>
     </ul>
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">ftable</span></span>
+
+
+    </ol>
 </dd>
     <dt>
     <a name = "fort:row_write_ln"></a>
@@ -795,10 +858,17 @@ without modifying the global separator.
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">row</span>
-            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">{string}</a></span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.4">{string}</a></span>
          row of strings to write
         </li>
     </ul>
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">ftable</span></span>
+
+
+    </ol>
 </dd>
     <dt>
     <a name = "fort:write"></a>
@@ -812,6 +882,13 @@ without modifying the global separator.
          string strings to write in the row
         </li>
     </ul>
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">ftable</span></span>
+
+
+    </ol>
 </dd>
     <dt>
     <a name = "fort:write_ln"></a>
@@ -825,6 +902,13 @@ without modifying the global separator.
          string strings to write in the row
         </li>
     </ul>
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">ftable</span></span>
+
+
+    </ol>
 </dd>
     <dt>
     <a name = "fort:set_cur_cell"></a>
@@ -836,13 +920,20 @@ without modifying the global separator.
     <ul>
         <li><span class="parameter">row</span>
             <span class="types"><span class="type">number</span></span>
-         the row to set. DO NOT USE <a href="index.html#fort.ANY_ROW">ANY_ROW</a>/<a href="index.html#fort.CUR_ROW">CUR_ROW</a>
+         the row to set. DO NOT USE <a href="index.html#fort.ANY_ROW">fort.ANY_ROW</a>/<a href="index.html#fort.CUR_ROW">fort.CUR_ROW</a>
         </li>
         <li><span class="parameter">col</span>
             <span class="types"><span class="type">number</span></span>
-         the column to set. DO NOT USE <a href="index.html#fort.ANY_COLUMN">ANY_COLUMN</a>/<a href="index.html#fort.CUR_COLUMN">CUR_COLUMN</a>
+         the column to set. DO NOT USE <a href="index.html#fort.ANY_COLUMN">fort.ANY_COLUMN</a>/<a href="index.html#fort.CUR_COLUMN">fort.CUR_COLUMN</a>
         </li>
     </ul>
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">ftable</span></span>
+
+
+    </ol>
 </dd>
 </dl>
     <h2 class="section-header "><a name="Methods__Appearance"></a>Methods: Appearance</h2>
@@ -854,6 +945,13 @@ without modifying the global separator.
     </dt>
     <dd>
     Add a dividing separtor line at the current row.
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">ftable</span></span>
+
+
+    </ol>
 </dd>
     <dt>
     <a name = "fort:set_border_style"></a>
@@ -865,9 +963,16 @@ without modifying the global separator.
     <ul>
         <li><span class="parameter">style</span>
             <span class="types"><span class="type">userdata</span></span>
-         from available styles <a href="index.html#fort.BASIC_STYLE">BASIC_STYLE</a>
+         from available styles <a href="index.html#fort.BASIC_STYLE">fort.BASIC_STYLE</a>
         </li>
     </ul>
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">ftable</span></span>
+
+
+    </ol>
 </dd>
     <dt>
     <a name = "fort:set_cell_prop"></a>
@@ -879,11 +984,11 @@ without modifying the global separator.
     <ul>
         <li><span class="parameter">row</span>
             <span class="types"><span class="type">number</span></span>
-         the row to set, can also use <a href="index.html#fort.ANY_ROW">ANY_ROW</a>/<a href="index.html#fort.CUR_ROW">CUR_ROW</a>
+         the row to set, can also use <a href="index.html#fort.ANY_ROW">fort.ANY_ROW</a>/<a href="index.html#fort.CUR_ROW">fort.CUR_ROW</a>
         </li>
         <li><span class="parameter">col</span>
             <span class="types"><span class="type">number</span></span>
-         the column to set, can also use <a href="index.html#fort.ANY_COLUMN">ANY_COLUMN</a>/<a href="index.html#fort.CUR_COLUMN">CUR_COLUMN</a>
+         the column to set, can also use <a href="index.html#fort.ANY_COLUMN">fort.ANY_COLUMN</a>/<a href="index.html#fort.CUR_COLUMN">fort.CUR_COLUMN</a>
         </li>
         <li><span class="parameter">property</span>
             <span class="types"><span class="type">number</span></span>
@@ -894,6 +999,13 @@ without modifying the global separator.
          value to set
         </li>
     </ul>
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">ftable</span></span>
+
+
+    </ol>
 </dd>
     <dt>
     <a name = "fort:set_cell_span"></a>
@@ -905,17 +1017,24 @@ without modifying the global separator.
     <ul>
         <li><span class="parameter">row</span>
             <span class="types"><span class="type">number</span></span>
-         the row to set. DO NOT USE <a href="index.html#fort.ANY_ROW">ANY_ROW</a>/<a href="index.html#fort.CUR_ROW">CUR_ROW</a>
+         the row to set. DO NOT USE <a href="index.html#fort.ANY_ROW">fort.ANY_ROW</a>/<a href="index.html#fort.CUR_ROW">fort.CUR_ROW</a>
         </li>
         <li><span class="parameter">col</span>
             <span class="types"><span class="type">number</span></span>
-         the column to set. DO NOT USE <a href="index.html#fort.ANY_COLUMN">ANY_COLUMN</a>/<a href="index.html#fort.CUR_COLUMN">CUR_COLUMN</a>
+         the column to set. DO NOT USE <a href="index.html#fort.ANY_COLUMN">fort.ANY_COLUMN</a>/<a href="index.html#fort.CUR_COLUMN">fort.CUR_COLUMN</a>
         </li>
         <li><span class="parameter">span</span>
             <span class="types"><span class="type">number</span></span>
          how many columns the cell should span
         </li>
     </ul>
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">ftable</span></span>
+
+
+    </ol>
 </dd>
     <dt>
     <a name = "fort:set_tbl_prop"></a>
@@ -934,6 +1053,13 @@ without modifying the global separator.
          value to set
         </li>
     </ul>
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">ftable</span></span>
+
+
+    </ol>
 </dd>
 </dl>
     <h2 class="section-header "><a name="Methods__State"></a>Methods: State</h2>
@@ -1041,7 +1167,7 @@ without modifying the global separator.
           <div class="section-description">
            Indicate the text alignment inside a cell.</p>
 
-<p> Can be used with <a href="index.html#fort:set_cell_prop">set_cell_prop</a>/<a href="index.html#fort.set_default_cell_prop">set_default_cell_prop</a>
+<p> Can be used with <a href="index.html#fort:set_cell_prop">set_cell_prop</a>/<a href="index.html#fort.set_default_cell_prop">fort.set_default_cell_prop</a>
           </div>
     <dl class="function">
     <dt>
@@ -1578,7 +1704,7 @@ without modifying the global separator.
 </div> <!-- id="content" -->
 </div> <!-- id="main" -->
 <div id="about">
-<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.5.0</a></i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>

@@ -44,10 +44,11 @@ fort.default_separator = "|"
 ---format the text.
 ---@param row_format string row to write with formatting
 ---@vararg ... any format arguments
+---@return fort
 function fort:printf(row_format, ...)
     local formatted_text = string.format(row_format, ...)
     local row = split(formatted_text, fort.default_separator)
-    fort.row_write(self, row)
+    return fort.row_write(self, row)
 end
 
 ---Use a formatted string to write a row and go to the next line.
@@ -56,10 +57,11 @@ end
 ---format the text.
 ---@param row_format string row to write with formatting
 ---@vararg ... any format arguments
+---@return fort
 function fort:printf_ln(row_format, ...)
     local formatted_text = string.format(row_format, ...)
     local row = split(formatted_text, fort.default_separator)
-    fort.row_write_ln(self, row)
+    return fort.row_write_ln(self, row)
 end
 
 ---Write a row.
@@ -67,10 +69,11 @@ end
 ---without modifying the global separator.
 ---@param row_text string
 ---@param sep? string sep cell separator
+---@return fort
 function fort:print(row_text, sep)
     sep = sep or fort.default_separator
     local row = split(row_text, sep)
-    fort.row_write(self, row)
+    return fort.row_write(self, row)
 end
 
 ---Write a row and go to the next line.
@@ -78,10 +81,11 @@ end
 ---without modifying the global separator.
 ---@param row_text string
 ---@param sep? string sep cell separator
+---@return fort
 function fort:print_ln(row_text, sep)
     sep = sep or fort.default_separator
     local row = split(row_text, sep)
-    fort.row_write_ln(self, row)
+    return fort.row_write_ln(self, row)
 end
 
 ---Write a 2d array of strings to the ftable.
@@ -101,6 +105,7 @@ function fort:table_write(data_table, colalign)
             end
         end
     end
+    return self
 end
 
 ---Write a 2d array of strings to the ftable and go to next line.
@@ -115,10 +120,15 @@ function fort:table_write_ln(data_table, colalign)
         local cur_row = fort.cur_row(self)
         fort.set_cur_cell(self, cur_row, cur_col)
     end
+    return self
 end
 
 ---Add a dividing separtor line at the current row.
-function fort:add_separator() cfort.add_separator(self) end
+---@return fort
+function fort:add_separator()
+    cfort.add_separator(self)
+    return self
+end
 
 ---Completely Copy a table
 ---@return fort copied table
@@ -140,6 +150,7 @@ function fort:cur_row() return cfort.cur_row(self) end
 ---@param top_left_col integer
 ---@param bottom_right_row integer
 ---@param bottom_right_col integer
+---@return fort
 function fort:erase_range(top_left_row, top_left_col, bottom_right_row,
                           bottom_right_col)
     if top_left_row < 0 then
@@ -154,8 +165,9 @@ function fort:erase_range(top_left_row, top_left_col, bottom_right_row,
     if bottom_right_col < 0 then
         bottom_right_col = self:col_count() + bottom_right_col + 1
     end
-    return cfort.erase_range(self, top_left_row, top_left_col, bottom_right_row,
-                             bottom_right_col)
+    cfort.erase_range(self, top_left_row, top_left_col, bottom_right_row,
+                      bottom_right_col)
+    return self
 end
 
 ---Check if ftable is empty
@@ -163,7 +175,11 @@ end
 function fort:is_empty() return cfort.is_empty(self) end
 
 ---Go to the next line (row)
-function fort:ln() return cfort.ln(self) end
+---@return fort
+function fort:ln()
+    cfort.ln(self)
+    return self
+end
 
 ---Get the number of rows in the ftable
 ---@return integer
@@ -175,63 +191,79 @@ function fort:col_count() return cfort.col_count(self) end
 
 ---Write a row of data.
 ---@param row any[] row of data to write (uses tostring)
+---@return fort
 function fort:row_write(row)
     assert(type(row) == "table", "Expected table for arg 1")
     local stringified_row = {}
     for _, v in ipairs(row) do table.insert(stringified_row, tostring(v)) end
     cfort.row_write(self, stringified_row)
+    return self
 end
 
 ---Write a row of data and go to the next line.
 ---@param row any[] row of data to write (uses tostring)
+---@return fort
 function fort:row_write_ln(row)
     assert(type(row) == "table", "Expected table for arg 1")
     local stringified_row = {}
     for _, v in ipairs(row) do table.insert(stringified_row, tostring(v)) end
     cfort.row_write_ln(self, stringified_row)
+    return self
 end
 
 ---Write a row
 ---@vararg any data to write in the row (uses tostring)
-function fort:write(...) fort.row_write(self, {...}) end
+---@return fort
+function fort:write(...) return fort.row_write(self, {...}) end
 ---Write a row and go to the next line
 ---@vararg any data to write in the row
-function fort:write_ln(...) fort.row_write_ln(self, {...}) end
+---@return fort
+function fort:write_ln(...) return fort.row_write_ln(self, {...}) end
 
 ---Set the border style of the ftable.
 ---@param style fort.BorderStyle available styles @{BASIC_STYLE}
-function fort:set_border_style(style) cfort.set_border_style(self, style) end
+---@return fort
+function fort:set_border_style(style)
+    cfort.set_border_style(self, style)
+    return self
+end
 
 ---Set the cell property of the ftable.
 ---@param row integer the row to set, can also use @{ANY_ROW}/@{CUR_ROW}
 ---@param col integer column to set, can also use @{ANY_COLUMN}/@{CUR_COLUMN}
 ---@param property fort.CellProperty property to set
 ---@param value integer to set
+---@return fort
 function fort:set_cell_prop(row, col, property, value)
 
     if row < 0 then row = self:row_count() + row + 1 end
     if col < 0 then col = self:col_count() + col + 1 end
 
     cfort.set_cell_prop(self, row, col, property, value)
+    return self
 end
 
 ---Set a cell's horizontal span in the ftable.
 ---@param row integer the row to set. DO NOT USE @{ANY_ROW}/@{CUR_ROW}
 ---@param col integer the column to set. DO NOT USE @{ANY_COLUMN}/@{CUR_COLUMN}
 ---@param span integer how many columns the cell should span
+---@return fort
 function fort:set_cell_span(row, col, span)
     if row < 0 then row = self:row_count() + row + 1 end
     if col < 0 then col = self:col_count() + col + 1 end
     cfort.set_cell_span(self, row, col, span)
+    return self
 end
 
 ---Set the current cell position.
 ---@param row integer the row to set. DO NOT USE @{ANY_ROW}/@{CUR_ROW}
 ---@param col integer the column to set. DO NOT USE @{ANY_COLUMN}/@{CUR_COLUMN}
+---@return fort
 function fort:set_cur_cell(row, col)
     if row < 0 then row = self:row_count() + row + 1 end
     if col < 0 then col = self:col_count() + col + 1 end
     cfort.set_cur_cell(self, row, col)
+    return self
 end
 
 ---Set the default border style for new tables.
@@ -257,8 +289,10 @@ end
 ---Set a table property.
 ---@param property fort.TableProperty the property to set
 ---@param value integer value to set
+---@return fort
 function fort:set_tbl_prop(property, value)
     cfort.set_tbl_prop(self, property, value)
+    return self
 end
 
 ---Generate the string version of the ftable.

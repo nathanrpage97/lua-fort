@@ -49,60 +49,60 @@
 <pre>
 <span class="keyword">local</span> ft = <span class="global">require</span> <span class="string">"fort"</span>
 
-<span class="keyword">local</span> ftable = ft.new()
-ftable:set_border_style(ft.NICE_STYLE)
-ftable:set_cell_prop(<span class="number">1</span>, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
+<span class="keyword">local</span> ftable = ft.<span class="function-name">new</span>()
+ftable:<span class="function-name">set_border_style</span>(ft.NICE_STYLE)
+ftable:<span class="function-name">set_cell_prop</span>(<span class="number">1</span>, ft.ANY_COLUMN, ft.CPROP_ROW_TYPE, ft.ROW_HEADER)
 
 <span class="comment">-- Filling ftable with data
-</span>ftable:write_ln(<span class="string">"Тest"</span>, <span class="string">"Iterations"</span>, <span class="string">"ms/op"</span>, <span class="string">"Ticks"</span>, <span class="string">"Passed"</span>)
-ftable:write_ln(<span class="string">"n-body"</span>, <span class="string">"1000"</span>, <span class="string">"1.6"</span>, <span class="string">"1,500,000"</span>, <span class="string">"✔"</span>)
-ftable:add_separator()
-ftable:write_ln(<span class="string">"regex-redux"</span>, <span class="string">"1000"</span>, <span class="string">"0.8"</span>, <span class="string">"8,000,000"</span>)
-ftable:write_ln(<span class="string">""</span>, <span class="string">"2500"</span>, <span class="string">"3.9"</span>, <span class="string">"27,000,000"</span>, <span class="string">"✖"</span>)
-ftable:write_ln(<span class="string">""</span>, <span class="string">"10000"</span>, <span class="string">"12.5"</span>, <span class="string">"96,800,000"</span>)
-ftable:add_separator()
-ftable:write_ln(<span class="string">"mandelbrot"</span>, <span class="string">"1000"</span>, <span class="string">"8.1"</span>, <span class="string">"89,000,000"</span>)
-ftable:write_ln(<span class="string">""</span>, <span class="string">"2500"</span>, <span class="string">"19.8"</span>, <span class="string">"320,000,000"</span>, <span class="string">"✔"</span>)
-ftable:write_ln(<span class="string">""</span>, <span class="string">"10000"</span>, <span class="string">"60.7"</span>, <span class="string">"987,000,000"</span>)
-ftable:add_separator()
-ftable:set_cell_span(<span class="number">9</span>, <span class="number">1</span>, <span class="number">4</span>)
-ftable:write_ln(<span class="string">"Total Result"</span>, <span class="string">""</span>, <span class="string">""</span>, <span class="string">""</span>, <span class="string">"✖"</span>)
+</span>ftable:<span class="function-name">write_ln</span>(<span class="string">"Тest"</span>, <span class="string">"Iterations"</span>, <span class="string">"ms/op"</span>, <span class="string">"Ticks"</span>, <span class="string">"Passed"</span>)
+ftable:<span class="function-name">write_ln</span>(<span class="string">"n-body"</span>, <span class="string">"1000"</span>, <span class="string">"1.6"</span>, <span class="string">"1,500,000"</span>, <span class="string">"✔"</span>)
+ftable:<span class="function-name">add_separator</span>()
+ftable:<span class="function-name">write_ln</span>(<span class="string">"regex-redux"</span>, <span class="string">"1000"</span>, <span class="string">"0.8"</span>, <span class="string">"8,000,000"</span>)
+ftable:<span class="function-name">write_ln</span>(<span class="string">""</span>, <span class="string">"2500"</span>, <span class="string">"3.9"</span>, <span class="string">"27,000,000"</span>, <span class="string">"✖"</span>)
+ftable:<span class="function-name">write_ln</span>(<span class="string">""</span>, <span class="string">"10000"</span>, <span class="string">"12.5"</span>, <span class="string">"96,800,000"</span>)
+ftable:<span class="function-name">add_separator</span>()
+ftable:<span class="function-name">write_ln</span>(<span class="string">"mandelbrot"</span>, <span class="string">"1000"</span>, <span class="string">"8.1"</span>, <span class="string">"89,000,000"</span>)
+ftable:<span class="function-name">write_ln</span>(<span class="string">""</span>, <span class="string">"2500"</span>, <span class="string">"19.8"</span>, <span class="string">"320,000,000"</span>, <span class="string">"✔"</span>)
+ftable:<span class="function-name">write_ln</span>(<span class="string">""</span>, <span class="string">"10000"</span>, <span class="string">"60.7"</span>, <span class="string">"987,000,000"</span>)
+ftable:<span class="function-name">add_separator</span>()
+ftable:<span class="function-name">set_cell_span</span>(<span class="number">9</span>, <span class="number">1</span>, <span class="number">4</span>)
+ftable:<span class="function-name">write_ln</span>(<span class="string">"Total Result"</span>, <span class="string">""</span>, <span class="string">""</span>, <span class="string">""</span>, <span class="string">"✖"</span>)
 
 <span class="comment">-- Setting text styles
-</span>ftable:set_cell_prop(<span class="number">1</span>, ft.ANY_COLUMN, ft.CPROP_CONT_TEXT_STYLE, ft.TSTYLE_BOLD)
-ftable:set_cell_prop(<span class="number">9</span>, ft.ANY_COLUMN, ft.CPROP_CONT_TEXT_STYLE, ft.TSTYLE_BOLD)
-ftable:set_cell_prop(ft.ANY_ROW, <span class="number">1</span>, ft.CPROP_CONT_TEXT_STYLE, ft.TSTYLE_BOLD)
-ftable:set_cell_prop(ft.ANY_ROW, <span class="number">5</span>, ft.CPROP_CONT_TEXT_STYLE, ft.TSTYLE_BOLD)
-ftable:set_cell_prop(ft.ANY_ROW, ft.ANY_COLUMN, ft.CPROP_CONT_TEXT_STYLE,
+</span>ftable:<span class="function-name">set_cell_prop</span>(<span class="number">1</span>, ft.ANY_COLUMN, ft.CPROP_CONT_TEXT_STYLE, ft.TSTYLE_BOLD)
+ftable:<span class="function-name">set_cell_prop</span>(<span class="number">9</span>, ft.ANY_COLUMN, ft.CPROP_CONT_TEXT_STYLE, ft.TSTYLE_BOLD)
+ftable:<span class="function-name">set_cell_prop</span>(ft.ANY_ROW, <span class="number">1</span>, ft.CPROP_CONT_TEXT_STYLE, ft.TSTYLE_BOLD)
+ftable:<span class="function-name">set_cell_prop</span>(ft.ANY_ROW, <span class="number">5</span>, ft.CPROP_CONT_TEXT_STYLE, ft.TSTYLE_BOLD)
+ftable:<span class="function-name">set_cell_prop</span>(ft.ANY_ROW, ft.ANY_COLUMN, ft.CPROP_CONT_TEXT_STYLE,
                      ft.TSTYLE_ITALIC)
 
 <span class="comment">-- Set alignment
-</span>ftable:set_cell_prop(ft.ANY_ROW, <span class="number">2</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_RIGHT)
-ftable:set_cell_prop(ft.ANY_ROW, <span class="number">3</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_RIGHT)
-ftable:set_cell_prop(ft.ANY_ROW, <span class="number">4</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_RIGHT)
-ftable:set_cell_prop(ft.ANY_ROW, <span class="number">5</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_CENTER)
-ftable:set_cell_prop(<span class="number">9</span>, <span class="number">1</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_CENTER)
+</span>ftable:<span class="function-name">set_cell_prop</span>(ft.ANY_ROW, <span class="number">2</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_RIGHT)
+ftable:<span class="function-name">set_cell_prop</span>(ft.ANY_ROW, <span class="number">3</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_RIGHT)
+ftable:<span class="function-name">set_cell_prop</span>(ft.ANY_ROW, <span class="number">4</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_RIGHT)
+ftable:<span class="function-name">set_cell_prop</span>(ft.ANY_ROW, <span class="number">5</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_CENTER)
+ftable:<span class="function-name">set_cell_prop</span>(<span class="number">9</span>, <span class="number">1</span>, ft.CPROP_TEXT_ALIGN, ft.ALIGNED_CENTER)
 
 <span class="comment">-- Set colors
-</span>ftable:set_cell_prop(<span class="number">2</span>, <span class="number">5</span>, ft.CPROP_CONT_FG_COLOR, ft.COLOR_GREEN)
-ftable:set_cell_prop(<span class="number">4</span>, <span class="number">5</span>, ft.CPROP_CONT_FG_COLOR, ft.COLOR_RED)
-ftable:set_cell_prop(<span class="number">7</span>, <span class="number">5</span>, ft.CPROP_CONT_FG_COLOR, ft.COLOR_GREEN)
-ftable:set_cell_prop(<span class="number">9</span>, <span class="number">5</span>, ft.CPROP_CONT_FG_COLOR, ft.COLOR_RED)
-ftable:set_cell_prop(<span class="number">4</span>, <span class="number">3</span>, ft.CPROP_CONT_FG_COLOR, ft.COLOR_RED)
-ftable:set_cell_prop(<span class="number">5</span>, <span class="number">4</span>, ft.CPROP_CONT_BG_COLOR, ft.COLOR_LIGHT_RED)
-ftable:set_cell_prop(<span class="number">1</span>, ft.ANY_COLUMN, ft.CPROP_CONT_FG_COLOR,
+</span>ftable:<span class="function-name">set_cell_prop</span>(<span class="number">2</span>, <span class="number">5</span>, ft.CPROP_CONT_FG_COLOR, ft.COLOR_GREEN)
+ftable:<span class="function-name">set_cell_prop</span>(<span class="number">4</span>, <span class="number">5</span>, ft.CPROP_CONT_FG_COLOR, ft.COLOR_RED)
+ftable:<span class="function-name">set_cell_prop</span>(<span class="number">7</span>, <span class="number">5</span>, ft.CPROP_CONT_FG_COLOR, ft.COLOR_GREEN)
+ftable:<span class="function-name">set_cell_prop</span>(<span class="number">9</span>, <span class="number">5</span>, ft.CPROP_CONT_FG_COLOR, ft.COLOR_RED)
+ftable:<span class="function-name">set_cell_prop</span>(<span class="number">4</span>, <span class="number">3</span>, ft.CPROP_CONT_FG_COLOR, ft.COLOR_RED)
+ftable:<span class="function-name">set_cell_prop</span>(<span class="number">5</span>, <span class="number">4</span>, ft.CPROP_CONT_BG_COLOR, ft.COLOR_LIGHT_RED)
+ftable:<span class="function-name">set_cell_prop</span>(<span class="number">1</span>, ft.ANY_COLUMN, ft.CPROP_CONT_FG_COLOR,
                      ft.COLOR_LIGHT_BLUE)
 
 <span class="comment">-- Move ftable to the center of the screen
-</span>ftable:set_tbl_prop(ft.TPROP_TOP_MARGIN, <span class="number">1</span>)
-ftable:set_tbl_prop(ft.TPROP_LEFT_MARGIN, <span class="number">10</span>)
+</span>ftable:<span class="function-name">set_tbl_prop</span>(ft.TPROP_TOP_MARGIN, <span class="number">1</span>)
+ftable:<span class="function-name">set_tbl_prop</span>(ft.TPROP_LEFT_MARGIN, <span class="number">10</span>)
 
 <span class="global">print</span>(<span class="string">"ftable:\n"</span> .. <span class="global">tostring</span>(ftable))</pre>
 
 </div> <!-- id="content" -->
 </div> <!-- id="main" -->
 <div id="about">
-<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.5.0</a></i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>
