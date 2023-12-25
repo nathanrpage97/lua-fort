@@ -43,6 +43,7 @@ fort.default_separator = "|"
 ---@function fort:printf
 ---@string row_format row to write with formatting
 ---@param ... any format arguments
+---@treturn ftable
 ---@within Methods: Data Entry
 
 ---Use a formatted string to write a row and go to the next line.
@@ -52,6 +53,7 @@ fort.default_separator = "|"
 ---@function fort:printf_ln
 ---@string row_format row to write with formatting
 ---@param ... any format arguments
+---@treturn ftable
 ---@within Methods: Data Entry
 
 ---Write a row.
@@ -60,6 +62,7 @@ fort.default_separator = "|"
 ---@function fort:print
 ---@string row_text
 ---@string[opt=fort.default_separator] sep cell separator
+---@treturn ftable
 ---@within Methods: Data Entry
 
 ---Write a row and go to the next line.
@@ -68,22 +71,26 @@ fort.default_separator = "|"
 ---@function fort:print_ln
 ---@string row_text
 ---@string[opt=fort.default_separator] sep cell separator
+---@treturn ftable
 ---@within  Methods: Data Entry
 
 ---Write a 2d array of strings to the ftable.
 ---@function fort:table_write
 ---@tparam {{string}} data_table 2d array of strings to write, can be jagged.
 ---@bool[opt=false] colalign align to the @{cur_col} at the start
+---@treturn ftable
 ---@within  Methods: Data Entry
 
 ---Write a 2d array of strings to the ftable and go to next line.
 ---@function fort:table_write_ln
 ---@tparam {{string}} data_table 2d array of strings to write, can be jagged.
 ---@bool[opt=false] colalign align to the @{cur_col} at the start
+---@treturn ftable
 ---@within  Methods: Data Entry
 
 ---Add a dividing separtor line at the current row.
 ---@function fort:add_separator
+---@treturn ftable
 ---@within Methods: Appearance
 
 ---Completely Copy a table
@@ -113,6 +120,7 @@ fort.default_separator = "|"
 ---@number top_left_col
 ---@number bottom_right_row
 ---@number bottom_right_col
+---@treturn ftable
 
 ---Check if ftable is empty
 ---@function fort:is_empty
@@ -122,6 +130,7 @@ fort.default_separator = "|"
 ---Go to the next line (row)
 ---@function fort:ln
 ---@within Methods: Data Entry
+---@treturn ftable
 
 ---Get the number of rows in the ftable
 ---@function fort:row_count
@@ -137,26 +146,31 @@ fort.default_separator = "|"
 ---@function fort:row_write
 ---@tparam {string} row row of strings to write
 ---@within Methods: Data Entry
+---@treturn ftable
 
 ---Write a row of data and go to the next line.
 ---@function fort:row_write_ln
 ---@tparam {string} row row of strings to write
 ---@within Methods: Data Entry
+---@treturn ftable
 
 ---Write a row
 ---@function fort:write
 ---@param ... string strings to write in the row
 ---@within Methods: Data Entry
+---@treturn ftable
 
 ---Write a row and go to the next line
 ---@function fort:write_ln
 ---@param ... string strings to write in the row
 ---@within Methods: Data Entry
+---@treturn ftable
 
 ---Set the border style of the ftable.
 ---@function fort:set_border_style
 ---@within Methods: Appearance
 ---@userdata style from available styles @{BASIC_STYLE}
+---@treturn ftable
 
 ---Set the cell property of the ftable.
 ---@function fort:set_cell_prop
@@ -165,6 +179,7 @@ fort.default_separator = "|"
 ---@number col the column to set, can also use @{ANY_COLUMN}/@{CUR_COLUMN}
 ---@number property the property to set
 ---@number value value to set
+---@treturn ftable
 
 ---Set a cell's horizontal span in the ftable.
 ---@function fort:set_cell_span
@@ -172,18 +187,21 @@ fort.default_separator = "|"
 ---@number row the row to set. DO NOT USE @{ANY_ROW}/@{CUR_ROW}
 ---@number col the column to set. DO NOT USE @{ANY_COLUMN}/@{CUR_COLUMN}
 ---@number span how many columns the cell should span
+---@treturn ftable
 
 ---Set the current cell position.
 ---@within Methods: Data Entry
 ---@function fort:set_cur_cell
 ---@number row the row to set. DO NOT USE @{ANY_ROW}/@{CUR_ROW}
 ---@number col the column to set. DO NOT USE @{ANY_COLUMN}/@{CUR_COLUMN}
+---@treturn ftable
 
 ---Set a table property.
 ---@within Methods: Appearance
 ---@number property the property to set
 ---@number value value to set
 ---@function fort:set_tbl_prop
+---@treturn ftable
 
 ---Cell Text Align.
 -- Indicate the text alignment inside a cell.

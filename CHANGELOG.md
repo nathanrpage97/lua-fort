@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.1.0 (2023.12.24)
+
+- [Added] Many fort commands now return the fort object. This allows for
+  chaining operations.
+
 ## v1.0.0 (2022.1.8)
 
 - [Fix] ftable metatable now links to fort instead of cfort module.
