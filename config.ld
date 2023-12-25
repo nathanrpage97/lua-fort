@@ -1,5 +1,5 @@
 project = 'lua-fort'
-title = 'lua-fort docs v1.0.0'
+title = 'lua-fort docs v1.1.0'
 description = 'An ASCII formatted table generating library'
 format = 'discount'
 backtick_references = true
